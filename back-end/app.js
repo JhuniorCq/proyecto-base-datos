@@ -12,6 +12,10 @@ const leerExcel = (ruta) => {
     const dataSheet = XLSX.utils.sheet_to_json(workBook.Sheets[sheet]); // Se utiliza la variable workBook que creamos, y aplicamos el método Sheets -> y dentro de los [ ] colocamos a la Variable 'sheet' que contiene la HOJA que queramos usar
 
     console.log(dataSheet);
+    
+    dataSheet.forEach(objeto => {
+        console.log(objeto["nombre"]);
+    });
 }
 
 leerExcel('estudiantes.xlsx');
