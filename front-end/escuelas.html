@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles/escuelas.css">
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+        <header class="nav-bar">
+            <nav>
+                <li class="element-list"><a href="index.html"><img src="" alt="Logo"></a></li>
+                <li class="element-list activo"><a href="escuelas.html">Inscribir Escuela</a></li>
+                <li class="element-list"><a href="programas.html">Asignar Programa</a></li>
+                <li class="element-list"><a href="donantes.html">Empresas donantes</a></li>
+            </nav>
+        </header>
+
+        <main>
+            <div class="contenedor">
+                <form class="formulario">
+
+                    <section class="seccion-form">
+                        <h1 class="titulo">Inscribir Escuela</h1>
+
+                        <div class="tabla">
+                            <div class="columna">
+                                <div class="contenedor-input">
+                                    <label for="codigo-modular">Código modular:</label>
+                                    <input type="text" id="codigo-modular" name="codigo-modular" class="input" placeholder="7654321" required>
+                                </div>
+                                <div class="contenedor-input">
+                                    <label for="nombre-escuela">Nombre de la Escuela:</label>
+                                    <input type="text" id="nombre-escuela" name="nombre-escuela" placeholder="I.E. Virgen de Fatima 5051" class="input" required>
+                                </div>
+                                <div class="contenedor-input">
+                                    <label for="direccion">Direccion:</label>
+                                    <input type="text" id="direccion" name="direccion" class="input" placeholder="Calle Principal #123, Ciudad" required>
+                                </div>
+                                <div class="contenedor-input">
+                                    <label for="departamento">Departamento</label>
+                                    <select name="departamento" id="departamento" class="input" required>
+                                        <!-- Usar una API para traer una lista con todos los Departamentos -->
+                                        <option value="">Lima</option>
+                                        <option value="">Junín</option>
+                                        <option value="">Puno</option>
+                                        <option value="">Cusco</option>
+                                    </select>
+                                </div>
+                                <div class="contenedor-input">
+                                    <label for="distrito">Distrito:</label>
+                                    <select name="distrito" id="distrito" class="input" required>
+                                        <option value="">Callao</option>
+                                        <option value="">San Miguel</option>
+                                        <option value="">Santa Anita</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                            <div class="columna">
+                                <div class="contenedor-input">
+                                    <label for="nombres-director">Nombres del director(a):</label>
+                                    <input type="text" id="nombres-director" name="nombres-director" class="input" placeholder="Holiver Jhunior" required>
+                                </div>
+                                <div class="contenedor-input">
+                                    <label for="apellidos-director">Apellidos del director(a):</label>
+                                    <input type="text" id="apellidos-director" name="apellidos-director" class="input" placeholder="Ccora Quispe" required>
+                                </div>
+                                <div class="contenedor-input">
+                                    <label for="telefono">Telefono del director(a):</label>
+                                    <input type="text" id="telefono" name="telefono" class="input" placeholder="987654321" required>
+                                </div>
+                                <div class="contenedor-input">
+                                    <label for="email">Correo electrónico:</label>
+                                    <input type="email" id="email" name="email" class="input" placeholder="usuario@dominio.com" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </section>
+                    
+                    <section class="seccion-form">
+                        <h1 class="titulo">Inscribir Estudiantes</h1>
+                        <div class="contenedor-excel contenedor-input">
+                            <label for="input-excel" class="form-label">Seleccionar archivo:</label>
+                            <input type="file" class="form-control" id="input-excel" name="archivo">
+                        </div>
+                    </section>
+
+                    <section class="contenedor-boton">
+                        <button>Inscribir</button>
+                    </section>
+                </form>
+            </div>
+        </main>
+    </body>
+
+    <script src="index.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>
