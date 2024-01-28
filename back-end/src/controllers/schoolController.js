@@ -1,20 +1,18 @@
-const db = require('../db.js'); //Por ahora pondremos este "db" acá, luego lo pondremos en CONTROLLERS
+const {open: db} = require('../db.js');
+const {SchoolService} = require('../service/schoolService.js');
+const schoolService = new SchoolService();
 
 const getSchools = async (req, res) => {
 
     try {
 
-        const sql = 'SELECT * FROM Schools';
+        
+        //LLAMAR A SERVICE PARA LA LÓGICA -> SERVICE HARÁ LA LÓGICA Y LLAMARÁ A REPOSITORY PARA EL MANEJO DE LA BD
+        const result = await schoolService.getSchools();
 
-        const result = await db(sql, [], false); //ASÍ USO AL "db", no es como en Postgre -> "pool.query"
-
-        console.log(result)
-        console.log(result.rows)
-    
-        // res.send('Hola mundo xD');
-        res.json(result.rows);
+        res.json(result); //Este result es un result.rows, porque así se retornó en schoolRepository
     } catch(err) {
-        console.error('Error en el archivo controller.js', err.message);
+        console.error('Error en la funcion getSchools en schoolController.js', err.message);
     }
 }
 
@@ -28,40 +26,15 @@ const getSchool = async (req, res) => {
 
 const enrollSchool = async (req, res) => {
     try {
-        const {
-            modular_code, 
-            name_school, 
-            address, 
-            district, 
-            departament, 
-            director_name, 
-            director_lastname, 
-            director_cellphone, 
-            director_email
-        } = req.body;
-
-        const sql = 'INSERT INTO Schools (modular_code, name_school, address, district, departament, director_name, director_lastname, director_cellphone, director_email) VALUES (:modular_code, :name_school, :address, :district, :departament, :director_name, :director_lastname, :director_cellphone, :director_email)'; //Para ORACLE se usa ":", para POSTGRE era "$"
-
-        const binds = {
-            modular_code,
-            name_school,
-            address,
-            district,
-            departament,
-            director_name,
-            director_lastname,
-            director_cellphone,
-            director_email
-        };
-
-        const result = await db(sql, binds, true);
+        const requestBody = req.body;
+        
+        //LLAMAR A SERVICE
+        const result = await schoolService.enrollSchool(requestBody);
 
         console.log(result);
-
         res.json(result)
-
     } catch(err) {
-        console.error('Error en enrollSchool en schoolController', err.message);
+        console.error('Error en enrollSchool en schoolController.js', err.message);
     }
 }
 

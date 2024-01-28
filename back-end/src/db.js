@@ -12,21 +12,25 @@ const open = async (sql, binds, autoCommit) => {
     try {
         conection = await oracledb.getConnection(db);
         let result = await conection.execute(sql, binds, {autoCommit});
-        conection.release();
+        
         return result;
     } finally {
         if(conection) {
             try {
-                await conection.close();
+                if (conection._releaseCallback) {
+                    await conection.release();
+                }
             } catch(err) {
-                console.error('Error when closing the connection to the database: ', err.message)
+                console.error('Error when closing the connection to the database xD: ', err.message)
             }
         }
     }
     
 }
 
-module.exports = open; // Todo module.exports es IGUAL a open
+module.exports = {
+    open
+}; // Si hubiera puesto module.exports = open -> Todo module.exports es IGUAL a open
 
 //Dato: Si se exporta así -> module.exports.open = open -> Se estaría agregando la función 'open' como una PROPIEDAD de module.exports
 
