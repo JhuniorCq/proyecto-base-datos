@@ -10,4 +10,6 @@ router.delete('/enrollSchool:id', deleteSchool);
 router.put('/enrollSchool', updateSchool);
 
 
-module.exports = router;
+module.exports = {
+    router
+};

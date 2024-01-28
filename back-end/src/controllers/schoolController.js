@@ -1,4 +1,3 @@
-const {open: db} = require('../db.js');
 const {SchoolService} = require('../service/schoolService.js');
 const schoolService = new SchoolService();
 
