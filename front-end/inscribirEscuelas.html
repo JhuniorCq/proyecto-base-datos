@@ -11,15 +11,55 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
     <body>
-        <header class="nav-bar">
-            <nav>
-                <li class="element-list"><a href="index.html"><img src="" alt="Logo"></a></li>
-                <li class="element-list activo"><a href="escuelas.html">Inscribir Escuela</a></li>
-                <li class="element-list"><a href="programas.html">Asignar Programa</a></li>
-                <li class="element-list"><a href="donantes.html">Empresas donantes</a></li>
-            </nav>
+        <header>
+            <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+                <div class="container-fluid">
+                  <a class="navbar-brand logo" href="index.html">
+                    <img src="" alt="Logo">
+                  </a>
+                  <!-- ícono del Botón de Menú -->
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Escuelas
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="inscribirEscuelas.html">Inscribir Escuela</a></li>
+                          <li><a class="dropdown-item" href="#">Visualizar Escuelas</a></li>
+                        </ul>
+                      </li>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Programas
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="asignarProgramas.html">Asignar Programa</a></li>
+                          <li><a class="dropdown-item" href="#">Visualizar Programas</a></li>
+                        </ul>
+                      </li>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Donaciones
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="registrarDonantes.html">Registrar Empresas Donantes</a></li>
+                          <li><a class="dropdown-item" href="#">Visualizar Empresas Donantes</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
         </header>
 
         <main>
