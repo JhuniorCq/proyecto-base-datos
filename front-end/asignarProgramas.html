@@ -64,7 +64,44 @@
 
         <main>
             <div class="contenedor">
-                Holaa
+                <form class="formulario">
+                    <h1 class="titulo">Asignar Programa</h1>
+
+                    <div class="contenedor-inputs">
+                        <div class="contenedor-input">
+                            <label for="escuela-select">Escoger Escuela: </label>
+                            <select name="escuela-select" id="escuela-select" class="input"><!-- Acá irán todas las Escuelas Inscritas --></select>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="nombre-programa">Nombre del Programa: </label>
+                            <input type="text" id="nombre-programa" name="nombre-programa" class="input">
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="descripcion-programa">Descripción: </label>
+                            <textarea name="descripcion-programa" id="descripcion-programa" cols="50" rows="4" class="input"></textarea>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="objetivo-programa">Objetivo: </label>
+                            <textarea name="objetivo-programa" id="objetivo-programa" cols="50" rows="4" class="input"></textarea>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="presupuesto-programa">Presupesto (S/.): </label>
+                            <input type="text" id="presupuesto-programa" name="presupuesto-programa" class="input">
+                        </div>
+                        <div class="contenedor-input"><!-- Este CAMPO falta agregar en la BASE DE DATOS -->
+                            <label for="fecha-inicio">Fecha Inicio: </label>
+                            <input type="date" id="fecha-inicio" name="fecha-inicio" class="input">
+                        </div>
+                        <div class="contenedor-input"><!-- Este CAMPO falta agregar en la BASE DE DATOS -->
+                            <label for="fecha-fin">Fecha Fin: </label>
+                            <input type="date" id="fecha-fin" name="fecha-fin" class="input">
+                        </div>
+                    </div>
+
+                    <div class="contenedor-boton">
+                        <button>Asignar Programa</button>
+                    </div>
+                </form>
             </div>
         </main>
     </body>
