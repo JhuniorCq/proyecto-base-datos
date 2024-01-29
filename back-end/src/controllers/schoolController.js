@@ -5,7 +5,6 @@ const getSchools = async (req, res) => {
 
     try {
 
-        
         //LLAMAR A SERVICE PARA LA LÓGICA -> SERVICE HARÁ LA LÓGICA Y LLAMARÁ A REPOSITORY PARA EL MANEJO DE LA BD
         const result = await schoolService.getSchools();
 
