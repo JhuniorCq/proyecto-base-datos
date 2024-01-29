@@ -1,0 +1,2 @@
+#No incluir node_modules en el repositorio
+node_modules/
