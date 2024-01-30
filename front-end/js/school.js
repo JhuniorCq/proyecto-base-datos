@@ -13,7 +13,7 @@ const funcion = async () => {
             throw new Error(`Error al realizar la solicitud: ${response.statusText}`);
         }
         
-        const schoolsData = response.json();
+        const schoolsData = await response.json();
         console.log('ahhhhh')
         console.log('xD', schoolsData);
 
@@ -21,7 +21,5 @@ const funcion = async () => {
         console.error('Error en school.js', err.message);
     }
 }
-
-
 
 escuelaSelect.addEventListener('click', funcion);
