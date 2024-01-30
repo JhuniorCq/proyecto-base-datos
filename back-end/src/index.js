@@ -6,7 +6,10 @@ const {router} = require('./routes/routes.js')
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+}));
 app.use(morgan('dev'));
 app.use(express.json()); //Esto hará que EXPRESS pueda entender los JSON que vengan del CLIENTE
 
