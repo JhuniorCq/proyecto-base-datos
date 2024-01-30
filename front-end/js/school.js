@@ -9,6 +9,12 @@ const funcion = async () => {
 
         console.log(schoolsData);
 
+        const array = schoolsData.map(vector => {
+            return vector[1];
+        });
+
+        console.log(array);
+
     } catch(err) {
         console.error('Error en school.js', err.message);
     }
