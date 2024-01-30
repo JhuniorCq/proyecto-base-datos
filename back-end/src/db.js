@@ -3,7 +3,7 @@ const oracledb = require('oracledb');
 db = {
     user: 'user_jhunior',
     password: '123456',
-    connectString: '192.168.56.1:1521/xe'
+    connectString: 'localhost:1521'
 }
 
 const open = async (sql, binds, autoCommit) => {
