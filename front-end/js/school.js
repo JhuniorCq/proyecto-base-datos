@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const escuelaSelect = document.getElementById('escuela-select');
 
-
+console.log('Se lee este archivo :,v');
 const funcion = async () => {
     try {
         // const response = await axios.get('https://edunex-solutions.onrender.com/assignProgram');
