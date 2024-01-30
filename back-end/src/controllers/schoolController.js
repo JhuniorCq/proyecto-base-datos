@@ -8,7 +8,9 @@ const getSchools = async (req, res) => {
         //LLAMAR A SERVICE PARA LA LÓGICA -> SERVICE HARÁ LA LÓGICA Y LLAMARÁ A REPOSITORY PARA EL MANEJO DE LA BD
         const result = await schoolService.getSchools();
 
-        res.json(result); //Este result es un result.rows, porque así se retornó en schoolRepository
+        //Este result es un result.rows, porque así se retornó en schoolRepository
+        // res.json(result); 
+        res.send('Hola :,v ');
     } catch(err) {
         console.error('Error en la funcion getSchools en schoolController.js', err.message);
     }
