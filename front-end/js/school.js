@@ -23,7 +23,7 @@ for(const escuela of nombresEscuelas) {
     escuelaSelect.append(nuevoOption);
 }
 
-
+// LO QUE FALTARÍA SERIA QUE CUANDO EL USUARIO ESCOJA UNA ESCUELA, SE RECOJA SU CODIGO MODULAR 
 
 
 const funcion = async () => {
