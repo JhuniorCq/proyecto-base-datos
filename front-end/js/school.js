@@ -22,32 +22,15 @@ for(const escuela of nombresEscuelas) {
     nuevoOption.innerText = `${escuela}`;
     escuelaSelect.append(nuevoOption);
 }
-
+//Si gusto puedo hacer que cuando se dé click al SELECT se ponga disabled a "-- Escoge una Escuela --"
 // LO QUE FALTARÍA SERIA QUE CUANDO EL USUARIO ESCOJA UNA ESCUELA, SE RECOJA SU CODIGO MODULAR 
 
 
-const funcion = async () => {
-    try {
-        // const response = await axios.get('http://localhost:3000/assignProgram');
-        // const schoolsData = response.data;
+const deshabilitarOpcion = async () => {
 
-        // console.log(schoolsData);
+    const opcionDisabled = document.getElementById('opcion-disabled');
 
-        // const nombresEscuelas = schoolsData.map(datosEscuela => {
-        //     return datosEscuela[1];
-        // });
-
-        // console.log(nombresEscuelas);
-
-        // const cantidadEscuelas = nombresEscuelas.length;
-
-        // for(const escuela of nombresEscuelas) {
-            
-        // }
-
-    } catch(err) {
-        console.error('Error en school.js', err.message);
-    }
+    opcionDisabled.disabled = true;
 }
 
-escuelaSelect.addEventListener('click', funcion);
+escuelaSelect.addEventListener('click', deshabilitarOpcion);
