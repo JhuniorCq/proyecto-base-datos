@@ -22,7 +22,7 @@ for(const escuela of nombresEscuelas) {
     nuevoOption.innerText = `${escuela}`;
     escuelaSelect.append(nuevoOption);
 }
-//Si gusto puedo hacer que cuando se dé click al SELECT se ponga disabled a "-- Escoge una Escuela --"
+
 // LO QUE FALTARÍA SERIA QUE CUANDO EL USUARIO ESCOJA UNA ESCUELA, SE RECOJA SU CODIGO MODULAR 
 
 
