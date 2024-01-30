@@ -14,7 +14,7 @@ const funcion = async () => {
         }
         
         const schoolsData = response.json();
-
+        console.log('ahhhhh')
         console.log('xD', schoolsData);
 
     } catch(err) {
