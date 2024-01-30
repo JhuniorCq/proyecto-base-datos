@@ -9,11 +9,19 @@ const funcion = async () => {
 
         console.log(schoolsData);
 
-        const array = schoolsData.map(vector => {
-            return vector[1];
+        const nombresEscuelas = schoolsData.map(datosEscuela => {
+            return datosEscuela[1];
         });
 
-        console.log(array);
+        console.log(nombresEscuelas);
+
+        const cantidadEscuelas = nombresEscuelas.length;
+
+        for(const escuela of nombresEscuelas) {
+            escuelaSelect.innerHTML = `
+                <option>${escuela}</option>
+            `;
+        }
 
     } catch(err) {
         console.error('Error en school.js', err.message);
