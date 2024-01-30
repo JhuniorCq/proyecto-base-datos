@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>EduNex Solutions</title>
         <!-- CSS -->
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="styles/programas.css">
+        <link rel="stylesheet" href="styles/asignarProgramas.css">
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <!-- Bootstrap -->
@@ -70,31 +70,33 @@
                     <div class="contenedor-inputs">
                         <div class="contenedor-input">
                             <label for="escuela-select">Escoger Escuela: </label>
-                            <select name="escuela-select" id="escuela-select" class="input"><!-- Acá irán todas las Escuelas Inscritas --></select>
+                            <select name="escuela-select" id="escuela-select" class="input" required>
+                                <!-- Acá irán todas las Escuelas Inscritas -->
+                            </select>
                         </div>
                         <div class="contenedor-input">
                             <label for="nombre-programa">Nombre del Programa: </label>
-                            <input type="text" id="nombre-programa" name="nombre-programa" class="input">
+                            <input type="text" id="nombre-programa" name="nombre-programa" class="input" placeholder="Programa de Apoyo: Verano 2024" required>
                         </div>
                         <div class="contenedor-input">
                             <label for="descripcion-programa">Descripción: </label>
-                            <textarea name="descripcion-programa" id="descripcion-programa" cols="50" rows="4" class="input"></textarea>
+                            <textarea name="descripcion-programa" id="descripcion-programa" cols="50" rows="4" class="input" placeholder="" required></textarea>
                         </div>
                         <div class="contenedor-input">
                             <label for="objetivo-programa">Objetivo: </label>
-                            <textarea name="objetivo-programa" id="objetivo-programa" cols="50" rows="4" class="input"></textarea>
+                            <textarea name="objetivo-programa" id="objetivo-programa" cols="50" rows="4" class="input" placeholder="" required></textarea>
                         </div>
                         <div class="contenedor-input">
                             <label for="presupuesto-programa">Presupesto (S/.): </label>
-                            <input type="text" id="presupuesto-programa" name="presupuesto-programa" class="input">
+                            <input type="text" id="presupuesto-programa" name="presupuesto-programa" class="input" placeholder="200000" required>
                         </div>
                         <div class="contenedor-input"><!-- Este CAMPO falta agregar en la BASE DE DATOS -->
                             <label for="fecha-inicio">Fecha Inicio: </label>
-                            <input type="date" id="fecha-inicio" name="fecha-inicio" class="input">
+                            <input type="date" id="fecha-inicio" name="fecha-inicio" class="input" placeholder="" required>
                         </div>
                         <div class="contenedor-input"><!-- Este CAMPO falta agregar en la BASE DE DATOS -->
                             <label for="fecha-fin">Fecha Fin: </label>
-                            <input type="date" id="fecha-fin" name="fecha-fin" class="input">
+                            <input type="date" id="fecha-fin" name="fecha-fin" class="input" placeholder="" required>
                         </div>
                     </div>
 
@@ -104,9 +106,9 @@
                 </form>
             </div>
         </main>
+        
+        <script src="js/school.js" type="module"></script>
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
-
-    <script src="index.js"></script>
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

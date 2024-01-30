@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>EduNex Solutions</title>
         <!-- CSS -->
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="styles/donantes.css">
+        <link rel="stylesheet" href="styles/registrarDonantes.css">
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <!-- Bootstrap -->
@@ -64,12 +64,48 @@
 
         <main>
             <div class="contenedor">
-                Holaa
+                <form class="formulario">
+                    <h1 class="titulo">Registrar Empresa Donante</h1>
+                    
+                    <div class="contenedor-inputs">
+                        <div class="contenedor-input">
+                            <label for="nombre-empresa">Nombre de la Empresa: </label>
+                            <input type="text" id="nombre-empresa" name="nombre-empresa" class="input" placeholder="Leche Gloria S.A." required>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="direccion-empresa">Dirección de la Empresa: </label>
+                            <input type="text" id="direccion-empresa" name="direccion-empresa" class="input" placeholder="Calle Principal #123, Ciudad" required>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="email-empresa">E-mail de la Empresa: </label>
+                            <input type="text" id="email-empresa" name="email-empresa" class="input" placeholder="usuario@dominio.com" required>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="programa-select">Escoger Programa: </label>
+                            <select name="programa-select" id="programa-select" class="input" required>
+                                <!-- Acá irán todas los Programas Registrados -->
+                            </select>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="monto-donacion">Monto a donar (S/.): </label>
+                            <input type="text" id="monto-donacion" name="monto-donacion" class="input" placeholder="20000" required>
+                        </div>
+                        <div class="contenedor-input">
+                            <label for="fecha-donacion">Fecha de la Donación: </label>
+                            <input type="date" id="fecha-donacion" name="fecha-donacion" class="input" placeholder="" required>
+                        </div>
+                    </div>
+
+                    <div class="contenedor-boton">
+                        <button>Registrar Empresa</button>
+                    </div>
+                </form>
             </div>
         </main>
-    </body>
 
-    <script src="index.js"></script>
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        
+        <script src="index.js"></script>
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
 </html>
