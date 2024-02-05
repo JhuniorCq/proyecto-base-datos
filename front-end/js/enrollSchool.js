@@ -3,6 +3,8 @@ const provinciaSelect = document.getElementById('provinciaSelect');
 const distritoSelect = document.getElementById('distritoSelect');
 const todosSelect = document.querySelectorAll('.select');
 
+console.log(todosSelect);
+
 const axiosGet = async (url) => {
     try {
         const response = await axios.get(url);
