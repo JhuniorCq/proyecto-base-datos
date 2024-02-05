@@ -11,13 +11,12 @@ const axiosGet = async (url) => {
     }
 }
 
-const obtenerNombres = (lista) => {
+const obtenerNombres = (lista, zonaGeografica) => {
     for(const objeto of lista) {
-        const nombreDepartamento = objeto["departamento"];
+        const nombreDepartamento = objeto[zonaGeografica];
         const nuevoOption = document.createElement('option');
         nuevoOption.innerHTML = `${nombreDepartamento}`;
         departamentoSelect.append(nuevoOption);
-        console.log(nombreDepartamento);
     }
 }
 
@@ -26,7 +25,7 @@ const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/provin
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
 console.log(listaDepartamentos);
-obtenerNombres(listaDepartamentos);
+obtenerNombres(listaDepartamentos, 'department');
 console.log(listaProvincias);
 console.log(listaDistritos);
 
