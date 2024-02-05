@@ -1,6 +1,7 @@
 const departamentoSelect = document.getElementById('departamentoSelect');
 const provinciaSelect = document.getElementById('provinciaSelect');
 const distritoSelect = document.getElementById('distritoSelect');
+const todosSelect = document.querySelectorAll('.select');
 
 const axiosGet = async (url) => {
     try {
@@ -20,13 +21,20 @@ const obtenerNombres = (lista, zonaGeografica) => {
     }
 }
 
+const deshabilitarOpcion = () => {
+    const opcionDisabled = document.getElementById('opcion-disabled');
+    opcionDisabled.disabled = true;
+}
+
 const listaDepartamentos = await axiosGet('https://geo-peru-api.onrender.com/department');
 const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/province');
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
-console.log(listaDepartamentos);
 obtenerNombres(listaDepartamentos, 'departamento');
+
+console.log(listaDepartamentos);
 console.log(listaProvincias);
 console.log(listaDistritos);
 
 
+todosSelect.forEach(select => select.addEventListener('click', deshabilitarOpcion));

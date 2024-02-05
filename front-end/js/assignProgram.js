@@ -19,9 +19,7 @@ for(const escuela of nombresEscuelas) {
 //MEJOR TRAABJO DESDE LA MAIN, es MÁS RÁPIDO
 
 const deshabilitarOpcion = () => {
-
     const opcionDisabled = document.getElementById('opcion-disabled');
-
     opcionDisabled.disabled = true;
 }
 
