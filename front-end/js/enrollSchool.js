@@ -25,7 +25,7 @@ const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/provin
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
 console.log(listaDepartamentos);
-obtenerNombres(listaDepartamentos, 'department');
+obtenerNombres(listaDepartamentos, 'departamento');
 console.log(listaProvincias);
 console.log(listaDistritos);
 
