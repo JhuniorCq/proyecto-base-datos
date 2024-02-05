@@ -7,8 +7,6 @@ console.log('Se lee este archivo :,v');
 const response = await axios.get('http://localhost:3000/assignProgram');
 const schoolsData = response.data;
 
-console.log(schoolsData);
-
 const nombresEscuelas = schoolsData.map(datosEscuela => {
     return datosEscuela[1];
 });
@@ -25,6 +23,7 @@ for(const escuela of nombresEscuelas) {
 
 // LO QUE FALTARÍA SERIA QUE CUANDO EL USUARIO ESCOJA UNA ESCUELA, SE RECOJA SU CODIGO MODULAR 
 
+//MEJOR TRAABJO DESDE LA MAIN, es MÁS RÁPIDO
 
 const deshabilitarOpcion = async () => {
 
