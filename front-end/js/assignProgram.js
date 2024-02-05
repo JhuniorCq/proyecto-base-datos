@@ -1,19 +1,12 @@
 
 const escuelaSelect = document.getElementById('escuela-select');// El AXIOS da, pero con la CDN, con el import no da :,v
 
-console.log('Se lee este archivo :,v');
-
-
 const response = await axios.get('http://localhost:3000/assignProgram');
 const schoolsData = response.data;
 
 const nombresEscuelas = schoolsData.map(datosEscuela => {
     return datosEscuela[1];
 });
-
-console.log(nombresEscuelas);
-
-const cantidadEscuelas = nombresEscuelas.length;
 
 for(const escuela of nombresEscuelas) {
     const nuevoOption = document.createElement('option');
