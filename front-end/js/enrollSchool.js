@@ -11,10 +11,20 @@ const axiosGet = async (url) => {
     }
 }
 
+const obtenerNombres = (lista) => {
+    for(const objeto of lista) {
+        const nombre = objeto["departamento"];
+        console.log(nombre);
+    }
+}
+
 const listaDepartamentos = await axiosGet('https://geo-peru-api.onrender.com/department');
 const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/province');
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
 console.log(listaDepartamentos);
+obtenerNombres(listaDepartamentos);
 console.log(listaProvincias);
 console.log(listaDistritos);
+
+
