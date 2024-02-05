@@ -13,8 +13,11 @@ const axiosGet = async (url) => {
 
 const obtenerNombres = (lista) => {
     for(const objeto of lista) {
-        const nombre = objeto["departamento"];
-        console.log(nombre);
+        const nombreDepartamento = objeto["departamento"];
+        const nuevoOption = document.createElement('option');
+        nuevoOption.innerHTML = `${nombreDepartamento}`;
+        departamentoSelect.append(nuevoOption);
+        console.log(nombreDepartamento);
     }
 }
 
