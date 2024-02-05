@@ -25,7 +25,7 @@ for(const escuela of nombresEscuelas) {
 
 //MEJOR TRAABJO DESDE LA MAIN, es MÁS RÁPIDO
 
-const deshabilitarOpcion = async () => {
+const deshabilitarOpcion = () => {
 
     const opcionDisabled = document.getElementById('opcion-disabled');
 
