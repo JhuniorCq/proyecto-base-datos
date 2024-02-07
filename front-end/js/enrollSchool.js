@@ -14,7 +14,7 @@ const axiosGet = async (url) => {
     }
 }
 
-const obtenerNombres = (lista, zonaGeografica) => {
+const crearOptionSelect = (lista, zonaGeografica) => {
     for(const objeto of lista) {
         const nombreDepartamento = objeto[zonaGeografica];
         const nuevoOption = document.createElement('option');
@@ -32,11 +32,17 @@ const listaDepartamentos = await axiosGet('https://geo-peru-api.onrender.com/dep
 const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/province');
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
-obtenerNombres(listaDepartamentos, 'departamento');
+//AGREGAR DEPARTAMENTOS AL SELECT
+crearOptionSelect(listaDepartamentos, 'departamento');
+
+//AGREGAR PROVINCIAS AL SELECT
+
+//AGREGAR DISTRITOS AL SELECT
+
 
 console.log(listaDepartamentos);
 console.log(listaProvincias);
 console.log(listaDistritos);
 
-
+//Deshabilitar opción por defecto de los 3 Select
 todosSelect.forEach(select => select.addEventListener('click', deshabilitarOpcion));
