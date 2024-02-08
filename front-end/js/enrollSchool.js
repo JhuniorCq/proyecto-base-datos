@@ -77,9 +77,9 @@ const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) =
 const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
     const nuevoOption = document.createElement('option');
     nuevoOption.innerText = contenidoOptionDefault;
-    nuevoOption.selected = true;
+    // nuevoOption.selected = true;
+    nuevoOption.id = 'opcion-disabled';
     tipoSelect.append(nuevoOption);
-    tipoSelect.addEventListener('click', deshabilitarOpcion);
 }
 
 //Función para Deshabilitar la opción "-- Escoge un Departamento --"
