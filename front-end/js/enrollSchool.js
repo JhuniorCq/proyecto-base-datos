@@ -14,19 +14,20 @@ const axiosGet = async (url) => {
     }
 }
 
-const mostrarDepartamentos = (lista) => {
-    for(const objeto of lista) {
+const mostrarDepartamentos = (listaDepartamentos) => {
+    for(const objeto of listaDepartamentos) {
         const nombreDepartamento = objeto["departamento"];
         const idDepartamento = objeto["id_departamento"]
         crearOptionSelect(nombreDepartamento, idDepartamento);
     }
 }
 
-const mostrarProvincias = (lista) => {
-    const departamentoSeleccionado = departamentoSelect.value;
-    console.log(departamentoSeleccionado);
-    console.log(departamentoSeleccionado.innerText);
-    // const provinciasSeleccionadas = lista.filter(provincia => provincia);
+const mostrarProvincias = (listaProvincias) => {
+    const idDepartamentoSeleccionado = departamentoSelect.value;
+    console.log(idDepartamentoSeleccionado);
+
+    const provinciasSeleccionadas = listaProvincias.filter(provincia => provincia["id_departamento"] === idDepartamentoSeleccionado);
+    console.log(provinciasSeleccionadas);
 
 }
 
