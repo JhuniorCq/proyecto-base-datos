@@ -55,6 +55,7 @@ const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEs
         return false;
     } else if(!/^\d{7}$/.test(codigoModularValue)) {
         alert('El código modular debe tener 7 dígitos y contener solo números.')
+        return false;
     }
 
     if(!nombreEscuelaValue){
@@ -62,6 +63,7 @@ const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEs
         return false;
     } else if(nombreEscuelaValue.length > 60) {
         alert('Como máximo se permite 60 caracteres para el nombre de la escuela.')
+        return false;
     }
 
     //La dirección es un campo opcional
