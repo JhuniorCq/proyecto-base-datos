@@ -23,11 +23,11 @@ const mostrarDepartamentos = () => {
     }
 }
 
-const obtenerIdNombre = (listaZonaGeografica, claveZonaGeografica, claveId) => {
+const obtenerIdNombre = (listaZonaGeografica, claveZonaGeografica, claveId, tipoSelect) => {
     for(const objeto of listaZonaGeografica) {
         const nombreZonaGeografica = objeto[claveZonaGeografica];
         const idZonaGeografica = objeto[claveId]
-        crearOptionSelect(nombreZonaGeografica, idZonaGeografica, departamentoSelect);
+        crearOptionSelect(nombreZonaGeografica, idZonaGeografica, tipoSelect);
     }
 }
 
@@ -40,7 +40,7 @@ const mostrarProvincias = () => {
     const provinciasSeleccionadas = listaProvincias.filter(provincia => provincia["id_departamento"] === idDepartamentoSeleccionado);
     console.log(provinciasSeleccionadas);
 
-    obtenerIdNombre(listaProvincias, 'provincia', 'id_provincia');
+    obtenerIdNombre(listaProvincias, 'provincia', 'id_provincia', provinciaSelect);
     
 //     for(const objeto of provinciasSeleccionadas) {
 //         const nombreProvincia = objeto["provincia"];
@@ -68,7 +68,7 @@ const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/distric
 
 //AGREGAR DEPARTAMENTOS AL SELECT
 // mostrarDepartamentos();
-obtenerIdNombre(listaDepartamentos, 'departamento', 'id_departamento');
+obtenerIdNombre(listaDepartamentos, 'departamento', 'id_departamento', departamentoSelect);
 //AGREGAR PROVINCIAS AL SELECT
 
 //AGREGAR DISTRITOS AL SELECT
