@@ -23,14 +23,6 @@ const mostrarDepartamentos = () => {
     }
 }
 
-// const obtenerIdNombre = (listaZonaGeografica, claveZonaGeografica, claveId, tipoSelect) => {
-//     for(const objeto of listaZonaGeografica) {
-//         const nombreZonaGeografica = objeto[claveZonaGeografica];
-//         const idZonaGeografica = objeto[claveId]
-//         crearOptionSelect(nombreZonaGeografica, idZonaGeografica, tipoSelect);
-//     }
-// }
-
 //Función con Evento 'change' -> Mostrar Provincias
 const mostrarProvincias = () => {
     provinciaSelect.innerHTML = '';
@@ -39,13 +31,25 @@ const mostrarProvincias = () => {
 
     const provinciasSeleccionadas = listaProvincias.filter(provincia => provincia["id_departamento"] === idDepartamentoSeleccionado);
     console.log(provinciasSeleccionadas);
-
-    // obtenerIdNombre(listaProvincias, 'provincia', 'id_provincia', provinciaSelect);
     
     for(const objeto of provinciasSeleccionadas) {
         const nombreProvincia = objeto["provincia"];
         const idProvincia = objeto["id_provincia"];
         crearOptionSelect(nombreProvincia, idProvincia, provinciaSelect);
+    }
+}
+
+//Función con Evento 'change' -> Mostrar Distritos
+const mostrarDistritos = () => {
+    distritoSelect.innerHTML = '';
+    const idProvinciaSeleccionada = provinciaSelect.value;
+
+    const distritosSeleccionados = listaDistritos.filter(distrito => distrito["id_provincia"] === idProvinciaSeleccionada);
+
+    for(const objeto of distritosSeleccionados) {
+        const nombreDistrito = objeto["distrito"];
+        const idDistrito = objeto["id_distrito"];
+        crearOptionSelect(nombreDistrito, idDistrito, distritoSelect);
     }
 }
 
@@ -68,7 +72,7 @@ const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/distric
 
 //AGREGAR DEPARTAMENTOS AL SELECT
 mostrarDepartamentos();
-// obtenerIdNombre(listaDepartamentos, 'departamento', 'id_departamento', departamentoSelect);
+
 //AGREGAR PROVINCIAS AL SELECT
 
 //AGREGAR DISTRITOS AL SELECT
@@ -80,6 +84,7 @@ console.log(listaDistritos);
 
 
 departamentoSelect.addEventListener('change', mostrarProvincias);
+provinciaSelect.addEventListener('change', mostrarDistritos);
 
 //Deshabilitar opción por defecto de los 3 Select
 todosSelect.forEach(select => select.addEventListener('click', deshabilitarOpcion));
