@@ -14,15 +14,26 @@ const axiosGet = async (url) => {
     }
 }
 
-const mostrarDepartamentos = (lista, zonaGeografica) => {
+const mostrarDepartamentos = (lista) => {
     for(const objeto of lista) {
-        const nombreDepartamento = objeto[zonaGeografica];
-        crearOptionSelect(nombreDepartamento);
+        const nombreDepartamento = objeto["departamento"];
+        const idDepartamento = objeto["id_departamento"]
+        crearOptionSelect(nombreDepartamento, idDepartamento);
     }
 }
 
-const crearOptionSelect = (nombreDepartamento) => {
+const mostrarProvincias = (lista) => {
+    const departamentoSeleccionado = departamentoSelect.value;
+    console.log(departamentoSelect);
+    console.log(departamentoSeleccionado);
+
+    // const provinciasSeleccionadas = lista.filter(provincia => provincia);
+
+}
+
+const crearOptionSelect = (nombreDepartamento, id_departamento) => {
     const nuevoOption = document.createElement('option');
+    nuevoOption.value = `${id_departamento}`;
     nuevoOption.innerHTML = `${nombreDepartamento}`;
     departamentoSelect.append(nuevoOption);
 }
@@ -33,16 +44,12 @@ const deshabilitarOpcion = () => {
     opcionDisabled.disabled = true;
 }
 
-const funcion = () => {
-    console.log(departamentoSelect.value);
-}
-
 const listaDepartamentos = await axiosGet('https://geo-peru-api.onrender.com/department');
 const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/province');
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
 //AGREGAR DEPARTAMENTOS AL SELECT
-mostrarDepartamentos(listaDepartamentos, 'departamento');
+mostrarDepartamentos(listaDepartamentos);
 
 //AGREGAR PROVINCIAS AL SELECT
 
@@ -54,7 +61,7 @@ console.log(listaProvincias);
 console.log(listaDistritos);
 
 
-departamentoSelect.addEventListener('change', funcion);
+departamentoSelect.addEventListener('change', mostrarProvincias);
 
 //Deshabilitar opción por defecto de los 3 Select
 todosSelect.forEach(select => select.addEventListener('click', deshabilitarOpcion));
