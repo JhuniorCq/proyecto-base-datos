@@ -72,8 +72,7 @@ const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) =
 const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
     const nuevoOption = document.createElement('option');
     nuevoOption.innerText = contenidoOptionDefault;
-    nuevoOption.id = 'opcion-disabled';
-    // nuevoOption.disabled = true;
+    nuevoOption.value = 'default';
     tipoSelect.append(nuevoOption);
 }
 
