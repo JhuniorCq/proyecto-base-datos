@@ -1,9 +1,9 @@
 const departamentoSelect = document.getElementById('departamentoSelect');
 const provinciaSelect = document.getElementById('provinciaSelect');
 const distritoSelect = document.getElementById('distritoSelect');
-const todosSelect = document.querySelectorAll('.select');
+// const todosSelect = document.querySelectorAll('.select');
 
-console.log(todosSelect);
+// console.log(todosSelect);
 
 const axiosGet = async (url) => {
     try {
@@ -107,6 +107,6 @@ departamentoSelect.addEventListener('change', mostrarProvincias);
 provinciaSelect.addEventListener('change', mostrarDistritos);
 
 //Deshabilitar opción por defecto de los 3 Select
-departamentoSelect.addEventListener('click', deshabilitarOpcion);
+// departamentoSelect.addEventListener('click', deshabilitarOpcion);
 // provinciaSelect.addEventListener('click', deshabilitarOpcion);
 // distritoSelect.addEventListener('click', deshabilitarOpcion);
