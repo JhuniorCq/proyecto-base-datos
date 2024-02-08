@@ -15,16 +15,16 @@ const funcion = (evento) => {
     //Evitar que el formulario se envíe de forma predeterminada, y que se recargue la página
     evento.preventDefault();
 
-    console.log(codigoModular);
-    console.log(nombreEscuela);
-    console.log(direccionEscuela);
-    console.log(departamentoSelect);
-    console.log(provinciaSelect);
-    console.log(distritoSelect);
-    console.log(nombresDirector);
-    console.log(apellidosDirector);
-    console.log(telefonoDirector);
-    console.log(emailDirector);
+    console.log(codigoModular.value);
+    console.log(nombreEscuela.value);
+    console.log(direccionEscuela.value);
+    console.log(departamentoSelect.value);
+    console.log(provinciaSelect.value);
+    console.log(distritoSelect.value);
+    console.log(nombresDirector.value);
+    console.log(apellidosDirector.value);
+    console.log(telefonoDirector.value);
+    console.log(emailDirector.value);
 }
 
 
