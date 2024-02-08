@@ -14,18 +14,27 @@ const axiosGet = async (url) => {
     }
 }
 
-const crearOptionSelect = (lista, zonaGeografica) => {
+const mostrarDepartamentos = (lista, zonaGeografica) => {
     for(const objeto of lista) {
         const nombreDepartamento = objeto[zonaGeografica];
-        const nuevoOption = document.createElement('option');
-        nuevoOption.innerHTML = `${nombreDepartamento}`;
-        departamentoSelect.append(nuevoOption);
+        crearOptionSelect(nombreDepartamento);
     }
 }
 
+const crearOptionSelect = (nombreDepartamento) => {
+    const nuevoOption = document.createElement('option');
+    nuevoOption.innerHTML = `${nombreDepartamento}`;
+    departamentoSelect.append(nuevoOption);
+}
+
+//Función para Deshabilitar la opción "-- Escoge un Departamento --"
 const deshabilitarOpcion = () => {
     const opcionDisabled = document.getElementById('opcion-disabled');
     opcionDisabled.disabled = true;
+}
+
+const funcion = () => {
+    console.log(departamentoSelect.value);
 }
 
 const listaDepartamentos = await axiosGet('https://geo-peru-api.onrender.com/department');
@@ -33,7 +42,7 @@ const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/provin
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
 //AGREGAR DEPARTAMENTOS AL SELECT
-crearOptionSelect(listaDepartamentos, 'departamento');
+mostrarDepartamentos(listaDepartamentos, 'departamento');
 
 //AGREGAR PROVINCIAS AL SELECT
 
@@ -45,9 +54,7 @@ console.log(listaProvincias);
 console.log(listaDistritos);
 
 
-departamentoSelect.addEventListener('change', function() {
-    console.log(departamentoSelect.value);
-});
+departamentoSelect.addEventListener('change', funcion);
 
 //Deshabilitar opción por defecto de los 3 Select
 todosSelect.forEach(select => select.addEventListener('click', deshabilitarOpcion));
