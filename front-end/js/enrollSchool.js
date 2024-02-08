@@ -14,6 +14,7 @@ const axiosGet = async (url) => {
     }
 }
 
+//Función sin Evento -> Mostrar Departamentos
 const mostrarDepartamentos = () => {
     for(const objeto of listaDepartamentos) {
         const nombreDepartamento = objeto["departamento"];
@@ -22,7 +23,7 @@ const mostrarDepartamentos = () => {
     }
 }
 
-//Función con Evento 'change'
+//Función con Evento 'change' -> Mostrar Provincias
 const mostrarProvincias = () => {
     const idDepartamentoSeleccionado = departamentoSelect.value;
     console.log(idDepartamentoSeleccionado);
@@ -30,6 +31,11 @@ const mostrarProvincias = () => {
     const provinciasSeleccionadas = listaProvincias.filter(provincia => provincia["id_departamento"] === idDepartamentoSeleccionado);
     console.log(provinciasSeleccionadas);
 
+    for(const objeto of provinciasSeleccionadas) {
+        const nombreProvincia = objeto["provincia"];
+        const idProvincia = objeto["id_provincia"];
+        crearOptionSelect(nombreProvincia, idProvincia);
+    }
 }
 
 const crearOptionSelect = (nombreDepartamento, id_departamento) => {
