@@ -50,7 +50,8 @@ const funcion = (evento) => {
     console.log(apellidosDirector.value);
     console.log(celularDirector.value);
     console.log(emailDirector.value);
-    console.log(inputExcel.files);
+
+    console.log(inputExcel.files[0].name);
 }
 
 const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) => {
