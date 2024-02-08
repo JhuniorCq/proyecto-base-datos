@@ -63,8 +63,6 @@ const mostrarDistritos = () => {
         const idDistrito = objeto["id_distrito"];
         crearOptionSelect(nombreDistrito, idDistrito, distritoSelect);
     }
-
-    
 }
 
 const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) => {
@@ -77,10 +75,9 @@ const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) =
 const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
     const nuevoOption = document.createElement('option');
     nuevoOption.innerText = contenidoOptionDefault;
-    // nuevoOption.selected = true;
     nuevoOption.id = 'opcion-disabled';
+    nuevoOption.disabled = true;
     tipoSelect.append(nuevoOption);
-    tipoSelect.addEventListener('click', deshabilitarOpcion);
 }
 
 //Función para Deshabilitar la opción "-- Escoge un Departamento --"
