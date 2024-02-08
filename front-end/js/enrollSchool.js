@@ -20,7 +20,6 @@ const crearOptionSelect = (lista, zonaGeografica) => {
         const nuevoOption = document.createElement('option');
         nuevoOption.innerHTML = `${nombreDepartamento}`;
         departamentoSelect.append(nuevoOption);
-        console.log(nombreDepartamento);
     }
 }
 
@@ -44,6 +43,11 @@ crearOptionSelect(listaDepartamentos, 'departamento');
 console.log(listaDepartamentos);
 console.log(listaProvincias);
 console.log(listaDistritos);
+
+
+departamentoSelect.addEventListener('change', function() {
+    console.log(departamentoSelect.value);
+});
 
 //Deshabilitar opción por defecto de los 3 Select
 todosSelect.forEach(select => select.addEventListener('click', deshabilitarOpcion));
