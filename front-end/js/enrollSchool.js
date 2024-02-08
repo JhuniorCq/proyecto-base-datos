@@ -8,7 +8,7 @@ const distritoSelect = document.getElementById('distritoSelect');
 
 const nombresDirector = document.getElementById('nombres-director');
 const apellidosDirector = document.getElementById('apellidos-director');
-const telefonoDirector = document.getElementById('telefono');
+const celularDirector = document.getElementById('celular');
 const emailDirector = document.getElementById('email');
 
 const funcion = (evento) => {
@@ -23,13 +23,13 @@ const funcion = (evento) => {
     const distritoSelectValue = distritoSelect.value;
     const nombresDirectorValue = nombresDirector.value;
     const apellidosDirectorValue = apellidosDirector.value;
-    const telefonoDirectorValue = telefonoDirector.value;
+    const celularDirectorValue = celularDirector.value;
     const emailDirectorValue = emailDirector.value;
 
     //Ejecución y comprobación de las 3 funciones de validación
     if(validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) && 
         validarDatosUbicacion(departamentoSelectValue, provinciaSelectValue, distritoSelectValue) && 
-        validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, telefonoDirectorValue, emailDirectorValue)) {
+        validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, celularDirectorValue, emailDirectorValue)) {
         console.log('Datos registrados exitosamente :D');
         alert('Datos registrados exitosamente.');
         // PUEDO DEJAR ESTE IF ASÍ, O HACER QUE ESTE SEA !validarDatosEscuela... y así, y el alert() iría fuera del ID
@@ -45,24 +45,28 @@ const funcion = (evento) => {
     console.log(distritoSelect.value);
     console.log(nombresDirector.value);
     console.log(apellidosDirector.value);
-    console.log(telefonoDirector.value);
+    console.log(celularDirector.value);
     console.log(emailDirector.value);
 }
 
 const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) => {
-    if(!codigoModularValue || codigoModularValue.length != 7) {
-        alert('Error al ingresar el código modular.');
+    if(!codigoModularValue) {
+        alert('El campo para el código modular no puede estar vacío.');
         return false;
+    } else if(!/^\d{7}$/.test(codigoModularValue)) {
+        alert('El código modular debe tener 7 dígitos y contener solo números.')
     }
 
-    if(!nombreEscuelaValue || nombreEscuelaValue.length > 30){
-        alert('Error al ingresar el nombre de la escuela.')
+    if(!nombreEscuelaValue){
+        alert('El campo para el nombre de la escuela no puede estar vacío.');
         return false;
+    } else if(nombreEscuelaValue.length > 60) {
+        alert('Como máximo se permite 60 caracteres para el nombre de la escuela.')
     }
 
     //La dirección es un campo opcional
-    if(direccionEscuelaValue.length > 50) {
-        alert('Error al ingresar la dirección de la escuela.');
+    if(direccionEscuelaValue.length > 100) {
+        alert('Como máximo se permite 100 caracteres para la dirección de la escuela.');
         return false;
     }
 
@@ -70,13 +74,55 @@ const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEs
 }
 
 const validarDatosUbicacion = (departamentoSelectValue, provinciaSelectValue, distritoSelectValue) => {
+    if(!departamentoSelectValue || departamentoSelectValue != 'default') {
+        alert('Debe seleccionar un departamento.');
+        return false;
+    }
 
+    if(!provinciaSelectValue || provinciaSelectValue !='default') {
+        alert('Debe seleccionar una provincia.');
+        return false;
+    }
+
+    if(!distritoSelectValue || distritoSelectValue != 'default') {
+        alert('Debe seleccionar un distrito.');
+        return false;
+    }
 
     return true;
 }
 
-const validarDatosDirector = (nombresDirectorValue, apellidosDirectorValue, telefonoDirectorValue, emailDirectorValue) => {
+const validarDatosDirector = (nombresDirectorValue, apellidosDirectorValue, celularDirectorValue, emailDirectorValue) => {
+    if(!nombresDirectorValue) {
+        alert('El campo para el nombre del director no puede estar vacío.');
+        return false;
+    } else if(nombresDirectorValue > 30) {
+        alert('Como máximo se permite 30 caracteres para los nombres del director.');
+        return false;
+    }
 
+    if(!apellidosDirectorValue) {
+        alert('El campo para los apellidos del director no puede estar vacío');
+        return false;
+    } else if(apellidosDirectorValue > 30) {
+        alert('Como máximo se permiten 30 caracteres para los apellidos del director.');
+        return;
+    }
+
+    if(!celularDirectorValue) {
+        alert('El campo para el número de celular del director no puede estar vacío');
+        return false;
+    } else if(!/^\d{9}$/.test(celularDirectorValue)) {
+        alert('El número de celular debe tener 9 dígitos y contener solo números.');
+        return false;
+    }
+
+    if(!emailDirectorValue) {
+        alert('El campo para el e-mail del director no puede estar vacío.');
+    } else if (!/^[\w.-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}$/.test(emailDirectorValue)) {
+        alert('El correo electrónico ingresado no es válido.');
+        return false;
+    }
 
     return true;
 }
