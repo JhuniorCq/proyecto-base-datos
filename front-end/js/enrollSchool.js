@@ -24,9 +24,8 @@ const mostrarDepartamentos = (lista) => {
 
 const mostrarProvincias = (lista) => {
     const departamentoSeleccionado = departamentoSelect.value;
-    console.log(departamentoSelect);
     console.log(departamentoSeleccionado);
-
+    console.log(departamentoSeleccionado.innerText);
     // const provinciasSeleccionadas = lista.filter(provincia => provincia);
 
 }
