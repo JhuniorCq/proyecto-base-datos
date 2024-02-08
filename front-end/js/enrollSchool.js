@@ -76,7 +76,7 @@ const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
     const nuevoOption = document.createElement('option');
     nuevoOption.innerText = contenidoOptionDefault;
     nuevoOption.id = 'opcion-disabled';
-    nuevoOption.disabled = true;
+    // nuevoOption.disabled = true;
     tipoSelect.append(nuevoOption);
 }
 
