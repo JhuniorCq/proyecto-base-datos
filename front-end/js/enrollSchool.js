@@ -5,6 +5,7 @@ const direccionEscuela = document.getElementById('direccion');
 const departamentoSelect = document.getElementById('departamentoSelect');
 const provinciaSelect = document.getElementById('provinciaSelect');
 const distritoSelect = document.getElementById('distritoSelect');
+const inputExcel = document.getElementById('input-excel');
 
 const nombresDirector = document.getElementById('nombres-director');
 const apellidosDirector = document.getElementById('apellidos-director');
@@ -25,6 +26,7 @@ const funcion = (evento) => {
     const apellidosDirectorValue = apellidosDirector.value;
     const celularDirectorValue = celularDirector.value;
     const emailDirectorValue = emailDirector.value;
+    const inputExcel = inputExcel.value;
 
     //Ejecución y comprobación de las 3 funciones de validación
     if(validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) && 
@@ -34,6 +36,7 @@ const funcion = (evento) => {
         alert('Datos registrados exitosamente.');
         // PUEDO DEJAR ESTE IF ASÍ, O HACER QUE ESTE SEA !validarDatosEscuela... y así, y el alert() iría fuera del ID
     } else {
+        alert('No se registraron los datos');
         return;
     }
 
@@ -47,6 +50,7 @@ const funcion = (evento) => {
     console.log(apellidosDirector.value);
     console.log(celularDirector.value);
     console.log(emailDirector.value);
+    console.log(inputExcel);
 }
 
 const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) => {
