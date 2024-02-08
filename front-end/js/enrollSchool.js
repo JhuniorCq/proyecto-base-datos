@@ -39,7 +39,7 @@ const mostrarProvincias = () => {
     }
 
     const contenidoOptionDefault = '-- Escoge una Provincia --';
-    crearOptionSelect(contenidoOptionDefault, null, provinciaSelect);
+    crearOptionDefault(contenidoOptionDefault, provinciaSelect);
 }
 
 //Función con Evento 'change' -> Mostrar Distritos
@@ -60,13 +60,20 @@ const mostrarDistritos = () => {
     }
 
     const contenidoOptionDefault = '-- Escoge un Distrito --';
-    crearOptionSelect(contenidoOptionDefault, null, distritoSelect);
+    crearOptionDefault(contenidoOptionDefault, distritoSelect);
 }
 
 const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) => {
     const nuevoOption = document.createElement('option');
-    nuevoOption.value = `${idZonaGeografica}`;
-    nuevoOption.innerHTML = `${nombreZonaGeografica}`;
+    nuevoOption.value = idZonaGeografica;
+    nuevoOption.innerHTML = nombreZonaGeografica;
+    tipoSelect.append(nuevoOption);
+}
+
+const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
+    const nuevoOption = document.createElement('option');
+    nuevoOption.innerText = contenidoOptionDefault;
+    nuevoOption.selected = true;
     tipoSelect.append(nuevoOption);
 }
 
