@@ -110,3 +110,5 @@ provinciaSelect.addEventListener('change', mostrarDistritos);
 
 //Deshabilitar opción por defecto de los 3 Select
 departamentoSelect.addEventListener('click', deshabilitarOpcion);
+provinciaSelect.addEventListener('click', deshabilitarOpcion);
+distritoSelect.addEventListener('click', deshabilitarOpcion);
