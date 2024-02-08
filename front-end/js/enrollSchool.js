@@ -20,6 +20,7 @@ const crearOptionSelect = (lista, zonaGeografica) => {
         const nuevoOption = document.createElement('option');
         nuevoOption.innerHTML = `${nombreDepartamento}`;
         departamentoSelect.append(nuevoOption);
+        console.log(nombreDepartamento);
     }
 }
 
