@@ -26,6 +26,17 @@ const funcion = (evento) => {
     const telefonoDirectorValue = telefonoDirector.value;
     const emailDirectorValue = emailDirector.value;
 
+    //Ejecución y comprobación de las 3 funciones de validación
+    if(validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) && 
+        validarDatosUbicacion(departamentoSelectValue, provinciaSelectValue, distritoSelectValue) && 
+        validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, telefonoDirectorValue, emailDirectorValue)) {
+        console.log('Datos registrados exitosamente :D');
+        alert('Datos registrados exitosamente.');
+        // PUEDO DEJAR ESTE IF ASÍ, O HACER QUE ESTE SEA !validarDatosEscuela... y así, y el alert() iría fuera del ID
+    } else {
+        return;
+    }
+
     console.log(codigoModular.value);
     console.log(nombreEscuela.value);
     console.log(direccionEscuela.value);
@@ -36,14 +47,6 @@ const funcion = (evento) => {
     console.log(apellidosDirector.value);
     console.log(telefonoDirector.value);
     console.log(emailDirector.value);
-
-    //Ejecucicón y comprobación de las 3 funciones de validación
-    if(validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) && 
-        validarDatosUbicacion(departamentoSelectValue, provinciaSelectValue, distritoSelectValue) && 
-        validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, telefonoDirectorValue, emailDirectorValue)) {
-        console.log('Datos registrados exitosamente :D');
-        return alert('Datos registrados exitosamente');
-    }
 }
 
 const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) => {
@@ -57,7 +60,8 @@ const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEs
         return false;
     }
 
-    if(!direccionEscuelaValue || direccionEscuelaValue.length > 50) {
+    //La dirección es un campo opcional
+    if(direccionEscuelaValue.length > 50) {
         alert('Error al ingresar la dirección de la escuela.');
         return false;
     }
@@ -67,10 +71,14 @@ const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEs
 
 const validarDatosUbicacion = (departamentoSelectValue, provinciaSelectValue, distritoSelectValue) => {
 
+
+    return true;
 }
 
 const validarDatosDirector = (nombresDirectorValue, apellidosDirectorValue, telefonoDirectorValue, emailDirectorValue) => {
 
+
+    return true;
 }
 
 
