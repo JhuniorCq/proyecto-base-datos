@@ -74,17 +74,17 @@ const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEs
 }
 
 const validarDatosUbicacion = (departamentoSelectValue, provinciaSelectValue, distritoSelectValue) => {
-    if(!departamentoSelectValue || departamentoSelectValue !== 'default') {
+    if(!departamentoSelectValue || departamentoSelectValue == 'default') {
         alert('Debe seleccionar un departamento.');
         return false;
     }
 
-    if(!provinciaSelectValue || provinciaSelectValue !=='default') {
+    if(!provinciaSelectValue || provinciaSelectValue =='default') {
         alert('Debe seleccionar una provincia.');
         return false;
     }
 
-    if(!distritoSelectValue || distritoSelectValue !== 'default') {
+    if(!distritoSelectValue || distritoSelectValue == 'default') {
         alert('Debe seleccionar un distrito.');
         return false;
     }
