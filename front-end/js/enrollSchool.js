@@ -80,6 +80,7 @@ const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
     // nuevoOption.selected = true;
     nuevoOption.id = 'opcion-disabled';
     tipoSelect.append(nuevoOption);
+    tipoSelect.addEventListener('click', deshabilitarOpcion);
 }
 
 //Función para Deshabilitar la opción "-- Escoge un Departamento --"
@@ -110,5 +111,5 @@ provinciaSelect.addEventListener('change', mostrarDistritos);
 
 //Deshabilitar opción por defecto de los 3 Select
 departamentoSelect.addEventListener('click', deshabilitarOpcion);
-provinciaSelect.addEventListener('click', deshabilitarOpcion);
-distritoSelect.addEventListener('click', deshabilitarOpcion);
+// provinciaSelect.addEventListener('click', deshabilitarOpcion);
+// distritoSelect.addEventListener('click', deshabilitarOpcion);
