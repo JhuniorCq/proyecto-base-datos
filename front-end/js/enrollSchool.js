@@ -14,7 +14,7 @@ const axiosGet = async (url) => {
     }
 }
 
-const mostrarDepartamentos = (listaDepartamentos) => {
+const mostrarDepartamentos = () => {
     for(const objeto of listaDepartamentos) {
         const nombreDepartamento = objeto["departamento"];
         const idDepartamento = objeto["id_departamento"]
@@ -22,7 +22,8 @@ const mostrarDepartamentos = (listaDepartamentos) => {
     }
 }
 
-const mostrarProvincias = (listaProvincias) => {
+//Función con Evento 'change'
+const mostrarProvincias = () => {
     const idDepartamentoSeleccionado = departamentoSelect.value;
     console.log(idDepartamentoSeleccionado);
 
@@ -49,7 +50,7 @@ const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/provin
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');
 
 //AGREGAR DEPARTAMENTOS AL SELECT
-mostrarDepartamentos(listaDepartamentos);
+mostrarDepartamentos();
 
 //AGREGAR PROVINCIAS AL SELECT
 
