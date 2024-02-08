@@ -44,7 +44,11 @@ const mostrarDistritos = () => {
     distritoSelect.innerHTML = '';
     const idProvinciaSeleccionada = provinciaSelect.value;
 
+    console.log(idProvinciaSeleccionada);
+
     const distritosSeleccionados = listaDistritos.filter(distrito => distrito["id_provincia"] === idProvinciaSeleccionada);
+
+    console.log(distritosSeleccionados);
 
     for(const objeto of distritosSeleccionados) {
         const nombreDistrito = objeto["distrito"];
