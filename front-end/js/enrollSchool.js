@@ -37,6 +37,9 @@ const mostrarProvincias = () => {
         const idProvincia = objeto["id_provincia"];
         crearOptionSelect(nombreProvincia, idProvincia, provinciaSelect);
     }
+
+    const contenidoOptionDefault = '-- Escoge una Provincia --';
+    crearOptionSelect(contenidoOptionDefault, null, provinciaSelect);
 }
 
 //Función con Evento 'change' -> Mostrar Distritos
@@ -55,6 +58,9 @@ const mostrarDistritos = () => {
         const idDistrito = objeto["id_distrito"];
         crearOptionSelect(nombreDistrito, idDistrito, distritoSelect);
     }
+
+    const contenidoOptionDefault = '-- Escoge un Distrito --';
+    crearOptionSelect(contenidoOptionDefault, null, distritoSelect);
 }
 
 const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) => {
