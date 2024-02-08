@@ -25,6 +25,7 @@ const mostrarDepartamentos = () => {
 
 //Función con Evento 'change' -> Mostrar Provincias
 const mostrarProvincias = () => {
+    provinciaSelect.innerHTML = '';
     const idDepartamentoSeleccionado = departamentoSelect.value;
     console.log(idDepartamentoSeleccionado);
 
