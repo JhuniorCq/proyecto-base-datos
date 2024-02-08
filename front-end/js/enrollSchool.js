@@ -19,7 +19,7 @@ const mostrarDepartamentos = () => {
     for(const objeto of listaDepartamentos) {
         const nombreDepartamento = objeto["departamento"];
         const idDepartamento = objeto["id_departamento"]
-        crearOptionSelect(nombreDepartamento, idDepartamento);
+        crearOptionSelect(nombreDepartamento, idDepartamento, departamentoSelect);
     }
 }
 
@@ -34,15 +34,15 @@ const mostrarProvincias = () => {
     for(const objeto of provinciasSeleccionadas) {
         const nombreProvincia = objeto["provincia"];
         const idProvincia = objeto["id_provincia"];
-        crearOptionSelect(nombreProvincia, idProvincia);
+        crearOptionSelect(nombreProvincia, idProvincia, provinciaSelect);
     }
 }
 
-const crearOptionSelect = (nombreDepartamento, id_departamento) => {
+const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) => {
     const nuevoOption = document.createElement('option');
-    nuevoOption.value = `${id_departamento}`;
-    nuevoOption.innerHTML = `${nombreDepartamento}`;
-    departamentoSelect.append(nuevoOption);
+    nuevoOption.value = `${idZonaGeografica}`;
+    nuevoOption.innerHTML = `${nombreZonaGeografica}`;
+    tipoSelect.append(nuevoOption);
 }
 
 //Función para Deshabilitar la opción "-- Escoge un Departamento --"
