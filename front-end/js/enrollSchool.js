@@ -26,6 +26,10 @@ const mostrarDepartamentos = () => {
 //Función con Evento 'change' -> Mostrar Provincias
 const mostrarProvincias = () => {
     provinciaSelect.innerHTML = '';
+
+    const contenidoOptionDefault = '-- Escoge una Provincia --';
+    crearOptionDefault(contenidoOptionDefault, provinciaSelect);
+
     const idDepartamentoSeleccionado = departamentoSelect.value;
     console.log(idDepartamentoSeleccionado);
 
@@ -37,14 +41,15 @@ const mostrarProvincias = () => {
         const idProvincia = objeto["id_provincia"];
         crearOptionSelect(nombreProvincia, idProvincia, provinciaSelect);
     }
-
-    const contenidoOptionDefault = '-- Escoge una Provincia --';
-    crearOptionDefault(contenidoOptionDefault, provinciaSelect);
 }
 
 //Función con Evento 'change' -> Mostrar Distritos
 const mostrarDistritos = () => {
     distritoSelect.innerHTML = '';
+
+    const contenidoOptionDefault = '-- Escoge un Distrito --';
+    crearOptionDefault(contenidoOptionDefault, distritoSelect);
+
     const idProvinciaSeleccionada = provinciaSelect.value;
 
     console.log(idProvinciaSeleccionada);
@@ -59,8 +64,7 @@ const mostrarDistritos = () => {
         crearOptionSelect(nombreDistrito, idDistrito, distritoSelect);
     }
 
-    const contenidoOptionDefault = '-- Escoge un Distrito --';
-    crearOptionDefault(contenidoOptionDefault, distritoSelect);
+    
 }
 
 const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) => {
@@ -75,6 +79,7 @@ const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
     nuevoOption.innerText = contenidoOptionDefault;
     nuevoOption.selected = true;
     tipoSelect.append(nuevoOption);
+    tipoSelect.addEventListener('click', deshabilitarOpcion);
 }
 
 //Función para Deshabilitar la opción "-- Escoge un Departamento --"
@@ -104,4 +109,4 @@ departamentoSelect.addEventListener('change', mostrarProvincias);
 provinciaSelect.addEventListener('change', mostrarDistritos);
 
 //Deshabilitar opción por defecto de los 3 Select
-todosSelect.forEach(select => select.addEventListener('click', deshabilitarOpcion));
+departamentoSelect.addEventListener('click', deshabilitarOpcion);
