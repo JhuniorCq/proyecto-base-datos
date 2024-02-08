@@ -11,7 +11,6 @@ const nombresDirector = document.getElementById('nombres-director');
 const apellidosDirector = document.getElementById('apellidos-director');
 const celularDirector = document.getElementById('celular');
 const emailDirector = document.getElementById('email');
-console.log(inputExcel);
 
 const funcion = (evento) => {
     //Evitar que el formulario se envíe de forma predeterminada, y que se recargue la página
@@ -27,7 +26,7 @@ const funcion = (evento) => {
     const apellidosDirectorValue = apellidosDirector.value;
     const celularDirectorValue = celularDirector.value;
     const emailDirectorValue = emailDirector.value;
-    // const inputExcelValue = inputExcel.value;
+    const inputExcelValue = inputExcel.value;
 
     //Ejecución y comprobación de las 3 funciones de validación
     if(validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) && 
@@ -51,7 +50,7 @@ const funcion = (evento) => {
     console.log(apellidosDirector.value);
     console.log(celularDirector.value);
     console.log(emailDirector.value);
-    
+    console.log(inputExcelValue);
 }
 
 const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) => {
