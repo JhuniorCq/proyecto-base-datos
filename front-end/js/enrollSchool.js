@@ -1,5 +1,5 @@
 const formulario = document.querySelector('.formulario');
-const codigoModular = document.getElementById('codigo-modula');
+const codigoModular = document.getElementById('codigo-modular');
 const nombreEscuela = document.getElementById('nombre-escuela');
 const direccionEscuela = document.getElementById('direccion');
 const departamentoSelect = document.getElementById('departamentoSelect');
