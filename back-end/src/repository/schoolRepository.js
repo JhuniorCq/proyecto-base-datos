@@ -27,6 +27,7 @@ class SchoolRepository {
 
     async enrollSchool(requestBody) {
         try {
+            // MODIFICAR ESTO, ahora la Tabla Schools se ha dividido en más tablas -> Ahora hay Tabla DIRECTOR y Locations
             const {
                 modular_code, 
                 name_school, 
