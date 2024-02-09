@@ -31,10 +31,16 @@ const funcion = (evento) => {
     //Ejecución y comprobación de las 3 funciones de validación
     if(validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) && 
         validarDatosUbicacion(departamentoSelectValue, provinciaSelectValue, distritoSelectValue) && 
-        validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, celularDirectorValue, emailDirectorValue)) {
+        validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, celularDirectorValue, emailDirectorValue) && 
+        validarExcelEstudiantes(inputExcelValue)) {
         console.log('Datos registrados exitosamente :D');
         alert('Datos registrados exitosamente.');
+
         // PUEDO DEJAR ESTE IF ASÍ, O HACER QUE ESTE SEA !validarDatosEscuela... y así, y el alert() iría fuera del ID
+
+        //AHORA CREARÉ UN OBJETO PARA ENVIAR AL BACKEND -> RECORDAR QUE LA TABLA SCHOOLS SE DIVIDIÓ EN MÁS TABLAS (director y Locations)
+        //YO CREO QUE DIRECCIÓN DEBE ESTAR EN SCHOOL Y QUE DEPARTAMENTO, PROVINCIA Y DISTRITO EN UNA TABLA NUEVA Locations
+        //O QUE DIRECCION, DEPARTAMENTO, PROVINCIA Y DISTRITO SEAN DE UNA TABLA APARTE -> Location
     } else {
         alert('No se registraron los datos');
         return;
@@ -50,8 +56,7 @@ const funcion = (evento) => {
     console.log(apellidosDirector.value);
     console.log(celularDirector.value);
     console.log(emailDirector.value);
-
-    console.log(inputExcel.files[0].name);
+    console.log(inputExcel.value);
 }
 
 const validarDatosEscuela = (codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) => {
@@ -134,5 +139,30 @@ const validarDatosDirector = (nombresDirectorValue, apellidosDirectorValue, celu
     return true;
 }
 
+const validarExcelEstudiantes = (inputExcelValue) => {
+    if(!inputExcelValue) {
+        alert('Debe subir un archivo Excel con los datos de los estudiantes.');
+        return false;
+    }
+    return true;
+}
+
+//Función con Evento 'change'
+const validarExtensionExcel = () => {
+    //El [0] es para acceder al único archivo que subirá el usuario -> Solo se puede subir un archivo
+    const archivoExcel = inputExcel.files[0];
+
+    if(archivoExcel && (archivoExcel.name.toLowerCase().endsWith('.xls') || archivoExcel.name.toLowerCase().endsWith('.xlsx'))) {
+        //Procesar todo el EXCEL
+        console.log('Archivo excel subido correctamente');
+        console.log('Processar el archivo excel: ', archivoExcel.name);
+    } else {
+        alert('Debe subir un archivo Excel con los datos de los estudiantes.');
+        
+        inputExcel.value = ''; //Con esto se quitará el archivo incorrecto que ha sido ingresado
+    }
+}
+
 
 formulario.addEventListener('submit', funcion);
+inputExcel.addEventListener('change', validarExtensionExcel);
