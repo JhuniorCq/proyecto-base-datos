@@ -27,26 +27,53 @@ class SchoolRepository {
 
     async enrollSchool(requestBody) {
         try {
-            // INSERTANDO DATOS PARA LA TABLA Schools, pero antes de eso debe INSERTAR DATOS en Directos y Locations
             const {
-                modular_code, 
-                name_school, 
-                id_director,
-                id_location
+                modular_code, name_school,
+                director_name, director_lastname, director_cellphone, director_email,
+                dni, student_name , student_lastname, birth_date, gender, 
+                address,
+                district_name,
+                province_name,
+                department_name
             } = requestBody;
+
+            // INSERTANDO DATOS PARA LA TABLA Directors
+            const sqlInsertDirector = 'INSERT INTO Directors (director_name, director_lastname, director_cellphone, director_email) VALUES (:director_name, :director_lastname, :director_cellphone, :director_email) RETURNING id_director INTO :id_director';
+            
+            const bindsDirector = {
+                director_name,
+                director_lastname,
+                director_cellphone,
+                director_email,
+                id_director: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
+            };
+
+            const resultDirector = await db(sqlInsertDirector, bindsDirector, true);
+            const id_director = resultDirector.outBinds.id_director[0];
+            
+            // INSERTANDO DATOS PARA LA TABLA Departments
+
+            // INSERTANDO DATOS PARA LA TABLA Provinces
+            
+            //INSERTANDO DATOS PARA LA TABLA Districts
+
+            // INSERTANDO DATOS PARA LA TABLA 
+            // INSERTANDO DATOS PARA LA TABLA Locations
+            const sqlInsertLocation = 'INSERT INTO Locations';
+
+            // INSERTANDO DATOS PARA LA TABLA Schools, pero antes de eso debe INSERTAR DATOS en Directors y Locations
+            const sqlInsertSchool = 'INSERT INTO Schools (modular_code, name_school, id_director, id_location) VALUES (:modular_code, :name_school, :id_director, :id_location)'; //Para ORACLE se usa ":", para POSTGRE era "$"
     
-            const sql = 'INSERT INTO Schools (modular_code, name_school, id_director, id_location) VALUES (:modular_code, :name_school, :id_director, :id_location)'; //Para ORACLE se usa ":", para POSTGRE era "$"
-    
-            const binds = {
+            const bindsSchool = {
                 modular_code,
                 name_school,
                 id_director,
                 id_location
             };
     
-            const result = await db(sql, binds, true);
+            const resultSchool = await db(sqlInsertSchool, bindsSchool, true);
     
-            return result;
+            return resultSchool;
         } catch(err) {
             console.error('Error en la funcion enrollSchool en schoolRepository.js', err.message);
         }
