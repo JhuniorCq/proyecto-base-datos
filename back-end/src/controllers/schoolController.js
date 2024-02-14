@@ -26,9 +26,10 @@ const getSchool = async (req, res) => {
 const enrollSchool = async (req, res) => {
     try {
         const requestBody = req.body;
+        const requestFile = req.file;
         
         //LLAMAR A SERVICE
-        const result = await schoolService.enrollSchool(requestBody);
+        const result = await schoolService.enrollSchool(requestBody, requestFile);
 
         console.log(result);
         res.json(result)

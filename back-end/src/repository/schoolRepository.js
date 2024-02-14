@@ -60,7 +60,8 @@ class SchoolRepository {
             const resultCheckDni = await db(sqlCheckDdni, bindsCheckDni, false);
             const dniCount = resultCheckDni.rows[0][0];
 
-            console.log(`Cantidad de existencia de ${dni}: ${dniCount}`);
+            console.log(`Cantidad de existencia de modular_code ${modular_code}: ${modularCodeCount}`);
+            console.log(`Cantidad de existencia de dni ${dni}: ${dniCount}`);
 
             // Si el modular_code ya existe, lanzar un error
             if (modularCodeCount > 0 || dniCount > 0) {
