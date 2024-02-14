@@ -47,16 +47,24 @@ class SchoolRepository {
             } = requestBody;
 
             console.log(modular_code)
-
+            console.log(dni)
             // Verificar si el modular_code ya existe en la base de datos
-            const sqlCheckModularCode = 'SELECT COUNT(*) AS codeCount FROM Schools WHERE modular_code = :modular_code';
+            const sqlCheckModularCode = 'SELECT COUNT(*) FROM Schools WHERE modular_code = :modular_code';
             const bindsCheckModularCode = {modular_code};
             const resultCheckModularCode = await db(sqlCheckModularCode, bindsCheckModularCode, false);
-            const codeCount = resultCheckModularCode.rows[0].length;
+            const modularCodeCount = resultCheckModularCode.rows[0][0];
+
+            //Verificar si el dni ya existe en la base de datos
+            const sqlCheckDdni = 'SELECT COUNT(*) FROM Students WHERE dni = :dni';
+            const bindsCheckDni = {dni};
+            const resultCheckDni = await db(sqlCheckDdni, bindsCheckDni, false);
+            const dniCount = resultCheckDni.rows[0][0];
+
+            console.log(`Cantidad de existencia de ${dni}: ${dniCount}`);
 
             // Si el modular_code ya existe, lanzar un error
-            if (codeCount > 0) {
-                throw new Error('El código modular ya existe en la base de datos.');
+            if (modularCodeCount > 0 || dniCount > 0) {
+                throw new Error('El código modular o el dni ya existe en la base de datos.');
             }
 
             // INSERTANDO DATOS PARA LA TABLA Directors
