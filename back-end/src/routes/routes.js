@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = Router();
 const {getSchools, getSchool, enrollSchool, deleteSchool, updateSchool} = require('../controllers/schoolController.js');
 
-const multer = require('multer');
+const multer = require('multer'); // Necesarios para obtener los datos del Excel
 const upload = multer({dest: 'uploads/'});
 
 // CONTROLLERS SCHOOLS

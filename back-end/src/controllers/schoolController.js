@@ -26,7 +26,7 @@ const getSchool = async (req, res) => {
 const enrollSchool = async (req, res) => {
     try {
         const requestBody = req.body;
-        const requestFile = req.file;
+        const requestFile = req.file; // Acá se almacenarán los Datos del Excel
         
         //LLAMAR A SERVICE
         const result = await schoolService.enrollSchool(requestBody, requestFile);
