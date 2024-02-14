@@ -11,7 +11,7 @@ app.use(cors({
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }));
 app.use(morgan('dev'));
-app.use(express.json()); //Esto hará que EXPRESS pueda entender los JSON que vengan del CLIENTE
+app.use(express.json()); //Esto hará que EXPRESS pueda entender los JSON que vengan del CLIENTE, y los convierta a un OBJETO
 
 app.use(router);
 

@@ -1,4 +1,5 @@
 const {open: db} = require('../db.js');
+const oracledb = require('oracledb');
 
 class SchoolRepository {
     
@@ -25,6 +26,14 @@ class SchoolRepository {
         }
     }
 
+    // const birthDate = new Date(requestBody.birth_date); // Convertir la cadena de fecha en un objeto Date
+
+    // // Formatear la fecha en el formato requerido por Oracle (por ejemplo, 'DD-MM-YYYY')
+    // const formattedBirthDate = birthDate.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('/').reverse().join('-');
+
+    // // Luego puedes usar formattedBirthDate en tu inserción SQL
+
+
     async enrollSchool(requestBody) {
         try {
             const {
@@ -37,9 +46,22 @@ class SchoolRepository {
                 department_name
             } = requestBody;
 
+            console.log(modular_code)
+
+            // Verificar si el modular_code ya existe en la base de datos
+            const sqlCheckModularCode = 'SELECT COUNT(*) AS codeCount FROM Schools WHERE modular_code = :modular_code';
+            const bindsCheckModularCode = {modular_code};
+            const resultCheckModularCode = await db(sqlCheckModularCode, bindsCheckModularCode, false);
+            const codeCount = resultCheckModularCode.rows[0].length;
+
+            // Si el modular_code ya existe, lanzar un error
+            if (codeCount > 0) {
+                throw new Error('El código modular ya existe en la base de datos.');
+            }
+
             // INSERTANDO DATOS PARA LA TABLA Directors
             const sqlInsertDirector = 'INSERT INTO Directors (director_name, director_lastname, director_cellphone, director_email) VALUES (:director_name, :director_lastname, :director_cellphone, :director_email) RETURNING id_director INTO :id_director';
-            
+
             const bindsDirector = {
                 director_name,
                 director_lastname,
@@ -116,6 +138,7 @@ class SchoolRepository {
             const bindsStudent = {
                 dni,
                 student_name,
+                student_lastname,
                 birth_date,
                 gender,
                 modular_code

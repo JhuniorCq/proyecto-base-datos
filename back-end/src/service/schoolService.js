@@ -26,6 +26,7 @@ class SchoolService {
 
     async enrollSchool(requestBody) {
         try {
+            //LÓGICA -> Acá debo recibir al EXCEL DE ESTUDIANTES y convertirlo en un ARRAY DE OBJETOS
 
             //LLAMAR A REPOSITORY
             const result = await schoolRepository.enrollSchool(requestBody);
