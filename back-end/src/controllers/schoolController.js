@@ -25,16 +25,17 @@ const getSchool = async (req, res) => {
 
 const enrollSchool = async (req, res) => {
     try {
-        const requestBody = req.body;
-        const requestFile = req.file; // Acá se almacenarán los Datos del Excel
+        const requestBody = req.body; // Acá se almacenan los datos que NO son archivos
+        const requestFile = req.file; // Acá se almacenarán los Datos del archivo Excel
         
         //LLAMAR A SERVICE
-        const result = await schoolService.enrollSchool(requestBody, requestFile);
+        const result = await schoolService.enrollSchool(requestBody, requestFile); // Esto devuelve datos de Schools
 
-        console.log(result);
-        res.json(result)
+        console.log('La inscripción en la escuela fue exitosa');
+        res.status(200).send('La inscripción en la escuela fue exitosa');
     } catch(err) {
         console.error('Error en enrollSchool en schoolController.js', err.message);
+        res.status(500).json({error: `Ocurrió un error al procesar la solicitud: ${err.message}`});
     }
 }
 

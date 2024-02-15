@@ -38,7 +38,7 @@ class SchoolService {
             //RECOPILAR DATOS DEL EXCEL
             const dataSheet = readExcel(excelPath);
 
-            //CREO QUE TAMBIÉN LE PODEMOS HACER VALIDACIONES AL EXCEEEL
+            //CREO QUE TAMBIÉN LE PUEDO HACER VALIDACIONES AL EXCEL
 
             //LLAMAR A REPOSITORY
             const result = await schoolRepository.enrollSchool(requestBody, dataSheet);
@@ -46,6 +46,7 @@ class SchoolService {
             return result;
         } catch(err) {
             console.error('Error en enrollSchool de schoolService.js', err.message);
+            throw err;
         }
     }
 

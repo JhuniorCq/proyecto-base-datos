@@ -181,6 +181,7 @@ class SchoolRepository {
             return resultSchool;
         } catch(err) {
             console.error('Error en la funcion enrollSchool en schoolRepository.js', err.message);
+            throw err; // El throw err -> Hace que el Error se propague, porque no lo estoy maejando
         }
     }
 
