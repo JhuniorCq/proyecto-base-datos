@@ -4,13 +4,15 @@ const escuelaSelect = document.getElementById('escuela-select');// El AXIOS da, 
 const response = await axios.get('http://localhost:3000/assignProgram');
 const schoolsData = response.data;
 
-const nombresEscuelas = schoolsData.map(datosEscuela => {
-    return datosEscuela[1];
+const schoolData = schoolsData.map(datosEscuela => {
+    return [datosEscuela[0], datosEscuela[1]];
 });
 
-for(const escuela of nombresEscuelas) {
+//Agregamos cada Escuela al SELECT -> Cada Escuela tendrá su Código Modular como "value"
+for(const school of schoolData) {
     const nuevoOption = document.createElement('option');
-    nuevoOption.innerText = `${escuela}`;
+    nuevoOption.innerText = `${school[1]}`;
+    nuevoOption.value = school[0];
     escuelaSelect.append(nuevoOption);
 }
 
