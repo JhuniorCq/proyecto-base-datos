@@ -1,5 +1,4 @@
 
-
 import {validarDatosEscuela, validarDatosDirector, validarDatosUbicacion, validarExcelEstudiantes, validarExtensionExcel} from './validations.js';
 
 const formulario = document.querySelector('.formulario');
@@ -37,30 +36,36 @@ const enrollSchool = async (evento) => {
         validarDatosUbicacion(departamentoSelectValue, provinciaSelectValue, distritoSelectValue) && 
         validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, celularDirectorValue, emailDirectorValue) && 
         validarExcelEstudiantes(inputExcelValue)) {
-        console.log('Datos registrados exitosamente :D');
-        alert('Datos registrados exitosamente.');
-
-        // PUEDO DEJAR ESTE IF ASÍ, O HACER QUE ESTE SEA !validarDatosEscuela... y así, y el alert() iría fuera del ID
-
-        console.log(inputExcelValue)
 
         //VAMO A ENVIAR TODOS LOS DATOS AL SERVIDOR YA :3
-        const dataSchool = {
-            modular_code: codigoModularValue,
-            name_school: nombreEscuelaValue,
-            address: direccionEscuelaValue,
-            district_name: distritoSelectValue,
-            province_name: provinciaSelectValue,
-            department_name: departamentoSelectValue,
-            director_name: nombresDirectorValue,
-            director_lastname: apellidosDirectorValue,
-            director_cellphone: celularDirectorValue,
-            director_email: emailDirectorValue,
-            excelStudents: inputExcelValue
-        }
+
+        const formData = new FormData();
+        formData.append('modular_code', codigoModular.value);
+        formData.append('name_school', nombreEscuela.value);
+        formData.append('address', direccionEscuela.value);
+        formData.append('district_name', distritoSelect.value);
+        formData.append('province_name', provinciaSelect.value);
+        formData.append('department_name', departamentoSelect.value);
+        formData.append('director_name', nombresDirector.value);
+        formData.append('director_lastname', apellidosDirector.value);
+        formData.append('director_cellphone', celularDirector.value);
+        formData.append('director_email', emailDirector.value);
+        formData.append('excelStudents', inputExcel.files[0]); // Accede al archivo seleccionado por el usuario
+        
+        console.log('formData', formData)
         const url = 'http://localhost:3000/enrollSchool';
 
-        const response = await axiosPost(url, dataSchool);
+        //AHORA EL PROBLEMA QUE PUEDE APARECER ES QUE NO APAREZCAN LOS ALERTS DEBIDO AL ASINCRONISMO, PERO LO DEJARÉ ASÍ
+        try {
+            const response = await axiosPost(url, formData);
+            console.log('Datos registrados exitosamente :D', response.data);
+            alert('Datos registrados exitosamente.', response.data);
+
+        } catch(err) {
+            // Si ocurre un error, muestras un mensaje de error al usuario
+            console.error('Error al enviarrrr', err);
+            alert(`Ocurrió un error al enviar los datos.\n\t- Asegúrese de que el colegio o alguno de sus estudiantes no esté registrado en la base de datos.`);
+        }
         
     } else {
         alert('No se registraron los datos');
@@ -83,12 +88,11 @@ const enrollSchool = async (evento) => {
 const axiosPost = async (url, data) => {
     try {
         const response = await axios.post(url, data);
-        return response.data;
+        return response;
     } catch(err) {
-        console.error('Error al enviar', err.message);
+        throw err;
     }
 }
-
 
 formulario.addEventListener('submit', enrollSchool);
 inputExcel.addEventListener('change', validarExtensionExcel);
