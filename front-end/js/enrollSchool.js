@@ -16,7 +16,7 @@ const apellidosDirector = document.getElementById('apellidos-director');
 const celularDirector = document.getElementById('celular');
 const emailDirector = document.getElementById('email');
 
-const funcion = (evento) => {
+const enrollSchool = async (evento) => {
     //Evitar que el formulario se envíe de forma predeterminada, y que se recargue la página
     evento.preventDefault();
 
@@ -42,14 +42,26 @@ const funcion = (evento) => {
 
         // PUEDO DEJAR ESTE IF ASÍ, O HACER QUE ESTE SEA !validarDatosEscuela... y así, y el alert() iría fuera del ID
 
-        //AHORA CREARÉ UN OBJETO PARA ENVIAR AL BACKEND -> RECORDAR QUE LA TABLA SCHOOLS SE DIVIDIÓ EN MÁS TABLAS
-        //YO CREO QUE DIRECCIÓN DEBE ESTAR EN SCHOOL Y QUE DEPARTAMENTO, PROVINCIA Y DISTRITO EN UNA TABLA NUEVA Locations
-        //O QUE DIRECCION, DEPARTAMENTO, PROVINCIA Y DISTRITO SEAN DE UNA TABLA APARTE -> Location
-
         console.log(inputExcelValue)
 
         //VAMO A ENVIAR TODOS LOS DATOS AL SERVIDOR YA :3
+        const dataSchool = {
+            modular_code: codigoModularValue,
+            name_school: nombreEscuelaValue,
+            address: direccionEscuelaValue,
+            district_name: distritoSelectValue,
+            province_name: provinciaSelectValue,
+            department_name: departamentoSelectValue,
+            director_name: nombresDirectorValue,
+            director_lastname: apellidosDirectorValue,
+            director_cellphone: celularDirectorValue,
+            director_email: emailDirectorValue,
+            excelStudents: inputExcelValue
+        }
+        const url = 'http://localhost:3000/enrollSchool';
 
+        const response = await axiosPost(url, dataSchool);
+        
     } else {
         alert('No se registraron los datos');
         return;
@@ -68,9 +80,17 @@ const funcion = (evento) => {
     console.log(inputExcel.value);
 }
 
+const axiosPost = async (url, data) => {
+    try {
+        const response = await axios.post(url, data);
+        return response.data;
+    } catch(err) {
+        console.error('Error al enviar', err.message);
+    }
+}
 
 
-formulario.addEventListener('submit', funcion);
+formulario.addEventListener('submit', enrollSchool);
 inputExcel.addEventListener('change', validarExtensionExcel);
 
 export {inputExcel};
