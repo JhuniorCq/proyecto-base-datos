@@ -38,6 +38,8 @@ class SchoolService {
             //RECOPILAR DATOS DEL EXCEL
             const dataSheet = readExcel(excelPath);
 
+            //CREO QUE TAMBIÉN LE PODEMOS HACER VALIDACIONES AL EXCEEEL
+
             //LLAMAR A REPOSITORY
             const result = await schoolRepository.enrollSchool(requestBody, dataSheet);
             

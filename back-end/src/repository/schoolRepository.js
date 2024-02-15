@@ -26,14 +26,7 @@ class SchoolRepository {
         }
     }
 
-    // const birthDate = new Date(requestBody.birth_date); // Convertir la cadena de fecha en un objeto Date
-
-    // // Formatear la fecha en el formato requerido por Oracle (por ejemplo, 'DD-MM-YYYY')
-    // const formattedBirthDate = birthDate.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('/').reverse().join('-');
-
-    // // Luego puedes usar formattedBirthDate en tu inserción SQL
-
-
+    //SI USO EL BODY DEL THUNDERCLIENT MEBOTARÁ ERROR PORQUE EL dataSheet estará VACÍO
     async enrollSchool(requestBody, dataSheet) {
         try {
             const {
@@ -55,18 +48,24 @@ class SchoolRepository {
             const resultCheckModularCode = await db(sqlCheckModularCode, bindsCheckModularCode, false);
             const modularCodeCount = resultCheckModularCode.rows[0][0];
 
-            //Verificar si el dni ya existe en la base de datos
-            const sqlCheckDdni = 'SELECT COUNT(*) FROM Students WHERE dni = :dni';
-            const bindsCheckDni = {dni};
-            const resultCheckDni = await db(sqlCheckDdni, bindsCheckDni, false);
-            const dniCount = resultCheckDni.rows[0][0];
+            //Verificar si LOS dni ya existen en la base de datos
+            dataSheet.forEach(async student => {
+                const sqlCheckDni = 'SELECT COUNT(*) FROM Students WHERE dni = :dni';
+                const bindsCheckDni = {dni: student["dni"]};
+                const resultCheckDni = await db(sqlCheckDni, bindsCheckDni, false);
+                const dniCount = resultCheckDni.rows[0][0];
+                console.log(`Cantidad de existencia de dni ${dni}: ${dniCount}`);
+                // Si el dni ya existe, lanzar un error
+                if(dniCount > 0) {
+                    throw new Error('El dni ya existe en la base de datos.');
+                }
+            });
 
             console.log(`Cantidad de existencia de modular_code ${modular_code}: ${modularCodeCount}`);
-            console.log(`Cantidad de existencia de dni ${dni}: ${dniCount}`);
 
             // Si el modular_code ya existe, lanzar un error
-            if (modularCodeCount > 0 || dniCount > 0) {
-                throw new Error('El código modular o el dni ya existe en la base de datos.');
+            if (modularCodeCount) {
+                throw new Error('El código modular ya existe en la base de datos.');
             }
 
             // INSERTANDO DATOS PARA LA TABLA Directors
@@ -154,15 +153,16 @@ class SchoolRepository {
                 const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
 
                 const bindsStudent = {
-                    dni,
-                    student_name,
-                    student_lastname,
-                    birth_date,
-                    gender,
-                    modular_code
+                    dni: student["dni"],
+                    student_name: student["student_name"],
+                    student_lastname: student["student_lastname"],
+                    birth_date: student["birth_date"],
+                    gender: student["gender"],
+                    modular_code: modular_code
                 }
-
                 const resultStudent = await db(sqlInsertStudent, bindsStudent, true);
+                
+                console.log('Estudiante almacenando correctamente')
             });
             
             // const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
