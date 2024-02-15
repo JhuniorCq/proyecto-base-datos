@@ -34,7 +34,7 @@ class SchoolRepository {
     // // Luego puedes usar formattedBirthDate en tu inserción SQL
 
 
-    async enrollSchool(requestBody) {
+    async enrollSchool(requestBody, dataSheet) {
         try {
             const {
                 modular_code, name_school,
@@ -44,10 +44,11 @@ class SchoolRepository {
                 district_name,
                 province_name,
                 department_name
-            } = requestBody;
+            } = requestBody;         
 
             console.log(modular_code)
             console.log(dni)
+
             // Verificar si el modular_code ya existe en la base de datos
             const sqlCheckModularCode = 'SELECT COUNT(*) FROM Schools WHERE modular_code = :modular_code';
             const bindsCheckModularCode = {modular_code};
@@ -141,19 +142,41 @@ class SchoolRepository {
     
             const resultSchool = await db(sqlInsertSchool, bindsSchool, true);
     
-            // INSERTANDO DATOS PARA LA TABLA Students
-            const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
+            // INSERTANDO DATOS PARA LA TABLA Students -> Haremos un Bucle ya que son varios estudiantes
+            dataSheet.forEach(async student => {
+                console.log(student["dni"], typeof student["dni"]);
+                console.log(student["student_name"]);
+                console.log(student["student_lastname"]);
+                console.log(student["birth_date"]);
+                console.log(student["gender"]);
+                console.log('*************************');
 
-            const bindsStudent = {
-                dni,
-                student_name,
-                student_lastname,
-                birth_date,
-                gender,
-                modular_code
-            }
+                const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
 
-            const resultStudent = await db(sqlInsertStudent, bindsStudent, true);
+                const bindsStudent = {
+                    dni,
+                    student_name,
+                    student_lastname,
+                    birth_date,
+                    gender,
+                    modular_code
+                }
+
+                const resultStudent = await db(sqlInsertStudent, bindsStudent, true);
+            });
+            
+            // const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
+
+            // const bindsStudent = {
+            //     dni,
+            //     student_name,
+            //     student_lastname,
+            //     birth_date,
+            //     gender,
+            //     modular_code
+            // }
+
+            // const resultStudent = await db(sqlInsertStudent, bindsStudent, true);
 
             return resultSchool;
         } catch(err) {

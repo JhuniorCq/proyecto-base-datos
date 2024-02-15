@@ -36,13 +36,10 @@ class SchoolService {
             const excelPath = saveExcel(excelStudents);
 
             //RECOPILAR DATOS DEL EXCEL
-            readExcel(excelPath);
-
-            console.log(excelPath)
-            console.log('Termina');
+            const dataSheet = readExcel(excelPath);
 
             //LLAMAR A REPOSITORY
-            const result = await schoolRepository.enrollSchool(requestBody);
+            const result = await schoolRepository.enrollSchool(requestBody, dataSheet);
             
             return result;
         } catch(err) {
@@ -85,13 +82,28 @@ const readExcel = (path) => {
     const sheet = workBookSheets[0];
 
     //Con esto convierto toda la Hoja en formato JSON, cada FILA será un Objeto -> En Total se Devolverá un ARRAY de OBJETOS
-    const dataSheet = XLSX.utils.sheet_to_json(workBook.Sheets[sheet]); // Se utiliza la variable workBook que creamos, y aplicamos el método Sheets -> y dentro de los [ ] colocamos a la Variable 'sheet' que contiene la HOJA que queramos usar
+    let dataSheet = XLSX.utils.sheet_to_json(workBook.Sheets[sheet]); // Se utiliza la variable workBook que creamos, y aplicamos el método Sheets -> y dentro de los [ ] colocamos a la Variable 'sheet' que contiene la HOJA que queramos usar
 
-    console.log(dataSheet);
+    console.log('Antes', dataSheet);
     
-    dataSheet.forEach(objeto => {
-        console.log(objeto["nombre"]);
+    dataSheet = dataSheet.map(student => {
+        const dni = String(student["dni"]);
+        const student_name = student["nombre"]
+        const student_lastname = student["apellidos"];
+        const birth_date_convert = XLSX.SSF.parse_date_code(student["fecha_nacimiento"]);
+        const birth_date = `${birth_date_convert.d}/${birth_date_convert.m}/${birth_date_convert.y}`;
+        const gender = student["genero"]
+        return {
+            dni,
+            student_name,
+            student_lastname,
+            birth_date,
+            gender
+        }
     });
+    console.log('Después', dataSheet);
+
+    return dataSheet;
 }
 
 module.exports = {
