@@ -6,7 +6,7 @@
         <title>EduNex Solutions</title>
         <!-- CSS -->
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="styles/asignarProgramas.css">
+        <link rel="stylesheet" href="styles/assignProgram.css">
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <!-- Bootstrap -->
@@ -65,41 +65,73 @@
         <main>
             <div class="contenedor">
                 <form class="formulario">
-                    <h1 class="titulo">Asignar Programa</h1>
+                    <section class="seccion" id="seccion-programa">
+                        <h1 class="titulo">Asignar Programa</h1>
 
-                    <div class="contenedor-inputs">
-                        <div class="contenedor-input">
-                            <label for="escuela-select">Escoger Escuela: </label>
-                            <select name="escuela-select" id="escuela-select" class="input" required>
-                              <option id="opcion-disabled">-- Escoge una Escuela --</option>
-                            </select>
+                        <div class="contenedor-inputs">
+                            <div class="contenedor-input">
+                                <label for="escuela-select">Escoger Escuela: </label>
+                                <select name="escuela-select" id="escuela-select" class="input" required>
+                                    <option id="opcion-disabled">-- Escoge una Escuela --</option>
+                                </select>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="nombre-programa">Nombre del Programa: </label>
+                                <input type="text" id="nombre-programa" name="nombre-programa" class="input" placeholder="Programa de Apoyo: Verano 2024" required>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="descripcion-programa">Descripción: </label>
+                                <textarea name="descripcion-programa" id="descripcion-programa" cols="50" rows="4" class="input" placeholder="" required></textarea>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="objetivo-programa">Objetivo: </label>
+                                <textarea name="objetivo-programa" id="objetivo-programa" cols="50" rows="4" class="input" placeholder="" required></textarea>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="presupuesto-programa">Presupesto (S/.): </label>
+                                <input type="text" id="presupuesto-programa" name="presupuesto-programa" class="input" placeholder="200000" required>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="fecha-inicio">Fecha Inicio: </label>
+                                <input type="date" id="fecha-inicio" name="fecha-inicio" class="input" required>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="fecha-fin">Fecha Fin: </label>
+                                <input type="date" id="fecha-fin" name="fecha-fin" class="input" required>
+                            </div>
                         </div>
-                        <div class="contenedor-input">
-                            <label for="nombre-programa">Nombre del Programa: </label>
-                            <input type="text" id="nombre-programa" name="nombre-programa" class="input" placeholder="Programa de Apoyo: Verano 2024" required>
-                        </div>
-                        <div class="contenedor-input">
-                            <label for="descripcion-programa">Descripción: </label>
-                            <textarea name="descripcion-programa" id="descripcion-programa" cols="50" rows="4" class="input" placeholder="" required></textarea>
-                        </div>
-                        <div class="contenedor-input">
-                            <label for="objetivo-programa">Objetivo: </label>
-                            <textarea name="objetivo-programa" id="objetivo-programa" cols="50" rows="4" class="input" placeholder="" required></textarea>
-                        </div>
-                        <div class="contenedor-input">
-                            <label for="presupuesto-programa">Presupesto (S/.): </label>
-                            <input type="text" id="presupuesto-programa" name="presupuesto-programa" class="input" placeholder="200000" required>
-                        </div>
-                        <div class="contenedor-input"><!-- Este CAMPO falta agregar en la BASE DE DATOS -->
-                            <label for="fecha-inicio">Fecha Inicio: </label>
-                            <input type="date" id="fecha-inicio" name="fecha-inicio" class="input" placeholder="" required>
-                        </div>
-                        <div class="contenedor-input"><!-- Este CAMPO falta agregar en la BASE DE DATOS -->
-                            <label for="fecha-fin">Fecha Fin: </label>
-                            <input type="date" id="fecha-fin" name="fecha-fin" class="input" placeholder="" required>
-                        </div>
-                    </div>
+                    </section>
 
+                    <section class="seccion" id="seccion-recurso">
+                        <h1 class="titulo">Asignar Recursos</h1>
+                        
+                        <div class="contenedor-inputs">
+                            <div class="contenedor-input" id="varios-recursos">
+                                <label for="nombre-recurso">Nombre del Recurso: </label>
+                                <div class="contenedor-recursos">
+                                    <div class="contenedor-recurso">
+                                        <input type="text" id="nombre-recurso" name="nombre-recurso" class="input" placeholder="Caja de Libros" class="input-recurso" required>
+                                        <div class="contenedor-botones-recurso">
+                                            <a href="#" class="boton-recurso"><i class="bi bi-plus-square-fill" id="agregar-recurso"></i></a>
+                                            <a href="#" class="boton-recurso"><i class="bi bi-x-square-fill" id="quitar-recurso"></i></a>
+                                        </div>
+                                        <!-- <button type="button" id="agregar-recurso" class="boton-recurso">+</button> -->
+                                        <!-- <button type="button" id="quitar-recurso" class="boton-recurso">+</button> -->
+                                    </div>
+                                    <!-- Acá agregaría otro <div> con Clase "contenedor-recurso" -->
+                                </div>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="descripcion-recurso">Descripción del recurso: </label>
+                                <textarea name="descripcion-recurso" id="descripcion-recurso" cols="50" rows="4" class="input" placeholder="" required></textarea>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="cantidad-recurso">Cantidad del recurso: </label>
+                                <input type="number" id="cantidad-recurso" name="cantidad-recurso" class="input" placeholder="100" required>
+                            </div>
+                        </div>
+                    </section>
+                    
                     <div class="contenedor-boton">
                         <button>Asignar Programa</button>
                     </div>

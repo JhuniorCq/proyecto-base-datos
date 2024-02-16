@@ -1,5 +1,7 @@
 
 const escuelaSelect = document.getElementById('escuela-select');// El AXIOS da, pero con la CDN, con el import no da :,v
+const botonesRecurso = document.querySelectorAll('.boton-recurso');
+
 
 const response = await axios.get('http://localhost:3000/assignProgram');
 const schoolsData = response.data;
@@ -15,10 +17,25 @@ for(const school of schoolData) {
     nuevoOption.value = school[0];
     escuelaSelect.append(nuevoOption);
 }
-
+/*************************************************************************** */
 // LO QUE FALTARÍA SERIA QUE CUANDO EL USUARIO ESCOJA UNA ESCUELA, SE RECOJA SU CODIGO MODULAR 
 
 //MEJOR TRAABJO DESDE LA MAIN, es MÁS RÁPIDO
+
+const comportamientoBotonRecurso = (evento) => {
+    evento.preventDefault();
+}
+
+
+
+
+
+
+
+
+
+
+
 
 const deshabilitarOpcion = () => {
     const opcionDisabled = document.getElementById('opcion-disabled');
@@ -26,3 +43,4 @@ const deshabilitarOpcion = () => {
 }
 
 escuelaSelect.addEventListener('click', deshabilitarOpcion);
+botonesRecurso.forEach(botonRecurso => botonRecurso.addEventListener('click', comportamientoBotonRecurso))
