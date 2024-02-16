@@ -49,14 +49,13 @@
 }
 
 .contenedor-input:not(#varios-recursos) {
-    /* border: 1px solid orange; */
     width: 80%;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-/* A TRABAJAR CON LOS CONTENEDORES PARA AGREGAR MAS RECURSOS */
+/* A TRABAJAR CON LOS CONTENEDORES PARA AGREGAR MAS RECURSOS
 #varios-recursos {
     width: 100%;
     display: flex;
@@ -66,7 +65,7 @@
 
 .contenedor-recursos {
     width: 100%;
-    /* border: 1px solid blue; */
+
 }
 
 .contenedor-recurso {
@@ -107,7 +106,7 @@
 
 #quitar-recurso:hover {
     color: #c82333;
-}
+} */
 
 /* **************** */
 
@@ -122,6 +121,79 @@
     border-radius: 3px;
     padding: 4px 5px;
     font-size: 1rem;
+}
+
+/* .contenedor-inputs-recurso {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+.contenedor-cantidad-recursos {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 20px 0 10px;
+}
+
+.contenedor-cantidad-recursos label {
+    font-weight: bold;
+    width: 160%;
+}
+
+.contenedor-recursos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-recurso {
+    width: 100%;
+    margin-top: -10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .contenedor-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+#agregar-recurso {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: 1px solid #28a745;
+    border-radius: 8px;
+}
+
+#agregar-recurso:hover {
+    background-color: #218838;
+}
+
+.boton-quitar {
+    font-size: 30px;
+    color: #dc3545;
+}
+
+.boton-quitar:hover {
+    color: #c82333;
+}
+
+
+
+/* Estilos para el separador <hr> */
+.separador {
+    width: 100%;
+    border: 1px solid black;
 }
 
 .contenedor-boton {
