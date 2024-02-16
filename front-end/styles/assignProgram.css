@@ -160,13 +160,6 @@
     align-items: center;
 }
 
-/* .contenedor-inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
-
 #agregar-recurso {
     background-color: #28a745;
     color: white;

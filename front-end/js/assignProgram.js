@@ -4,20 +4,27 @@ const botonAgregarRecurso = document.getElementById('agregar-recurso');
 const contenedorRecursos = document.querySelector('.contenedor-recursos');
 let numeroRecurso = 0;
 
-const response = await axios.get('http://localhost:3000/getSchools');
-const schoolsData = response.data;
-
-const schoolData = schoolsData.map(datosEscuela => {
-    return [datosEscuela[0], datosEscuela[1]];
-});
-
-//Agregamos cada Escuela al SELECT -> Cada Escuela tendrá su Código Modular como "value"
-for(const school of schoolData) {
-    const nuevoOption = document.createElement('option');
-    nuevoOption.innerText = `${school[1]}`;
-    nuevoOption.value = school[0];
-    escuelaSelect.append(nuevoOption);
+const mostrarDatosEscuelas = async () => {
+    try {
+        const response = await axios.get('http://localhost:3000/getSchools');
+        const schoolsData = response.data;
+    
+        const schoolData = schoolsData.map(datosEscuela => {
+            return [datosEscuela[0], datosEscuela[1]];
+        });
+    
+        //Agregamos cada Escuela al SELECT -> Cada Escuela tendrá su Código Modular como "value"
+        for(const school of schoolData) {
+            const nuevoOption = document.createElement('option');
+            nuevoOption.innerText = `${school[1]}`;
+            nuevoOption.value = school[0];
+            escuelaSelect.append(nuevoOption);
+        }
+    } catch(err) {
+        console.error('Error al obtener los datos de las escuelas.', err.message);
+    }
 }
+
 /*************************************************************************** */
 // LO QUE FALTARÍA SERIA QUE CUANDO EL USUARIO ESCOJA UNA ESCUELA, SE RECOJA SU CODIGO MODULAR 
 
@@ -68,11 +75,12 @@ const quitarRecurso = (evento) => {
     hrSeparador.remove();
 }
 
-
 const deshabilitarOpcion = () => {
     const opcionDisabled = document.getElementById('opcion-disabled');
     opcionDisabled.disabled = true;
 }
+
+mostrarDatosEscuelas();
 
 escuelaSelect.addEventListener('click', deshabilitarOpcion);
 botonAgregarRecurso.addEventListener('click', agregarContenedorRecurso);
