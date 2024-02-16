@@ -12,7 +12,7 @@ router.delete('/enrollSchool:id', deleteSchool);
 router.put('/enrollSchool', updateSchool);
 
 // CONTROLLERS PROGRAMS
-router.get('/assignProgram', getSchools); //assignProgram -> Asignar Programa
+router.get('/getSchools', getSchools); //assignProgram -> Asignar Programa
 
 module.exports = {
     router
