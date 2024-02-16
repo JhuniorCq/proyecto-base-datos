@@ -4,7 +4,7 @@ const botonAgregarRecurso = document.getElementById('agregar-recurso');
 const contenedorRecursos = document.querySelector('.contenedor-recursos');
 let numeroRecurso = 0;
 
-const response = await axios.get('http://localhost:3000/assignProgram');
+const response = await axios.get('http://localhost:3000/getSchools');
 const schoolsData = response.data;
 
 const schoolData = schoolsData.map(datosEscuela => {
