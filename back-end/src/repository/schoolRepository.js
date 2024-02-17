@@ -5,17 +5,6 @@ class SchoolRepository {
     
     async getSchools() {
         try {
-            // const sql = 'SELECT * FROM Schools ORDER BY modular_code ASC';
-            // const sql = `
-            //     SELECT * FROM Schools 
-            //     INNER JOIN Directors ON schools.id_director = directors.id_director
-            //     INNER JOIN Locations ON schools.id_location = locations.id_location
-            //     INNER JOIN Districts ON locations.id_district = districts.id_district
-            //     INNER JOIN Provinces ON districts.id_province = provinces.id_province
-            //     INNER JOIN Departments ON provinces.id_department = departments.id_department
-            //     ORDER BY modular_code ASC
-            // `;
-
             const sql = `
                 SELECT 
                     schools.modular_code, 
@@ -48,11 +37,39 @@ class SchoolRepository {
         }
     }
 
-    async getSchool() {
+    async getSchool(modular_code) {
         try {
+            const sql = `
+                SELECT 
+                    schools.modular_code, 
+                    schools.name_school, 
+                    directors.director_name, 
+                    directors.director_lastname, 
+                    directors.director_cellphone, 
+                    directors.director_email, 
+                    locations.address, 
+                    districts.district_name, 
+                    provinces.province_name, 
+                    departments.department_name 
+                FROM Schools 
+                INNER JOIN Directors ON schools.id_director = directors.id_director
+                INNER JOIN Locations ON schools.id_location = locations.id_location
+                INNER JOIN Districts ON locations.id_district = districts.id_district
+                INNER JOIN Provinces ON districts.id_province = provinces.id_province
+                INNER JOIN Departments ON provinces.id_department = departments.id_department
+                WHERE modular_code = :modular_code
+            `;
+            const binds = {
+                modular_code
+            };
+            const result = await db(sql, binds, false);
+            
+            console.log(result.rows);
+
+            return result.rows;
 
         } catch(err) {
-            console.error('', err.message);
+            console.error('Error en getSchool en schoolRepository.js', err.message);
         }
     }
 

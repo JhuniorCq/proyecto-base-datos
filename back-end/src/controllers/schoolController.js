@@ -17,7 +17,10 @@ const getSchools = async (req, res) => {
 
 const getSchool = async (req, res) => {
     try {
+        const {modular_code} = req.params;
+        const result = await schoolService.getSchool(modular_code);
 
+        res.status(200).json(result);
     } catch(err) {
         console.error('', err.message)
     }

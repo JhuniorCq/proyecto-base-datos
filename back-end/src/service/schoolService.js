@@ -20,11 +20,14 @@ class SchoolService {
         }
     }
 
-    async getSchool() {
+    async getSchool(modular_code) {
         try {
+            const result = await schoolRepository.getSchool(modular_code);
 
+            return result;
         } catch(err) {
-            console.error('', err.message);
+            console.error('Error en getSchool en schoolService.js', err.message);
+            throw err;
         }
     }
 
