@@ -2,7 +2,66 @@
 const escuelaSelect = document.getElementById('escuela-select');// El AXIOS da, pero con la CDN, con el import no da :,v
 const botonAgregarRecurso = document.getElementById('agregar-recurso');
 const contenedorRecursos = document.querySelector('.contenedor-recursos');
+const formulario = document.querySelector('.formulario');
+const nombrePrograma = document.getElementById('nombre-programa');
+const descripcionPrograma = document.getElementById('descripcion-programa');
+const objetivoPrograma = document.getElementById('objetivo-programa');
+const presupuestoPrograma = document.getElementById('presupuesto-programa');
+const fechaInicio = document.getElementById('fecha-inicio');
+const fechaFin = document.getElementById('fecha-fin');
+
+
 let numeroRecurso = 0;
+
+// Basta con ponerle el async a la Función para que esta espere la respuesta del BACK en vez de terminar su ejecución de frente
+const asignarPrograma = async (evento) => {
+    try {
+        evento.preventDefault();
+        const arrayNombresRecursos = document.querySelectorAll('.nombre-recurso');
+        const arrayDescripcionRecursos = document.querySelectorAll('.descripcion-recurso');
+        const arrayCantidadRecursos = document.querySelectorAll('.cantidad-recurso');
+        // La cantidad de Nombres de Recursos definirá el # de iteraciones porque los 3 Campos serán obligatorios
+        let cantidadIteraciones = arrayNombresRecursos.length;
+
+        //Cada Recurso con su nombre, descripción y cantidad representará a un Objeto y será almacenado en este Array
+        const arrayDatosRecursos = [];
+
+        for(let i=0; i<cantidadIteraciones; i++) {
+            const datosRecursos = {};
+            datosRecursos['nombre-recurso'] = arrayNombresRecursos[i].value;
+            datosRecursos['descripcion-recurso'] = arrayDescripcionRecursos[i].value;
+            datosRecursos['cantidad-recurso'] = arrayCantidadRecursos[i].value;
+            arrayDatosRecursos.push(datosRecursos);
+        }
+
+        const escuelaSelectValue = escuelaSelect.value;
+        const nombreProgramaValue = nombrePrograma.value;
+        const descripcionProgramaValue = descripcionPrograma.value;
+        const objetivoProgramaValue = objetivoPrograma.value;
+        const presupuestoProgramaValue = presupuestoPrograma.value;
+        const fechaInicioValue = fechaInicio.value;
+        const fechaFinValue = fechaFin.value;
+        
+        console.log(escuelaSelectValue, nombreProgramaValue, descripcionProgramaValue, objetivoProgramaValue, presupuestoProgramaValue, fechaInicioValue, fechaFinValue);
+        console.log('arrayDatosRecursos', arrayDatosRecursos);
+        
+        const formData = new FormData();
+        formData.append('modular_code', escuelaSelectValue);
+        formData.append('program_name', nombreProgramaValue);
+        formData.append('program_description', descripcionProgramaValue);
+        formData.append('objective', objetivoProgramaValue);
+        formData.append('budget', presupuestoProgramaValue);
+        formData.append('start_date', fechaInicioValue);
+        formData.append('end_date', fechaFinValue);
+        formData.append('array_recursos', arrayDatosRecursos);
+
+        const url = '';
+        const response = await axios.post(url, formData);
+
+    } catch(err) {
+        console.error('Error en asignarPrograma en assignProgram.js', err.message);
+    }
+}
 
 const mostrarDatosEscuelas = async () => {
     try {
@@ -84,3 +143,4 @@ mostrarDatosEscuelas();
 
 escuelaSelect.addEventListener('click', deshabilitarOpcion);
 botonAgregarRecurso.addEventListener('click', agregarContenedorRecurso);
+formulario.addEventListener('submit', asignarPrograma);

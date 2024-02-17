@@ -122,6 +122,7 @@
     padding: 20px 0 30px;
     transition: transform 1s;
     transform: translateY(0%); /*Esto variará de 0 a -200%*/
+    overflow: auto;
 }
 
 .contenedor-info-modal {

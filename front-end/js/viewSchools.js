@@ -182,7 +182,11 @@ window.addEventListener('click', function(evento) {
         setTimeout(function() {
             fondoInfoEscuela.style.visibility = 'hidden';
         }, 600);
+    } else if(evento.target === fondoInfoEstudiantes) {
+        contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
+        //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
+        setTimeout(function() {
+            fondoInfoEstudiantes.style.visibility = 'hidden';
+        }, 600);
     }
 });
-
-//AHORA QUEDA HACER QUE EL BOTÓN DE ESTUDIANTES, MUESTRE A LOS ESTUDIANTES

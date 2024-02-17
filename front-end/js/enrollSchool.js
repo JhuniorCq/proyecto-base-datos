@@ -62,6 +62,7 @@ const enrollSchool = async (evento) => {
         console.log('formData', formData)
         const url = 'http://localhost:3000/enrollSchool';
         
+        //TODO ESTO LO PODEMOS ARREGLAR PONIENDO ASYNC A LA FUNCION enrollSchool
         setTimeout(null, 1000);
 
         //AHORA EL PROBLEMA QUE PUEDE APARECER ES QUE NO APAREZCAN LOS ALERTS DEBIDO AL ASINCRONISMO, PERO LO DEJARÉ ASÍ
