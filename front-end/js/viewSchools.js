@@ -25,7 +25,7 @@ const mostrarDatosEscuelas = async () => {
                 <td scope="row">${codigoModular}</td>
                 <td>${nombreColegio}</td>
                 <td>
-                    <button class="btn-ver-todo opcion" id="btn-ver-todo${iterador}" value="${codigoModular}">Ver todo</button>
+                    <button class="btn-ver-todo opcion" id="btn-ver-todo${iterador}" value="${codigoModular}">Ver escuela</button>
                     <button class="btn-ver-estudiantes opcion" id="btn-ver-estudiantes${iterador}" value="${codigoModular}">Ver estudiantes</button>
                     <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}"></i>
                     <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}"></i>
@@ -123,18 +123,36 @@ const verInfoEstudiantes = async (evento) => {
     const tbodyEstudiantes = document.getElementById('tbody-estudiantes');
     const codigoModular = botonSeleccionado.value;
     const url = `http://localhost:3000/getStudents/${codigoModular}`;
-    const responseEstudiantes = await axiosGet(url);
-    const datosEstudiantes = responseEstudiantes[0];
-    console.log(datosEstudiantes) //HASTA ACÁ YA RECOPILO LOS DATOS DEL ESTUDIANTE SELECCIONADO. FALTARIA MOSTRARLOS
+    const arrayEstudiantes = await axiosGet(url);
+
+    console.log(arrayEstudiantes) //HASTA ACÁ YA RECOPILO LOS DATOS DEL ESTUDIANTE SELECCIONADO. FALTARIA MOSTRARLOS
+
+    tbodyEstudiantes.innerText = '';
 
     //PARA MOSTRAR TODOS LOS DATOS DE LOS ESTUDIANTES DE UNA ESCUELA -> SE USARÁ EL FOREACH
-    tbodyEstudiantes.innerHTML = `
-
-    `;
+    arrayEstudiantes.forEach(estudiante => {
+        const nuevaFila = document.createElement('tr');
+        nuevaFila.innerHTML = `
+            <td>${estudiante[0]}</td>
+            <td>${estudiante[1]}</td>
+            <td>${estudiante[2]}</td>
+            <td>${estudiante[3]}</td>
+            <td>${estudiante[4]}</td>
+            <td>${estudiante[5]}</td>
+        `;
+        tbodyEstudiantes.append(nuevaFila);
+    });
+    //Hacemos visible la Ventana Emergente con los datos de los estudiantes de la escuela seleccionada
+    fondoInfoEstudiantes.style.visibility = 'visible';
+    contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
 }   
 
 const cerrarInfoEstudiantes = (evento) => {
     contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
+    //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
+    setTimeout(function() {
+        fondoInfoEstudiantes.style.visibility = 'hidden';
+    }, 600);
 }
 
 const modificarDatosEscuela = (evento) => {
@@ -155,6 +173,7 @@ const axiosGet = async (url) => {
 mostrarDatosEscuelas();
 
 btnCerrarInfoEscuela.addEventListener('click', cerrarInfoEscuela);
+btnCerrarInfoEstudiantes.addEventListener('click', cerrarInfoEstudiantes);
 
 //Este evento es para que cuando se de click en el Fondo Oscuro, cuando aparece la Ventana Emergente, hará que la Ventana Emergente se vaya
 window.addEventListener('click', function(evento) {
