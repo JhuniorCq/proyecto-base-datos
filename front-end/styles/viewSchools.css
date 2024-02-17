@@ -118,7 +118,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px 0 30px;
-    transition: transform 1s ;
+    transition: transform 1s;
     transform: translateY(0%); /*Esto variará de 0 a -200%*/
 }
 

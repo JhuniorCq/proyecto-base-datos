@@ -21,7 +21,7 @@ const mostrarDatosEscuelas = async () => {
             escuelaSelect.append(nuevoOption);
         }
     } catch(err) {
-        console.error('Error al obtener los datos de las escuelas.', err.message);
+        console.error('Error al mostrar los nombres de las escuelas.', err.message);
     }
 }
 
