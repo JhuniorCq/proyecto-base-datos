@@ -20,8 +20,8 @@ const mostrarDatosEscuelas = async () => {
                 <td scope="row">${codigoModular}</td>
                 <td>${nombreColegio}</td>
                 <td>
-                    <button class="btn-ver-todo opcion" id="btn-ver-todo${iterador}">Ver todo</button>
-                    <button class="btn-ver-estudiantes opcion" id="btn-ver-estudiantes${iterador}">Ver estudiantes</button>
+                    <button class="btn-ver-todo opcion" id="btn-ver-todo${iterador}" value="${codigoModular}">Ver todo</button>
+                    <button class="btn-ver-estudiantes opcion" id="btn-ver-estudiantes${iterador}" value="${codigoModular}">Ver estudiantes</button>
                     <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}"></i>
                     <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}"></i>
                 </td>
@@ -45,9 +45,58 @@ const mostrarDatosEscuelas = async () => {
     }
 }
 
-const verInfoEscuela = (evento) => {
+const verInfoEscuela = async (evento) => {
     console.log('Esta es la info de una escuela');
     console.log(evento.target);
+
+    const botonSeleccionado = evento.target;
+    const tbodyEscuela = document.getElementById('tbody-escuela');
+    const codigoModular = botonSeleccionado.value;
+    const url = `http://localhost:3000/getSchool/${codigoModular}`;
+    const responseEscuela = await axiosGet(url);
+    const datosEscuela = responseEscuela[0];
+    tbodyEscuela.innerHTML = `
+        <tr>
+            <td scope="row">Código modular</td>
+            <td>${datosEscuela[0]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Nombre de la escuela</td>
+            <td>${datosEscuela[1]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Dirección</td>
+            <td>${datosEscuela[6]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Departamento</td>
+            <td>${datosEscuela[9]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Provincia</td>
+            <td>${datosEscuela[8]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Distrito</td>
+            <td>${datosEscuela[7]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Nombre del director</td>
+            <td>${datosEscuela[2]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Apellidos del director</td>
+            <td>${datosEscuela[3]}</td>
+        </tr>
+        <tr>
+            <td scope="row">Número del director</td>
+            <td>${datosEscuela[4]}</td>
+        </tr>
+        <tr>
+            <td scope="row">E-mail del director</td>
+            <td>${datosEscuela[5]}</td>
+        </tr>
+    `;
 
     //Hacemos visible la Ventana Emergeete con los datos de la escuela seleccionada
     fondoInfoEscuela.style.visibility = 'visible';
@@ -96,3 +145,4 @@ window.addEventListener('click', function(evento) {
 });
 
 //QUEDARÍA PENDIENTE AGREGAR LOS DATOS DE LA BD A LA VENTANA EMERGENTE
+//CREO QUE TENGO QUE USAR LA RUTA PARA OBTENER A UNA SOLA ESCUELA :3 
