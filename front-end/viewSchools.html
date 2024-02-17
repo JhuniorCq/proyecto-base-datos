@@ -94,11 +94,11 @@
                     </div>
                 </div>
                 <!-- Ventana Emergente -> Mostrar Información de una Escuela -->
-                <div class="fondo-info-escuela">
+                <div class="fondo-modal" id="fondo-modal1">
                     <!-- Acá irá la info de la escuela seleccionada -->
-                    <div class="contenedor-info-escuela cerrar-contenedor-info-escuela">
-                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar"></i>
-                        <div class="info-escuela">
+                    <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal1">
+                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar1"></i>
+                        <div class="contenedor-info-modal">
                             <table class="table table-light table-bordered table table-hover">
                                 <thead>
                                     <tr class="table-active fila-encabezado">
@@ -114,6 +114,30 @@
                     </div>
                 </div>
                 <!-- Ventana Emergente -> Mostrar Información de los Estudiantes de una Escuela -->
+                <div class="fondo-modal" id="fondo-modal2">
+                    <!-- Acá irá la info de la escuela seleccionada -->
+                    <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal2">
+                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar2"></i>
+                        <div class="contenedor-info-modal">
+                            <table class="table table-light table-bordered table table-hover">
+                                <thead>
+                                    <tr class="table-active fila-encabezado">
+                                        <th scope="col">DNI</th>
+                                        <th scope="col">Nombres</th>
+                                        <th scope="col">Apellidos</th>
+                                        <th scope="col">Fecha de Nacimiento</th>
+                                        <th scope="col">Género</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-estudiantes">
+                                    <!-- Acá se mostrará una TABLA con todos los estudiantes -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </main>
         

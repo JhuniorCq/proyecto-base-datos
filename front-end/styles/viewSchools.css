@@ -95,7 +95,7 @@
 
 /* ESTILOS PARA LA VENTANA EMERGENTE -> TRAERÉ LOS DATOS DEL BACK Y SEGUIRÉ CON ESTO*/
 
-.fondo-info-escuela {
+.fondo-modal {
     position: fixed;
     z-index: 100;
     width: 100%;
@@ -109,7 +109,7 @@
     visibility: hidden;
 }
 
-.contenedor-info-escuela {
+.contenedor-modal {
     width: 50vw;
     border: none;
     border-radius: 15px;
@@ -124,11 +124,11 @@
     transform: translateY(0%); /*Esto variará de 0 a -200%*/
 }
 
-.info-escuela {
+.contenedor-info-modal {
     width: 80%;
     margin-top: 15px;
 }
 
-.cerrar-contenedor-info-escuela {
+.cerrar-contenedor-modal {
     transform: translateY(-200%);
 }

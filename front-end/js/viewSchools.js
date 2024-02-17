@@ -1,7 +1,12 @@
 const tbodyEscuelas = document.getElementById('tbody-escuelas');
-const fondoInfoEscuela = document.querySelector('.fondo-info-escuela');
-const contenedorInfoEscuela = document.querySelector('.contenedor-info-escuela');
-const btnCerrarInfoEscuela = document.getElementById('btn-cerrar');
+const fondoInfoEscuela = document.getElementById('fondo-modal1');
+const contenedorInfoEscuela = document.getElementById('contenedor-modal1');
+const btnCerrarInfoEscuela = document.getElementById('btn-cerrar1');
+
+const tbodyEstudiantes = document.getElementById('tbody-estudiantes');
+const fondoInfoEstudiantes = document.getElementById('fondo-modal2')
+const contenedorInfoEstudiantes = document.getElementById('contenedor-modal2')
+const btnCerrarInfoEstudiantes = document.getElementById('btn-cerrar2');
 
 const mostrarDatosEscuelas = async () => {
     try {
@@ -100,20 +105,36 @@ const verInfoEscuela = async (evento) => {
 
     //Hacemos visible la Ventana Emergeete con los datos de la escuela seleccionada
     fondoInfoEscuela.style.visibility = 'visible';
-    contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
+    contenedorInfoEscuela.classList.toggle('cerrar-contenedor-modal');
 }
 
 const cerrarInfoEscuela = () => {
-    contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
+    contenedorInfoEscuela.classList.toggle('cerrar-contenedor-modal');
     //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
     setTimeout(function() {
         fondoInfoEscuela.style.visibility = 'hidden';
     }, 600);
 }
 
-const verInfoEstudiantes = (evento) => {
+const verInfoEstudiantes = async (evento) => {
     console.log('Esta es la info de los estudiantes');
     console.log(evento.target);
+    const botonSeleccionado = evento.target;
+    const tbodyEstudiantes = document.getElementById('tbody-estudiantes');
+    const codigoModular = botonSeleccionado.value;
+    const url = `http://localhost:3000/getStudents/${codigoModular}`;
+    const responseEstudiantes = await axiosGet(url);
+    const datosEstudiantes = responseEstudiantes[0];
+    console.log(datosEstudiantes) //HASTA ACÁ YA RECOPILO LOS DATOS DEL ESTUDIANTE SELECCIONADO. FALTARIA MOSTRARLOS
+
+    //PARA MOSTRAR TODOS LOS DATOS DE LOS ESTUDIANTES DE UNA ESCUELA -> SE USARÁ EL FOREACH
+    tbodyEstudiantes.innerHTML = `
+
+    `;
+}   
+
+const cerrarInfoEstudiantes = (evento) => {
+    contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
 }
 
 const modificarDatosEscuela = (evento) => {
@@ -134,15 +155,15 @@ const axiosGet = async (url) => {
 mostrarDatosEscuelas();
 
 btnCerrarInfoEscuela.addEventListener('click', cerrarInfoEscuela);
+
 //Este evento es para que cuando se de click en el Fondo Oscuro, cuando aparece la Ventana Emergente, hará que la Ventana Emergente se vaya
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoEscuela) {
-        contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
+        contenedorInfoEscuela.classList.toggle('cerrar-contenedor-modal');
         setTimeout(function() {
             fondoInfoEscuela.style.visibility = 'hidden';
         }, 600);
     }
 });
 
-//QUEDARÍA PENDIENTE AGREGAR LOS DATOS DE LA BD A LA VENTANA EMERGENTE
-//CREO QUE TENGO QUE USAR LA RUTA PARA OBTENER A UNA SOLA ESCUELA :3 
+//AHORA QUEDA HACER QUE EL BOTÓN DE ESTUDIANTES, MUESTRE A LOS ESTUDIANTES
