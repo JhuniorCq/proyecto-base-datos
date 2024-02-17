@@ -1,8 +1,10 @@
 const tbodyEscuelas = document.getElementById('tbody-escuelas');
+const fondoInfoEscuela = document.querySelector('.fondo-info-escuela');
+const contenedorInfoEscuela = document.querySelector('.contenedor-info-escuela');
+const btnCerrarInfoEscuela = document.getElementById('btn-cerrar');
 
 const mostrarDatosEscuelas = async () => {
     try {
-        // const response = await axios.get('http://localhost:3000/getSchools');
         const url = 'http://localhost:3000/getSchools';
         const schoolsData = await axiosGet(url);
 
@@ -34,11 +36,9 @@ const mostrarDatosEscuelas = async () => {
             btnVerEstudiantes.addEventListener('click', verInfoEstudiantes);
             btnModificar.addEventListener('click', modificarDatosEscuela);
             btnEliminar.addEventListener('click', eliminarEscuela);
-            
+
             iterador++;
         });
-
-
 
     } catch(err) {
         console.error('Error al mostrar los datos de las escuelas.', err.message);
@@ -48,6 +48,17 @@ const mostrarDatosEscuelas = async () => {
 const verInfoEscuela = (evento) => {
     console.log('Esta es la info de una escuela');
     console.log(evento.target);
+
+    //Hacemos visible la Ventana Emergeete con los datos de la escuela seleccionada
+    fondoInfoEscuela.style.visibility = 'visible';
+    contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
+}
+
+const cerrarInfoEscuela = () => {
+    contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
+    setTimeout(function() {
+        fondoInfoEscuela.style.visibility = 'hidden';
+    }, 600);
 }
 
 const verInfoEstudiantes = (evento) => {
@@ -66,9 +77,18 @@ const eliminarEscuela = (evento) => {
 }
 
 const axiosGet = async (url) => {
-    const response = await axios.get('http://localhost:3000/getSchools');
-    const schoolsData = response.data;
+    const response = await axios.get(url);
     return response.data;
 }
 
 mostrarDatosEscuelas();
+
+btnCerrarInfoEscuela.addEventListener('click', cerrarInfoEscuela);
+window.addEventListener('click', function(evento) {
+    if(evento.target === fondoInfoEscuela) {
+        contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
+        setTimeout(function() {
+            fondoInfoEscuela.style.visibility = 'hidden';
+        }, 600);
+    }
+});
