@@ -56,6 +56,7 @@ const verInfoEscuela = (evento) => {
 
 const cerrarInfoEscuela = () => {
     contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
+    //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
     setTimeout(function() {
         fondoInfoEscuela.style.visibility = 'hidden';
     }, 600);
@@ -84,6 +85,7 @@ const axiosGet = async (url) => {
 mostrarDatosEscuelas();
 
 btnCerrarInfoEscuela.addEventListener('click', cerrarInfoEscuela);
+//Este evento es para que cuando se de click en el Fondo Oscuro, cuando aparece la Ventana Emergente, hará que la Ventana Emergente se vaya
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoEscuela) {
         contenedorInfoEscuela.classList.toggle('cerrar-contenedor-info-escuela');
@@ -92,3 +94,5 @@ window.addEventListener('click', function(evento) {
         }, 600);
     }
 });
+
+//QUEDARÍA PENDIENTE AGREGAR LOS DATOS DE LA BD A LA VENTANA EMERGENTE
