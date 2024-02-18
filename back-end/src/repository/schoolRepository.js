@@ -211,19 +211,6 @@ class SchoolRepository {
                 
                 console.log('Estudiante almacenando correctamente')
             });
-            
-            // const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
-
-            // const bindsStudent = {
-            //     dni,
-            //     student_name,
-            //     student_lastname,
-            //     birth_date,
-            //     gender,
-            //     modular_code
-            // }
-
-            // const resultStudent = await db(sqlInsertStudent, bindsStudent, true);
 
             return resultSchool;
         } catch(err) {
