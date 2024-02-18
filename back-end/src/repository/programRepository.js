@@ -31,7 +31,7 @@ class ProgramRepository {
 
             const resultProgram = await db(sqlInsertProgram, bindsProgram, true);
             const id_program = resultProgram.outBinds.id_program[0];
-
+            
             // INSERTANDO DATOS EN LA TABLA Resources
             console.log(array_recursos.length, 'Esta es la cantidad de recursos', array_recursos[0])
 

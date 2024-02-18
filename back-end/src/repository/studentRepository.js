@@ -1,5 +1,5 @@
 const {open: db} = require('../db.js');
-const oracledb = require('oracledb');//Se usa cuando hago un INSERT, pero traigo algunos datos de la Tabla que recibió el INSERT
+const oracledb = require('oracledb');//Se usa cuando hago un INSERT
 
 class StudentRepository {
     async getStudents(modular_code) {
