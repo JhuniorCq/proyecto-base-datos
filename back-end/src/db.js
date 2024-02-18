@@ -21,7 +21,7 @@ const open = async (sql, binds, autoCommit) => {
                     await conection.release();
                 }
             } catch(err) {
-                console.error('Error when closing the connection to the database: ', err.message)
+                console.error('Error al cerrar la conexión a la base de datos: ', err.message)
             }
         }
     }
