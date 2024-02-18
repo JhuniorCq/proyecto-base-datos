@@ -22,7 +22,7 @@ const mostrarDatosEscuelas = async () => {
 
             const filaEscuela = document.createElement('tr');
             filaEscuela.innerHTML = `
-                <td scope="row">${codigoModular}</td>
+                <td>${codigoModular}</td>
                 <td>${nombreColegio}</td>
                 <td>
                     <button class="btn-ver-todo opcion" id="btn-ver-todo${iterador}" value="${codigoModular}">Ver escuela</button>
@@ -62,48 +62,48 @@ const verInfoEscuela = async (evento) => {
     const datosEscuela = responseEscuela[0];
     tbodyEscuela.innerHTML = `
         <tr>
-            <td scope="row">Código modular</td>
+            <td>Código modular</td>
             <td>${datosEscuela[0]}</td>
         </tr>
         <tr>
-            <td scope="row">Nombre de la escuela</td>
+            <td>Nombre de la escuela</td>
             <td>${datosEscuela[1]}</td>
         </tr>
         <tr>
-            <td scope="row">Dirección</td>
+            <td>Dirección</td>
             <td>${datosEscuela[6]}</td>
         </tr>
         <tr>
-            <td scope="row">Departamento</td>
+            <td>Departamento</td>
             <td>${datosEscuela[9]}</td>
         </tr>
         <tr>
-            <td scope="row">Provincia</td>
+            <td>Provincia</td>
             <td>${datosEscuela[8]}</td>
         </tr>
         <tr>
-            <td scope="row">Distrito</td>
+            <td>Distrito</td>
             <td>${datosEscuela[7]}</td>
         </tr>
         <tr>
-            <td scope="row">Nombre del director</td>
+            <td>Nombre del director</td>
             <td>${datosEscuela[2]}</td>
         </tr>
         <tr>
-            <td scope="row">Apellidos del director</td>
+            <td>Apellidos del director</td>
             <td>${datosEscuela[3]}</td>
         </tr>
         <tr>
-            <td scope="row">Número del director</td>
+            <td>Número del director</td>
             <td>${datosEscuela[4]}</td>
         </tr>
         <tr>
-            <td scope="row">E-mail del director</td>
+            <td>E-mail del director</td>
             <td>${datosEscuela[5]}</td>
         </tr>
     `;
 
-    //Hacemos visible la Ventana Emergeete con los datos de la escuela seleccionada
+    //Hacemos visible la Ventana Emergente con los datos de la escuela seleccionada
     fondoInfoEscuela.style.visibility = 'visible';
     contenedorInfoEscuela.classList.toggle('cerrar-contenedor-modal');
 }
@@ -120,7 +120,7 @@ const verInfoEstudiantes = async (evento) => {
     console.log('Esta es la info de los estudiantes');
     console.log(evento.target);
     const botonSeleccionado = evento.target;
-    const tbodyEstudiantes = document.getElementById('tbody-estudiantes');
+    // const tbodyEstudiantes = document.getElementById('tbody-estudiantes');
     const codigoModular = botonSeleccionado.value;
     const url = `http://localhost:3000/getStudents/${codigoModular}`;
     const arrayEstudiantes = await axiosGet(url);
@@ -131,12 +131,13 @@ const verInfoEstudiantes = async (evento) => {
 
     //PARA MOSTRAR TODOS LOS DATOS DE LOS ESTUDIANTES DE UNA ESCUELA -> SE USARÁ EL FOREACH
     arrayEstudiantes.forEach(estudiante => {
+        const fechaNacimiento = estudiante[3].split('T')[0];
         const nuevaFila = document.createElement('tr');
         nuevaFila.innerHTML = `
             <td>${estudiante[0]}</td>
             <td>${estudiante[1]}</td>
             <td>${estudiante[2]}</td>
-            <td>${estudiante[3]}</td>
+            <td>${fechaNacimiento}</td>
             <td>${estudiante[4]}</td>
             <td>${estudiante[5]}</td>
         `;
@@ -147,7 +148,7 @@ const verInfoEstudiantes = async (evento) => {
     contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
 }   
 
-const cerrarInfoEstudiantes = (evento) => {
+const cerrarInfoEstudiantes = () => {
     contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
     //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
     setTimeout(function() {

@@ -71,8 +71,9 @@
                         <table class="table table-light table-bordered table table-hover">
                             <thead>
                                 <tr class="table-active fila-encabezado">
+                                    <th scope="col">N° Programa</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Colegio Asignado</th>
+                                    <th scope="col">Escuela Asignada</th>
                                     <th scope="col">Opciones</th>
                                     <!-- <th scope="col">Nombre</th>
                                     <th scope="col">Descripción</th>
@@ -87,6 +88,48 @@
                                 <!-- Aquí irá cada Programa creado -->
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- Ventana Emergente -> Mostrar información de un Programa -->
+                <div class="fondo-modal" id="fondo-modal1">
+                    <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal1">
+                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar1"></i>
+                        <div class="contenedor-info-modal">
+                            <table class="table table-light table-bordered table table-hover">
+                                <thead>
+                                    <tr class="table-active fila-encabezado">
+                                        <th scope="col">Campos</th>
+                                        <th scope="col">Valores</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-programa">
+                                    <!-- Acá se mostrarán varias FILA, cada FILA para cada CAMPO de la data de un Programa -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventana Emergente -> Mostrar información de los Recursos de un Programa -->
+                <div class="fondo-modal" id="fondo-modal2">
+                    <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal2">
+                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar2"></i>
+                        <div class="contenedor-info-modal">
+                            <table class="table table-light table-bordered table table-hover">
+                                <thead>
+                                    <tr class="table-active fila-encabezado">
+                                        <th scope="col">Programa perteneciente</th>
+                                        <th scope="col">Recursos</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-recursos">
+                                    <!-- Acá se mostrará una TABLA con todos los recursos -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
