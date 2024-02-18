@@ -41,23 +41,30 @@ const asignarPrograma = async (evento) => {
         const presupuestoProgramaValue = presupuestoPrograma.value;
         const fechaInicioValue = fechaInicio.value;
         const fechaFinValue = fechaFin.value;
-        
+        const fechaInicioFormateada = fechaInicioValue.split('-').reverse().join('/');
+
+        const fechaFinFormateada = fechaFinValue.split('-').reverse().join('/');
+
         console.log(escuelaSelectValue, nombreProgramaValue, descripcionProgramaValue, objetivoProgramaValue, presupuestoProgramaValue, fechaInicioValue, fechaFinValue);
+
         console.log('arrayDatosRecursos', arrayDatosRecursos);
         
-        const formData = new FormData();
-        formData.append('modular_code', escuelaSelectValue);
-        formData.append('program_name', nombreProgramaValue);
-        formData.append('program_description', descripcionProgramaValue);
-        formData.append('objective', objetivoProgramaValue);
-        formData.append('budget', presupuestoProgramaValue);
-        formData.append('start_date', fechaInicioValue);
-        formData.append('end_date', fechaFinValue);
-        formData.append('array_recursos', arrayDatosRecursos);
+        const datosPrograma = {
+            modular_code: escuelaSelectValue,
+            program_name: nombreProgramaValue,
+            program_description: descripcionProgramaValue,
+            objective: objetivoProgramaValue,
+            budget: presupuestoProgramaValue,
+            start_date: fechaInicioFormateada,
+            end_date: fechaFinFormateada,
+            array_recursos: arrayDatosRecursos
+        }
 
-        const url = '';
-        const response = await axios.post(url, formData);
+        const url = 'http://localhost:3000/assignProgram';
+        const response = await axios.post(url, datosPrograma);
+        const respuestaInsertarPrograma = response.data;
 
+        console.log('Respuesta del Back: ', respuestaInsertarPrograma)
     } catch(err) {
         console.error('Error en asignarPrograma en assignProgram.js', err.message);
     }
