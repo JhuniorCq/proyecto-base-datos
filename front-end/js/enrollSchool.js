@@ -17,32 +17,35 @@ const celularDirector = document.getElementById('celular');
 const emailDirector = document.getElementById('email');
 
 const enrollSchool = async (evento) => {
-    //Evitar que el formulario se envíe de forma predeterminada, y que se recargue la página
-    evento.preventDefault();
+    try {
+        //Evitar que el formulario se envíe de forma predeterminada, y que se recargue la página
+        evento.preventDefault();
 
-    const codigoModularValue = codigoModular.value;
-    const nombreEscuelaValue = nombreEscuela.value;
-    const direccionEscuelaValue = direccionEscuela.value;
-    const departamentoSelectValue = departamentoSelect.value;
-    const provinciaSelectValue = provinciaSelect.value;
-    const distritoSelectValue = distritoSelect.value;
-    const nombresDirectorValue = nombresDirector.value;
-    const apellidosDirectorValue = apellidosDirector.value;
-    const celularDirectorValue = celularDirector.value;
-    const emailDirectorValue = emailDirector.value;
-    const inputExcelValue = inputExcel.value;
-    const nombreDepartamento = obtenerNombreZonaGeografica(departamentoSelectValue, listaDepartamentos, 'id_departamento', 'departamento');
-    const nombreProvincia = obtenerNombreZonaGeografica(provinciaSelectValue, listaProvincias, 'id_provincia', 'provincia');
-    const nombreDistrito = obtenerNombreZonaGeografica(distritoSelectValue, listaDistritos, 'id_distrito', 'distrito');
+        const codigoModularValue = codigoModular.value;
+        const nombreEscuelaValue = nombreEscuela.value;
+        const direccionEscuelaValue = direccionEscuela.value;
+        const departamentoSelectValue = departamentoSelect.value;
+        const provinciaSelectValue = provinciaSelect.value;
+        const distritoSelectValue = distritoSelect.value;
+        const nombresDirectorValue = nombresDirector.value;
+        const apellidosDirectorValue = apellidosDirector.value;
+        const celularDirectorValue = celularDirector.value;
+        const emailDirectorValue = emailDirector.value;
+        const inputExcelValue = inputExcel.value;
+        const nombreDepartamento = obtenerNombreZonaGeografica(departamentoSelectValue, listaDepartamentos, 'id_departamento', 'departamento');
+        const nombreProvincia = obtenerNombreZonaGeografica(provinciaSelectValue, listaProvincias, 'id_provincia', 'provincia');
+        const nombreDistrito = obtenerNombreZonaGeografica(distritoSelectValue, listaDistritos, 'id_distrito', 'distrito');
 
-    console.log(departamentoSelectValue, provinciaSelectValue, distritoSelectValue)
-    console.log(nombreDepartamento, nombreProvincia, nombreDistrito);
+        console.log(departamentoSelectValue, provinciaSelectValue, distritoSelectValue)
+        console.log(nombreDepartamento, nombreProvincia, nombreDistrito);
 
-    //Ejecución y comprobación de las 3 funciones de validación
-    if(validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) && 
-        validarDatosUbicacion(departamentoSelectValue, provinciaSelectValue, distritoSelectValue) && 
-        validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, celularDirectorValue, emailDirectorValue) && 
-        validarExcelEstudiantes(inputExcelValue)) {
+        //Ejecución y comprobación de las 3 funciones de validación
+        if(!validarDatosEscuela(codigoModularValue, nombreEscuelaValue, direccionEscuelaValue) || 
+            !validarDatosUbicacion(departamentoSelectValue, provinciaSelectValue, distritoSelectValue) || 
+            !validarDatosDirector(nombresDirectorValue, apellidosDirectorValue, celularDirectorValue, emailDirectorValue) || 
+            !validarExcelEstudiantes(inputExcelValue)) {
+            return;
+        }
 
         //VAMO A ENVIAR TODOS LOS DATOS AL SERVIDOR YA :3
         const formData = new FormData();
@@ -59,48 +62,34 @@ const enrollSchool = async (evento) => {
         formData.append('excelStudents', inputExcel.files[0]); // Accede al archivo seleccionado por el usuario
         
         console.log(codigoModularValue, codigoModular.value)
-        console.log('formData', formData)
+        console.log('formData', formData) //HASTA ACÁ SE IMPRIME (SE PASA RAPIDO EL F5) Y LUEGO DE AHI SE ACTUALIZA
         const url = 'http://localhost:3000/enrollSchool';
         
         //TODO ESTO LO PODEMOS ARREGLAR PONIENDO ASYNC A LA FUNCION enrollSchool
-        setTimeout(null, 1000);
+        const response = await axios.post(url, formData);
 
-        //AHORA EL PROBLEMA QUE PUEDE APARECER ES QUE NO APAREZCAN LOS ALERTS DEBIDO AL ASINCRONISMO, PERO LO DEJARÉ ASÍ
-        try {
-            const response = await axiosPost(url, formData);
-            console.log('Datos registrados exitosamente :D', response.data);
-            alert('Datos registrados exitosamente.', response.data);
+        console.log('Datos registrados exitosamente :D', response.data);
+        alert('Datos registrados exitosamente.', response.data);
 
-        } catch(err) {
-            // Si ocurre un error, muestras un mensaje de error al usuario
-            console.error('Error al enviarrrr', err);
-            alert(`Ocurrió un error al enviar los datos.\n\t- Asegúrese de que el colegio o alguno de sus estudiantes no esté registrado en la base de datos.`);
-        }
-        
-    } else {
-        alert('No se registraron los datos');
-        return;
-    }
 
-    console.log(codigoModular.value);
-    console.log(nombreEscuela.value);
-    console.log(direccionEscuela.value);
-    console.log(departamentoSelect.value);
-    console.log(provinciaSelect.value);
-    console.log(distritoSelect.value);
-    console.log(nombresDirector.value);
-    console.log(apellidosDirector.value);
-    console.log(celularDirector.value);
-    console.log(emailDirector.value);
-    console.log(inputExcel.value);
-}
 
-const axiosPost = async (url, data) => {
-    try {
-        const response = await axios.post(url, data);
-        return response;
+
+
+        console.log(codigoModular.value);
+        console.log(nombreEscuela.value);
+        console.log(direccionEscuela.value);
+        console.log(departamentoSelect.value);
+        console.log(provinciaSelect.value);
+        console.log(distritoSelect.value);
+        console.log(nombresDirector.value);
+        console.log(apellidosDirector.value);
+        console.log(celularDirector.value);
+        console.log(emailDirector.value);
+        console.log(inputExcel.value);
+
     } catch(err) {
-        throw err;
+        console.error('Ha ocurrido un error.', err);
+        alert(`Ocurrió un error al enviar los datos.\n\t- Asegúrese de que el colegio o alguno de sus estudiantes no esté registrado en la base de datos.`);
     }
 }
 
