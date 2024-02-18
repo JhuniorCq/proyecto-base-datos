@@ -64,9 +64,14 @@ const asignarPrograma = async (evento) => {
         const response = await axios.post(url, datosPrograma);
         const respuestaInsertarPrograma = response.data;
 
-        console.log('Respuesta del Back: ', respuestaInsertarPrograma)
+        if(respuestaInsertarPrograma === 'Error') {
+            alert('Debe ingresar como mínimo 1 recurso.');
+            return;
+        }
+
     } catch(err) {
         console.error('Error en asignarPrograma en assignProgram.js', err.message);
+        alert('Ha ocurrido un error al asignar un programa');
     }
 }
 
