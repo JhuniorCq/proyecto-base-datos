@@ -19,6 +19,28 @@ class ProgramService {
             throw err;
         }
     }
+
+    async getPrograms() {
+        try {
+            const result = programRepository.getPrograms();
+
+            return result;
+        } catch(err) {
+            console.error('Error en assignProgram en programService.js', err.message);
+            throw err;
+        }
+    }
+
+    async getProgram(id_program) {
+        try {
+            const result = programRepository.getProgram(id_program);
+
+            return result;
+        } catch(err) {
+            console.error('', err.message);
+            throw err;
+        }
+    }
 }
 
 module.exports = {

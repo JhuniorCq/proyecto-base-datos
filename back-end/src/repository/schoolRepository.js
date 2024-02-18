@@ -27,8 +27,6 @@ class SchoolRepository {
             `;
 
             const result = await db(sql, [], false); //ASÍ USO AL "db", no es como en Postgre -> "pool.query"
-
-            // console.log(result)
             console.log(result.rows)
         
             return result.rows;
@@ -95,18 +93,7 @@ class SchoolRepository {
             const resultCheckModularCode = await db(sqlCheckModularCode, bindsCheckModularCode, false);
             const modularCodeCount = resultCheckModularCode.rows[0][0];
 
-            //Verificar si LOS dni ya existen en la base de datos
-            // dataSheet.forEach(async student => {
-            //     const sqlCheckDni = 'SELECT COUNT(*) FROM Students WHERE dni = :dni';
-            //     const bindsCheckDni = {dni: student["dni"]};
-            //     const resultCheckDni = await db(sqlCheckDni, bindsCheckDni, false);
-            //     const dniCount = resultCheckDni.rows[0][0];
-            //     console.log(`Cantidad de existencia de dni ${dni}: ${dniCount}`);
-            //     // Si el dni ya existe, lanzar un error
-            //     if(dniCount > 0) {
-            //         throw new Error('El dni ya existe en la base de datos.');
-            //     }
-            // });
+            //Verificar si los dni ya existen en la base de datos
 
             for(const student of dataSheet) {
                 const sqlCheckDni = 'SELECT COUNT(*) FROM Students WHERE dni = :dni';
@@ -201,22 +188,6 @@ class SchoolRepository {
             const resultSchool = await db(sqlInsertSchool, bindsSchool, true);
     
             // INSERTANDO DATOS PARA LA TABLA Students -> Haremos un Bucle ya que son varios estudiantes
-            // dataSheet.forEach(async student => {
-            //     const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
-
-            //     const bindsStudent = {
-            //         dni: student["dni"],
-            //         student_name: student["student_name"],
-            //         student_lastname: student["student_lastname"],
-            //         birth_date: student["birth_date"],
-            //         gender: student["gender"],
-            //         modular_code: modular_code
-            //     }
-            //     const resultStudent = await db(sqlInsertStudent, bindsStudent, true);
-                
-            //     console.log('Estudiante almacenando correctamente');
-            // });
-
             for(const student of dataSheet) {
                 const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
 

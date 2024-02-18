@@ -52,10 +52,57 @@ class ProgramRepository {
                 const resultResource = await db(sqlInsertResource, bindsResource, true);
             }
 
-
             return 'El programa ha sido registrado.';
         } catch(err) {
             console.error('Error en assignProgram en programRepository.js', err.message);
+            throw err;
+        }
+    }
+
+    async getPrograms() {
+        try {
+            const sql = `
+                SELECT
+                    programs.id_program,
+                    programs.program_name,
+                    programs.program_description,
+                    programs.objective,
+                    programs.budget,
+                    programs.modular_code,
+                    programs.start_date,
+                    programs.end_date,
+                    resources.resource_name,
+                    resources.resource_description,
+                    resources.resource_quantity
+                FROM Programs
+                INNER JOIN Resources ON programs.id_program = resources.id_program 
+                ORDER BY programs.id_program ASC
+            `;
+
+            const result = await db(sql, [], false);
+            console.log(result.rows);
+
+            return result.rows;
+        } catch(err) {
+            console.error('Error en assignProgram en programRepository.js', err.message);
+            throw err;
+        }
+    }
+
+    async getProgram(id_program) {
+        try {
+            const sql = 'SELECT * FROM Programs WHERE id_program = :id_program';
+
+            const binds = {
+                id_program
+            }
+
+            const result = await db(sql, binds, false);
+            console.log(result.rows)
+
+            return result.rows;
+        } catch(err) {
+            console.error('', err.message);
             throw err;
         }
     }

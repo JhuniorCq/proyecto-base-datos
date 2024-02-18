@@ -13,6 +13,29 @@ const assignProgram = async (req, res) => {
     }
 }
 
+const getPrograms = async (req, res) => {
+    try {
+        const result = await programService.getPrograms();
+
+        res.json(result);
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
+const getProgram = async (req, res) => {
+    try {
+        const {id_program} = req.params;
+        const result = await programService.getProgram(id_program);
+
+        res.json(result);
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
 module.exports = {
-    assignProgram
+    assignProgram,
+    getPrograms,
+    getProgram
 }
