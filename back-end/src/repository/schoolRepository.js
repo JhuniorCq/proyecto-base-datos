@@ -190,13 +190,6 @@ class SchoolRepository {
     
             // INSERTANDO DATOS PARA LA TABLA Students -> Haremos un Bucle ya que son varios estudiantes
             dataSheet.forEach(async student => {
-                console.log(student["dni"], typeof student["dni"]);
-                console.log(student["student_name"]);
-                console.log(student["student_lastname"]);
-                console.log(student["birth_date"]);
-                console.log(student["gender"]);
-                console.log('*************************');
-
                 const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
 
                 const bindsStudent = {

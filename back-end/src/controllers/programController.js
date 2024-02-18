@@ -6,7 +6,6 @@ const assignProgram = async (req, res) => {
         const dataProgram = req.body;
         console.log(dataProgram); //Se imprime vacío
         const result = await programService.assignProgram(dataProgram);
-        console.log(result);
 
         res.send(result);
     } catch(err) {

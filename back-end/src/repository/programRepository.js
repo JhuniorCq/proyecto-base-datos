@@ -55,7 +55,8 @@ class ProgramRepository {
 
             return 'El programa ha sido registrado.';
         } catch(err) {
-            console.error('Error en assignProgram en programRepository.js', err.message)
+            console.error('Error en assignProgram en programRepository.js', err.message);
+            throw err;
         }
     }
 }
