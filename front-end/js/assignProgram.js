@@ -42,7 +42,6 @@ const asignarPrograma = async (evento) => {
         const fechaInicioValue = fechaInicio.value;
         const fechaFinValue = fechaFin.value;
         const fechaInicioFormateada = fechaInicioValue.split('-').reverse().join('/');
-
         const fechaFinFormateada = fechaFinValue.split('-').reverse().join('/');
 
         console.log(escuelaSelectValue, nombreProgramaValue, descripcionProgramaValue, objetivoProgramaValue, presupuestoProgramaValue, fechaInicioValue, fechaFinValue);
@@ -68,6 +67,8 @@ const asignarPrograma = async (evento) => {
             alert('Debe ingresar como mínimo 1 recurso.');
             return;
         }
+
+        alert(respuestaInsertarPrograma);
 
     } catch(err) {
         console.error('Error en asignarPrograma en assignProgram.js', err.message);

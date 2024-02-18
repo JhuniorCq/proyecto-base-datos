@@ -67,7 +67,7 @@ const mostrarDistritos = () => {
 const crearOptionSelect = (nombreZonaGeografica, idZonaGeografica, tipoSelect) => {
     const nuevoOption = document.createElement('option');
     nuevoOption.value = idZonaGeografica;
-    nuevoOption.innerHTML = nombreZonaGeografica;
+    nuevoOption.innerText = nombreZonaGeografica;
     tipoSelect.append(nuevoOption);
 }
 
