@@ -61,6 +61,10 @@
     color: white;
 }
 
+.btn-ver-recursos:hover {
+    background-color: #219653;
+}
+
 .btn-modificar {
     cursor: pointer;
     vertical-align: middle;
@@ -81,10 +85,6 @@
 
 .btn-eliminar:hover {
     color: #c82333;
-}
-
-.btn-ver-recursos:hover {
-    background-color: #219653;
 }
 
 .opcion:not(td .opcion:last-child) {

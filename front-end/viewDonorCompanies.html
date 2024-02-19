@@ -64,7 +64,45 @@
 
         <main>
             <div class="contenedor">
-                
+                <div class="contenedor-vista-empresas">
+                    <h1 class="titulo">Empresas Donantes</h1>
+
+                    <div class="contenedor-tabla">
+                        <table class="table table-light table-bordered table table-hover">
+                            <thead>
+                                <tr class="table-active fila-encabezado">
+                                    <th scope="col">Empresa</th>
+                                    <th scope="col">Monto de donación</th>
+                                    <th scope="col">Programa donado</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-empresas">
+                                <!-- Aquí irá cada Empresa donante registrada -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Ventana Emergente -> Mostrar Información de una Empresa Donante -->
+                <div class="fondo-modal" id="fondo-modal1">
+                    <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal1">
+                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar1"></i>
+                        <div class="contenedor-info-modal">
+                            <table class="table table-light table-bordered table table-hover">
+                                <thead>
+                                    <tr class="table-active fila-encabezado">
+                                        <th scope="col">Campos</th>
+                                        <th scope="col">Valores</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-empresa">
+                                    <!-- Acá se mostrarán varias FILAS, cada FILA para cada CAMPO de la data de una empresa donante -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         
