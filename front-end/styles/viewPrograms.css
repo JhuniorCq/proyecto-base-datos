@@ -120,7 +120,8 @@
     padding: 20px 0 30px;
     transition: transform 1s;
     transform: translateY(0%); /*Esto variará de 0 a -200%*/
-    overflow: auto;
+    /* max-height: 95vh;
+    overflow: auto; */
 }
 
 .contenedor-info-modal {
@@ -130,4 +131,95 @@
 
 .cerrar-contenedor-modal {
     transform: translateY(-200%);
+}
+
+/* ESTILOS PARA MODIFICAR  */
+
+.form-modificar {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtitulo {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+}
+
+.contenedor-cantidad-recursos {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 20px 0 10px;
+}
+
+#agregar-recurso {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 12px;
+    border: 1px solid #28a745;
+    border-radius: 8px;
+}
+
+#agregar-recurso:hover {
+    background-color: #218838;
+}
+
+.seccion {
+    width: 100%;
+}
+
+.contenedor-inputs {
+    width: 100%;
+}
+
+.contenedor-input {
+    width: 100%;
+    /* border: 1px solid yellow; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 60px;
+    margin: 20px 0;
+}
+
+.contenedor-input label {
+    font-weight: bold;
+    /* padding-left: 50px; */
+}
+
+.input {
+    width: 65%;
+    outline: none;
+    padding: 2px 3px;
+    vertical-align: middle;
+}
+
+.contenedor-boton {
+    margin: 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-boton button {
+    padding: 7px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.contenedor-boton button:hover {
+    background-color: #0056b3;
+    border: 1px solid #0056b3;
 }

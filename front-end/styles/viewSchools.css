@@ -128,8 +128,112 @@
 .contenedor-info-modal {
     width: 80%;
     margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
 }
 
 .cerrar-contenedor-modal {
     transform: translateY(-200%);
+}
+
+/* ESTILOS PARA MODIFICAR UNA ESCUELA */
+.form-modificar {
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.seccion-form:not(.seccion-estudiantes) {
+    /* border: 1px solid blue; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subtitulo {
+    width: 90%;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+}
+
+.seccion-estudiantes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor-inputs {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.contenedor-input {
+    /* border: 1px solid yellow; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.contenedor-input label {
+    /* margin-left: 50px; */
+    font-weight: bold;
+}
+
+.input {
+    width: 60%;
+    outline: none;
+    padding: 2px 3px;
+    vertical-align: middle;
+}
+
+.contenedor-excel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: orange; */
+    padding: 15px;
+}
+
+#input-excel {
+    background-color: #28a745;
+    color: #fff;
+    border-color: #28a745;
+}
+
+.contenedor-boton {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.contenedor-boton button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.contenedor-boton button:hover {
+    background-color: #0056b3;
+    border: 1px solid #0056b3;
 }

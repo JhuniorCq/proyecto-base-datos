@@ -125,6 +125,74 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Ventana Emergente para realizar la MODIFICACIÓN -->
+                <div class="fondo-modal" id="fondo-modal3">
+                    <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal3">
+                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar3"></i>
+                        <div class="contenedor-info-modal">
+                            <form class="form-modificar">
+                                <section class="seccion" id="seccion-programa">
+                                    <h1 class="subtitulo">Modificar Programa</h1>
+            
+                                    <div class="contenedor-inputs">
+                                        <div class="contenedor-input no-text-area">
+                                            <label for="escuela-seleccionada">Escoger Escuela: </label>
+                                            <select name="escuela-select" id="escuela-select" class="input" required>
+                                                <option id="opcion-disabled">-- Escoge una Escuela --</option>
+                                            </select>
+                                        </div>
+                                        <div class="contenedor-input no-text-area">
+                                            <label for="nombre-programa">Nombre del Programa: </label>
+                                            <input type="text" id="nombre-programa" name="nombre-programa" class="input" placeholder="Programa de Apoyo: Verano 2024" required>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="descripcion-programa">Descripción: </label>
+                                            <textarea name="descripcion-programa" id="descripcion-programa" cols="30" rows="2" class="input" placeholder="" required></textarea>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="objetivo-programa">Objetivo: </label>
+                                            <textarea name="objetivo-programa" id="objetivo-programa" cols="30" rows="2" class="input" placeholder=""></textarea>
+                                        </div>
+                                        <div class="contenedor-input no-text-area">
+                                            <label for="presupuesto-programa">Presupesto (S/.): </label>
+                                            <input type="text" id="presupuesto-programa" name="presupuesto-programa" class="input" placeholder="200000" required>
+                                        </div>
+                                        <div class="contenedor-input no-text-area">
+                                            <label for="fecha-inicio">Fecha Inicio: </label>
+                                            <input type="date" id="fecha-inicio" name="fecha-inicio" class="input" required>
+                                        </div>
+                                        <div class="contenedor-input no-text-area">
+                                            <label for="fecha-fin">Fecha Fin: </label>
+                                            <input type="date" id="fecha-fin" name="fecha-fin" class="input" required>
+                                        </div>
+                                    </div>
+                                </section>
+            
+                                <section class="seccion" id="seccion-recurso">
+                                    <h1 class="subtitulo">Asignar Recursos</h1>
+                                    
+                                    <div class="contenedor-inputs">
+                                        <div class="contenedor-cantidad-recursos">
+                                            <button type="button" id="agregar-recurso">Ver Recurso</button>
+                                        </div>
+            
+                                        <hr class="separador">
+                                        
+                                        <div class="contenedor-recursos">
+                                            <!-- Acá irán más <div> con class = "contenedor-recurso" agregados con JS -->
+                                            <!-- A cada <div> le seguirá un <hr> separador -->
+                                        </div>
+                                    </div>
+                                </section>
+                                
+                                <div class="contenedor-boton">
+                                    <button id="asignar-programa">Asignar Programa</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         

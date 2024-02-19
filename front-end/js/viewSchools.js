@@ -8,6 +8,10 @@ const fondoInfoEstudiantes = document.getElementById('fondo-modal2')
 const contenedorInfoEstudiantes = document.getElementById('contenedor-modal2')
 const btnCerrarInfoEstudiantes = document.getElementById('btn-cerrar2');
 
+const fondoModificarEscuela = document.getElementById('fondo-modal3');
+const contenedorModificarEscuela = document.getElementById('contenedor-modal3');
+const btnCerrarModificarEscuela = document.getElementById('btn-cerrar3');
+
 const mostrarDatosEscuelas = async () => {
     try {
         const url = 'http://localhost:3000/getSchools';
@@ -27,8 +31,8 @@ const mostrarDatosEscuelas = async () => {
                 <td>
                     <button class="btn-ver-todo opcion" id="btn-ver-todo${iterador}" value="${codigoModular}">Ver escuela</button>
                     <button class="btn-ver-estudiantes opcion" id="btn-ver-estudiantes${iterador}" value="${codigoModular}">Ver estudiantes</button>
-                    <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}"></i>
-                    <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}"></i>
+                    <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}" data-value="${codigoModular}"></i>
+                    <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}" data-value="${codigoModular}"></i>
                 </td>
             `;
             tbodyEscuelas.append(filaEscuela);
@@ -109,11 +113,7 @@ const verInfoEscuela = async (evento) => {
 }
 
 const cerrarInfoEscuela = () => {
-    contenedorInfoEscuela.classList.toggle('cerrar-contenedor-modal');
-    //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
-    setTimeout(function() {
-        fondoInfoEscuela.style.visibility = 'hidden';
-    }, 600);
+    cerrarVentanaEmergente(contenedorInfoEscuela, fondoInfoEscuela);
 }
 
 const verInfoEstudiantes = async (evento) => {
@@ -149,16 +149,34 @@ const verInfoEstudiantes = async (evento) => {
 }   
 
 const cerrarInfoEstudiantes = () => {
-    contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
-    //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
-    setTimeout(function() {
-        fondoInfoEstudiantes.style.visibility = 'hidden';
-    }, 600);
+    cerrarVentanaEmergente(contenedorInfoEstudiantes, fondoInfoEstudiantes);
 }
 
 const modificarDatosEscuela = (evento) => {
     console.log('Estás modificando los datos de una escuela');
     console.log(evento.target);
+    const botonSeleccionado = evento.target;
+    const codigoModular = botonSeleccionado.dataset.value;
+    console.log(codigoModular);
+
+    //LÓGICA PARA ENVIAR LOS DATOS Y ESO
+
+    //Hacemos visible la ventana emergente para modificar una escuela
+    fondoModificarEscuela.style.visibility = 'visible';
+    contenedorModificarEscuela.classList.toggle('cerrar-contenedor-modal');
+
+}
+
+const cerrarModificarEscuela = () => {
+    cerrarVentanaEmergente(contenedorModificarEscuela, fondoModificarEscuela);
+}
+
+const cerrarVentanaEmergente = (contenedor, fondo) => {
+    contenedor.classList.toggle('cerrar-contenedor-modal');
+    //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
+    setTimeout(function() {
+        fondo.style.visibility = 'hidden';
+    }, 600);
 }
 
 const eliminarEscuela = (evento) => {
@@ -175,19 +193,15 @@ mostrarDatosEscuelas();
 
 btnCerrarInfoEscuela.addEventListener('click', cerrarInfoEscuela);
 btnCerrarInfoEstudiantes.addEventListener('click', cerrarInfoEstudiantes);
+btnCerrarModificarEscuela.addEventListener('click', cerrarModificarEscuela);
 
 //Este evento es para que cuando se de click en el Fondo Oscuro, cuando aparece la Ventana Emergente, hará que la Ventana Emergente se vaya
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoEscuela) {
-        contenedorInfoEscuela.classList.toggle('cerrar-contenedor-modal');
-        setTimeout(function() {
-            fondoInfoEscuela.style.visibility = 'hidden';
-        }, 600);
+        cerrarVentanaEmergente(contenedorInfoEscuela, fondoInfoEscuela);
     } else if(evento.target === fondoInfoEstudiantes) {
-        contenedorInfoEstudiantes.classList.toggle('cerrar-contenedor-modal');
-        //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
-        setTimeout(function() {
-            fondoInfoEstudiantes.style.visibility = 'hidden';
-        }, 600);
+        cerrarVentanaEmergente(contenedorInfoEstudiantes, fondoInfoEstudiantes);
+    } else if(evento.target === fondoModificarEscuela) {
+        cerrarVentanaEmergente(contenedorModificarEscuela, fondoModificarEscuela);
     }
 });

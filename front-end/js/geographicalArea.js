@@ -78,12 +78,6 @@ const crearOptionDefault = (contenidoOptionDefault, tipoSelect) => {
     tipoSelect.append(nuevoOption);
 }
 
-//Función para Deshabilitar la opción "-- Escoge un Departamento --"
-// const deshabilitarOpcion = () => {
-//     const opcionDisabled = document.getElementById('opcion-disabled');
-//     opcionDisabled.disabled = true;
-// }
-
 const listaDepartamentos = await axiosGet('https://geo-peru-api.onrender.com/department');
 const listaProvincias = await axiosGet('https://geo-peru-api.onrender.com/province');
 const listaDistritos = await axiosGet('https://geo-peru-api.onrender.com/district');

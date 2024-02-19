@@ -136,6 +136,84 @@
                         </div>
                     </div>
                 </div>
+                <!-- Ventana Emergente en donde se podrá realizar las MODIFICACIONES -->
+                <div class="fondo-modal" id="fondo-modal3">
+                    <!-- Acá irá la info de la escuela seleccionada -->
+                    <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal3">
+                        <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar3"></i>
+                        <div class="contenedor-info-modal">
+                            <form class="form-modificar">
+                                <section class="seccion-form seccion-escuela">
+                                    <h1 class="subtitulo">Modificar Escuela</h1>
+                                    <div class="contenedor-inputs">
+                                        <div class="contenedor-input">
+                                            <label for="codigo-modular">Código modular:</label>
+                                            <input type="text" id="codigo-modular" name="codigo-modular" class="input" placeholder="7654321" required>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="nombre-escuela">Nombre de la Escuela:</label>
+                                            <input type="text" id="nombre-escuela" name="nombre-escuela" placeholder="I.E. Virgen de Fatima 5051" class="input" required>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="direccion">Direccion:</label>
+                                            <input type="text" id="direccion" name="direccion" class="input" placeholder="Calle Principal #123, Ciudad">
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="departamentoSelect">Departamento</label>
+                                            <select name="departamento" id="departamentoSelect" class="input select" required>
+                                                <!-- Usar una API para traer una lista con todos los Departamentos -->
+                                                <option value="default">-- Escoge un Departamento --</option>
+                                            </select>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="provinciaSelect">Provincia:</label>
+                                            <select name="provincia" id="provinciaSelect" class="input select" required>
+                                              <!-- Usar una API para traer una lista con todos las Provincias -->
+                                              <option value="default">-- Escoge una Provincia --</option>
+                                            </select>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="distritoSelect">Distrito:</label>
+                                            <select name="distrito" id="distritoSelect" class="input select" required>
+                                              <!-- Usar una API para traer una lista con todos los Distritos -->
+                                              <option value="default">-- Escoge un Distrito --</option>
+                                            </select>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="nombres-director">Nombres del director(a):</label>
+                                            <input type="text" id="nombres-director" name="nombres-director" class="input" placeholder="Holiver Jhunior" required>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="apellidos-director">Apellidos del director(a):</label>
+                                            <input type="text" id="apellidos-director" name="apellidos-director" class="input" placeholder="Ccora Quispe" required>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="celular">Teléfono del director(a):</label>
+                                            <input type="text" id="celular" name="celular" class="input" placeholder="987654321" required>
+                                        </div>
+                                        <div class="contenedor-input">
+                                            <label for="email">Correo electrónico:</label>
+                                            <input type="email" id="email" name="email" class="input" placeholder="usuario@dominio.com" required>
+                                        </div>
+                                    </div>  
+                                </section>
+
+                                <h1 class="subtitulo">Modificar Estudiantes</h1>
+                                <section class="seccion-form seccion-estudiantes">
+                                    
+                                    <div class="contenedor-excel contenedor-input">
+                                        <!-- <label for="input-excel" class="form-label">Seleccionar archivo:</label> -->
+                                        <input type="file" class="form-control" id="input-excel" name="archivo">
+                                    </div>
+                                </section>
+
+                                <section class="contenedor-boton seccion-form">
+                                    <button>Realizar cambios</button>
+                                </section>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
 
             </div>
@@ -143,6 +221,7 @@
         
         <!-- JS -->
         <script src="js/viewSchools.js" type="module"></script>
+        <script src="js/geographicalArea.js" type="module"></script>
         <!-- Axios -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <!-- Bootstrap -->
