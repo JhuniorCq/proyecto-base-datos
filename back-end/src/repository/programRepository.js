@@ -95,10 +95,10 @@ class ProgramRepository {
 
             const binds = {
                 id_program
-            }
+            };
 
             const result = await db(sql, binds, false);
-            console.log(result.rows)
+            console.log(result.rows);
 
             return result.rows;
         } catch(err) {

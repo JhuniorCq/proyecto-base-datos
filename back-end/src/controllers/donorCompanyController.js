@@ -13,6 +13,31 @@ const registerDonorCompany = async (req, res) => {
     }
 }
 
+const getDonorCompanies = async (req,res) => {
+    try {
+        const result = await donorCompanyService.getDonorCompanies();
+
+        res.json(result);
+    } catch(err) {
+        console.error('', err.message);
+        throw err;
+    }
+}
+
+const getDonorCompanie = async (req, res) => {
+    try {
+        const {id_company} = req.params;
+        const result = await donorCompanyService.getDonorCompanie(id_company);
+
+        res.json(result);
+    } catch(err) {
+        console.error('Error en getDonorCompanie en donorCompanyController.js', err.message);
+        throw err;
+    }
+}
+
 module.exports = {
-    registerDonorCompany
+    registerDonorCompany,
+    getDonorCompanies,
+    getDonorCompanie
 }

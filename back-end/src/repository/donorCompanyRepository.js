@@ -46,6 +46,73 @@ class DonorCompanyRepository {
             console.error('', err.message);
         }
     }
+
+    async getDonorCompanies() {
+        try {
+            const sql = `
+                SELECT 
+                    companies.id_company,
+                    companies.company_name,
+                    companies.company_address,
+                    companies.company_cellphone,
+                    companies.company_email,
+                    donations.donation_amount,
+                    donations.donation_date,
+                    donations.id_program,
+                    programs.program_name
+                FROM Companies 
+                INNER JOIN Donations 
+                ON companies.id_company = donations.id_company 
+                INNER JOIN Programs
+                ON donations.id_program = programs.id_program
+                ORDER BY companies.id_company
+            `;
+
+            const result = await db(sql, [], false);
+            console.log(result.rows);
+
+            return result.rows;
+        } catch(err) {
+            console.error('Error en getDonorCompanies en donorCompanyRepository.js', err.message);
+            throw err;
+        }
+    }
+
+    async getDonorCompanie(id_company) {
+        try {
+            const sql = `
+                SELECT 
+                    companies.id_company,
+                    companies.company_name,
+                    companies.company_address,
+                    companies.company_cellphone,
+                    companies.company_email,
+                    donations.donation_amount,
+                    donations.donation_date,
+                    donations.id_program,
+                    programs.program_name
+                FROM Companies 
+                INNER JOIN Donations 
+                ON companies.id_company = donations.id_company 
+                INNER JOIN Programs
+                ON donations.id_program = programs.id_program
+                WHERE companies.id_company = :id_company
+                ORDER BY companies.id_company
+            `;
+
+            const binds = {
+                id_company
+            };
+
+            const result = await db(sql, binds, false);
+            console.log(result.rows)
+
+            return result.rows;
+        } catch(err) {
+            console.error('', err.message);
+            throw err;
+        }
+    }
 }
 
 module.exports = {
