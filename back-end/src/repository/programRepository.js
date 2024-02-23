@@ -61,26 +61,10 @@ class ProgramRepository {
 
     async getPrograms() {
         try {
-            const sql = `
-                SELECT
-                    programs.id_program,
-                    programs.program_name,
-                    programs.program_description,
-                    programs.objective,
-                    programs.budget,
-                    programs.modular_code,
-                    programs.start_date,
-                    programs.end_date,
-                    resources.resource_name,
-                    resources.resource_description,
-                    resources.resource_quantity
-                FROM Programs
-                INNER JOIN Resources ON programs.id_program = resources.id_program 
-                ORDER BY programs.id_program ASC
-            `;
+            const sql = `SELECT * FROM Programs ORDER BY programs.id_program ASC`;
 
             const result = await db(sql, [], false);
-            console.log(result.rows);
+            console.log('Resultado en repository', result.rows);
 
             return result.rows;
         } catch(err) {

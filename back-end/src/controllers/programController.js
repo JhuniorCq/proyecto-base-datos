@@ -17,6 +17,7 @@ const getPrograms = async (req, res) => {
     try {
         const result = await programService.getPrograms();
 
+        //Retorna solo los datos de la Tabla Programs, NO de la Tabla Resources
         res.json(result);
     } catch(err) {
         console.error('', err.message);
