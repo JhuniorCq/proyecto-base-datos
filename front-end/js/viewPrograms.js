@@ -18,7 +18,7 @@ const mostrarDatosProgramas = async () => {
         const response = await axios.get(url);
         const programsData = response.data;
 
-        console.log(programsData);
+        console.log('programsData', programsData);
         let iterador = 0;
 
         for(const program of programsData) {
