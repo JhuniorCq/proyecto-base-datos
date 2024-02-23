@@ -71,10 +71,6 @@ const enrollSchool = async (evento) => {
         console.log('Datos registrados exitosamente :D', response.data);
         alert('Datos registrados exitosamente.', response.data);
 
-
-
-
-
         console.log(codigoModular.value);
         console.log(nombreEscuela.value);
         console.log(direccionEscuela.value);
@@ -108,4 +104,4 @@ const obtenerNombreZonaGeografica = (zonaGeograficaValue, listaZonaGeografica, c
 formulario.addEventListener('submit', enrollSchool);
 inputExcel.addEventListener('change', validarExtensionExcel);
 
-export {inputExcel};
+export {inputExcel, obtenerNombreZonaGeografica};
