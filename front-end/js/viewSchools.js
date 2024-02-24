@@ -1,7 +1,5 @@
 import {modificarEscuela} from './modifySchool.js';
-// import {obtenerNombreZonaGeografica} from './enrollSchool.js';
-import {listaDepartamentos, listaProvincias, listaDistritos} from './geographicalArea.js';
-
+// console.log('Hola');
 const tbodyEscuelas = document.getElementById('tbody-escuelas');
 const fondoInfoEscuela = document.getElementById('fondo-modal1');
 const contenedorInfoEscuela = document.getElementById('contenedor-modal1');
