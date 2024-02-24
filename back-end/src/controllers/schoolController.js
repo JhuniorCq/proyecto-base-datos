@@ -50,6 +50,7 @@ const updateSchool = async (req, res) => {
         //Pero si NO se envía el EXCEL, entonces nos saldrá UNDEFINED
 
         const result = await schoolService.updateSchool(req.body, req.file);
+        
         console.log('modular_code', modular_code, modular_code === '');
         console.log(requestFile);
 

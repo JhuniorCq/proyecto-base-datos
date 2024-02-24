@@ -67,11 +67,21 @@ class SchoolService {
 
             const excelStudents = requestFile;
 
-            const dataModified = {};
+            const dataSchool = {};
 
-            modular_code === ''? console.log('El código modular es una Cadea Vacía'): console.log('El código modular tiene un valor propio');
+            modular_code === ''? '': dataSchool['modular_code'] = modular_code;
+            name_school === ''? '': dataSchool['name_school'] = name_school;
+            director_name === ''? '': dataSchool['director_name'] = director_name;
+            director_lastname === ''? '': dataSchool['director_lastname'] = director_lastname;
+            director_cellphone === ''? '': dataSchool['director_cellphone'] = director_cellphone;
+            director_email === ''? '': dataSchool['director_email'] = director_email;
+            address === ''? '': dataSchool['address'] = address;
+            district_name === ''? '': dataSchool['district_name'] = district_name;
+            province_name === ''? '': dataSchool['province_name'] = province_name;
+            department_name === ''? '': dataSchool['department_name'] = department_name;
+            excelStudents === undefined? '': dataSchool['excelStudents'] = excelStudents; //Esto no lo guardaré así, hay que descomponerlo
 
-
+            console.log(dataSchool);
         } catch(err) {
             console.error('', err.message);
         }
@@ -124,6 +134,10 @@ const readExcel = (path) => {
 
     return dataSheet;
 }
+
+// const comprobarCadenaVacia = (dato) => {
+//     return dato === '' ? true: false;
+// }
 
 module.exports = {
     SchoolService
