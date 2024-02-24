@@ -10,7 +10,6 @@ const departamentoSelect = document.getElementById('departamentoSelect');
 const provinciaSelect = document.getElementById('provinciaSelect');
 const distritoSelect = document.getElementById('distritoSelect');
 const inputExcel = document.getElementById('input-excel');
-
 const nombresDirector = document.getElementById('nombres-director');
 const apellidosDirector = document.getElementById('apellidos-director');
 const celularDirector = document.getElementById('celular');
@@ -101,7 +100,7 @@ const obtenerNombreZonaGeografica = (zonaGeograficaValue, listaZonaGeografica, c
     return nombreZonaGeografica;
 }
 
-formulario.addEventListener('submit', enrollSchool);
 inputExcel.addEventListener('change', validarExtensionExcel);
+formulario.addEventListener('submit', enrollSchool);
 
 export {inputExcel, obtenerNombreZonaGeografica};

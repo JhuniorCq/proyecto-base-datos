@@ -1,5 +1,5 @@
 import {modificarEscuela} from './modifySchool.js';
-import {obtenerNombreZonaGeografica} from './enrollSchool.js';
+// import {obtenerNombreZonaGeografica} from './enrollSchool.js';
 import {listaDepartamentos, listaProvincias, listaDistritos} from './geographicalArea.js';
 
 const tbodyEscuelas = document.getElementById('tbody-escuelas');
@@ -16,22 +16,18 @@ const fondoModificarEscuela = document.getElementById('fondo-modal3');
 const contenedorModificarEscuela = document.getElementById('contenedor-modal3');
 const btnCerrarModificarEscuela = document.getElementById('btn-cerrar3');
 
-const formularioModificar = document.getElementById('form-modificar');
+const formularioModificar = document.querySelector('.form-modificar');
 const nuevoCodigoModular = document.getElementById('codigo-modular');
 const nuevoNombreEscuela = document.getElementById('nombre-escuela');
 const nuevaDireccion = document.getElementById('direccion');
-let nuevoDepartamento = document.getElementById('departamentoSelect');
-nuevoDepartamento = obtenerNombreZonaGeografica(nuevoDepartamento, listaDepartamentos, 'id_departamento', 'departamento');
-let nuevaProvincia = document.getElementById('provinciaSelect');
-nuevaProvincia = obtenerNombreZonaGeografica(nuevaProvincia, listaProvincias, 'id_provincia', 'provincia');
-let nuevoDistrito = document.getElementById('distritoSelect');
-nuevoDistrito = obtenerNombreZonaGeografica(nuevoDistrito, listaDistritos, 'id_distrito', 'distrito');
+const departamentoSelect = document.getElementById('departamentoSelect');
+const provinciaSelect = document.getElementById('provinciaSelect');
+const distritoSelect = document.getElementById('distritoSelect');
 const nuevosNombresDirector = document.getElementById('nombres-director');
 const nuevosApellidosDirector = document.getElementById('apellidos-director');
 const nuevoCelularDirector = document.getElementById('celular');
 const nuevoCorreoDirector = document.getElementById('email');
-
-export {};
+const nuevoExcelEstudiantes = document.getElementById('input-excel');
 
 const mostrarDatosEscuelas = async () => {
     try {
@@ -230,3 +226,17 @@ window.addEventListener('click', function(evento) {
         cerrarVentanaEmergente(contenedorModificarEscuela, fondoModificarEscuela);
     }
 });
+
+export {
+    nuevoCodigoModular,
+    nuevoNombreEscuela,
+    nuevaDireccion,
+    departamentoSelect,
+    provinciaSelect,
+    distritoSelect,
+    nuevosNombresDirector,
+    nuevosApellidosDirector,
+    nuevoCelularDirector,
+    nuevoCorreoDirector,
+    nuevoExcelEstudiantes
+};
