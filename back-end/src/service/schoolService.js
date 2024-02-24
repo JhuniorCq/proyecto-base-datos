@@ -65,22 +65,35 @@ class SchoolService {
                 department_name
             } = requestBody;
 
+            console.log(district_name);
+
             const excelStudents = requestFile;
 
             const dataSchool = {};
+            console.log(department_name)
+            modular_code === ''? null: dataSchool['modular_code'] = modular_code;
+            name_school === ''? null: dataSchool['name_school'] = name_school;
+            director_name === ''? null: dataSchool['director_name'] = director_name;
+            director_lastname === ''? null: dataSchool['director_lastname'] = director_lastname;
+            director_cellphone === ''? null: dataSchool['director_cellphone'] = director_cellphone;
+            director_email === ''? null: dataSchool['director_email'] = director_email;
+            address === ''? null: dataSchool['address'] = address;
+            district_name === 'undefined'? null: dataSchool['district_name'] = district_name;
+            province_name === 'undefined'? null: dataSchool['province_name'] = province_name;
+            department_name === 'undefined'? null: dataSchool['department_name'] = department_name;
 
-            modular_code === ''? '': dataSchool['modular_code'] = modular_code;
-            name_school === ''? '': dataSchool['name_school'] = name_school;
-            director_name === ''? '': dataSchool['director_name'] = director_name;
-            director_lastname === ''? '': dataSchool['director_lastname'] = director_lastname;
-            director_cellphone === ''? '': dataSchool['director_cellphone'] = director_cellphone;
-            director_email === ''? '': dataSchool['director_email'] = director_email;
-            address === ''? '': dataSchool['address'] = address;
-            district_name === ''? '': dataSchool['district_name'] = district_name;
-            province_name === ''? '': dataSchool['province_name'] = province_name;
-            department_name === ''? '': dataSchool['department_name'] = department_name;
-            excelStudents === undefined? '': dataSchool['excelStudents'] = excelStudents; //Esto no lo guardaré así, hay que descomponerlo
+            if(excelStudents !== undefined) {
+                console.log('El excel NO es una cadena vacía.');
+                //Esto me devuelve: ./uploads/estudiantes.xlsx
+                const excelPath = saveExcel(excelStudents);
 
+                //RECOPILAR DATOS DEL EXCEL
+                const dataSheet = readExcel(excelPath);
+
+                dataSchool['excelStudents'] = dataSheet;
+            }
+
+            //ACÁ VEMOS QUE SE GUARDA EN EL OBJETO, CUANDO PASEN TALES COSAS
             console.log(dataSchool);
         } catch(err) {
             console.error('', err.message);
@@ -135,9 +148,7 @@ const readExcel = (path) => {
     return dataSheet;
 }
 
-// const comprobarCadenaVacia = (dato) => {
-//     return dato === '' ? true: false;
-// }
+
 
 module.exports = {
     SchoolService
