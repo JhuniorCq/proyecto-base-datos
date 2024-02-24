@@ -53,7 +53,29 @@ class SchoolService {
         }
     }
 
-    
+    async updateSchool(requestBody, requestFile) {
+        try {
+
+            const {
+                modular_code, name_school,
+                director_name, director_lastname, director_cellphone, director_email,
+                address,
+                district_name,
+                province_name,
+                department_name
+            } = requestBody;
+
+            const excelStudents = requestFile;
+
+            const dataModified = {};
+
+            modular_code === ''? console.log('El código modular es una Cadea Vacía'): console.log('El código modular tiene un valor propio');
+
+
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
 
     async deleteSchool() {
         try {
@@ -62,15 +84,6 @@ class SchoolService {
             console.error('', err.message);
         }
     }
-
-    async updateSchool() {
-        try {
-
-        } catch(err) {
-            console.error('', err.message);
-        }
-    }
-
 }
 
 const saveExcel = (file) => { //Con esta función vamos a 

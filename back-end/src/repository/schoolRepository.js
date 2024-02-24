@@ -27,7 +27,7 @@ class SchoolRepository {
             `;
 
             const result = await db(sql, [], false); //ASÍ USO AL "db", no es como en Postgre -> "pool.query"
-            console.log(result.rows)
+            // console.log(result.rows)
         
             return result.rows;
         } catch(err) {
@@ -77,7 +77,6 @@ class SchoolRepository {
             const {
                 modular_code, name_school,
                 director_name, director_lastname, director_cellphone, director_email,
-                dni, student_name , student_lastname, birth_date, gender, 
                 address,
                 district_name,
                 province_name,
@@ -211,14 +210,6 @@ class SchoolRepository {
         }
     }
 
-    async deleteSchool() {
-        try {
-
-        } catch(err) {
-            console.error('', err.message);
-        }
-    }
-
     async updateSchool() {
         try {
 
@@ -227,6 +218,13 @@ class SchoolRepository {
         }
     }
 
+    async deleteSchool() {
+        try {
+
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
 }
 
 module.exports = {

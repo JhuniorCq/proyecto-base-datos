@@ -41,15 +41,26 @@ const enrollSchool = async (req, res) => {
     }
 }
 
-const deleteSchool = async (req, res) => {
+const updateSchool = async (req, res) => {
     try {
+        const {modular_code} = req.body;
+        const requestFile = req.file;
 
+        //Si no se envían datos NORMALES por defecto se envía una CADENA VACÍA
+        //Pero si NO se envía el EXCEL, entonces nos saldrá UNDEFINED
+
+        const result = await schoolService.updateSchool(req.body, req.file);
+        console.log('modular_code', modular_code, modular_code === '');
+        console.log(requestFile);
+
+        res.send('Se enviaron los datos')
     } catch(err) {
-        console.error('', err.message);
+        console.error('Error en updateSchool en schoolController.js', err.message);
+        return 'Error :,v';
     }
 }
 
-const updateSchool = async (req, res) => {
+const deleteSchool = async (req, res) => {
     try {
 
     } catch(err) {
