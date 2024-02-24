@@ -84,8 +84,7 @@ class SchoolRepository {
                 department_name
             } = requestBody;         
 
-            console.log(modular_code)
-            console.log(dni)
+            console.log(modular_code);
 
             // Verificar si el modular_code ya existe en la base de datos
             const sqlCheckModularCode = 'SELECT COUNT(*) FROM Schools WHERE modular_code = :modular_code';
