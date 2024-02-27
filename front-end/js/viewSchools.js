@@ -26,6 +26,7 @@ const nuevosApellidosDirector = document.getElementById('apellidos-director');
 const nuevoCelularDirector = document.getElementById('celular');
 const nuevoCorreoDirector = document.getElementById('email');
 const nuevoExcelEstudiantes = document.getElementById('input-excel');
+let codigoModularActual;
 
 const mostrarDatosEscuelas = async () => {
     try {
@@ -174,6 +175,8 @@ const modificarDatosEscuela = (evento) => {
     const codigoModular = botonSeleccionado.dataset.value;
     console.log(codigoModular);
 
+    codigoModularActual = codigoModular;
+    
     //LÓGICA PARA ENVIAR LOS DATOS Y ESO
     
 
@@ -236,5 +239,6 @@ export {
     nuevosApellidosDirector,
     nuevoCelularDirector,
     nuevoCorreoDirector,
-    nuevoExcelEstudiantes
+    nuevoExcelEstudiantes,
+    codigoModularActual
 };

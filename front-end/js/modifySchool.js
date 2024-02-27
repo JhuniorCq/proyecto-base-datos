@@ -9,7 +9,8 @@ import {
     nuevosApellidosDirector,
     nuevoCelularDirector,
     nuevoCorreoDirector,
-    nuevoExcelEstudiantes
+    nuevoExcelEstudiantes,
+    codigoModularActual
 } from './viewSchools.js';
 
 import {listaDepartamentos, listaProvincias, listaDistritos} from './geographicalArea.js';
@@ -17,8 +18,8 @@ import {listaDepartamentos, listaProvincias, listaDistritos} from './geographica
 const modificarEscuela = async (evento) => {
     try {
         evento.preventDefault();
-        
-        const codigoModularValor = nuevoCodigoModular.value;
+        console.log('pepepe', codigoModularActual);
+        // const codigoModularValor = nuevoCodigoModular.value;
         const nombreEscuela = nuevoNombreEscuela.value;
         const direccionEscuela = nuevaDireccion.value;
         const departamentoEscuela = obtenerNombreZonaGeografica(departamentoSelect.value, listaDepartamentos, 'id_departamento', 'departamento');
@@ -30,10 +31,22 @@ const modificarEscuela = async (evento) => {
         const correoDirector = nuevoCorreoDirector.value;
         // const excelEstudiantes = nuevoExcelEstudiantes.value;
 
+
+        // console.log(nuevoCodigoModular)
+        // console.log(nuevoNombreEscuela)
+        // console.log(nuevaDireccion)
+        // console.log(departamentoSelect)
+        // console.log(provinciaSelect)
+        // console.log(distritoSelect)
+        // console.log(nuevosNombresDirector)
+        // console.log()
+        // console.log()
+
+
         const formData = new FormData();
         // codigoModularValor === '' ? true: false;
         
-        formData.append('modular_code', codigoModularValor);
+        // formData.append('modular_code', codigoModularValor);
         formData.append('name_school', nombreEscuela);
         formData.append('address', direccionEscuela);
         formData.append('district_name', departamentoEscuela);
@@ -45,7 +58,7 @@ const modificarEscuela = async (evento) => {
         formData.append('director_email', correoDirector);
         formData.append('excelStudents', nuevoExcelEstudiantes.files[0]);
 
-        const url = 'http://localhost:3000/modifySchool';
+        const url = `http://localhost:3000/modifySchool/${codigoModularActual}`;
             
         
         const response = await axios.put(url, formData);
