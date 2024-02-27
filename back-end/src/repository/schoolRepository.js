@@ -47,7 +47,12 @@ class SchoolRepository {
                     locations.address, 
                     districts.district_name, 
                     provinces.province_name, 
-                    departments.department_name 
+                    departments.department_name,
+                    directors.id_director,
+                    locations.id_location,
+                    districts.id_district,
+                    provinces.id_province,
+                    departments.id_department
                 FROM Schools 
                 INNER JOIN Directors ON schools.id_director = directors.id_director
                 INNER JOIN Locations ON schools.id_location = locations.id_location
@@ -209,11 +214,146 @@ class SchoolRepository {
         }
     }
 
-    async updateSchool() {
+    async updateSchool(dataSchool, current_modular_code) {
         try {
+            const {
+                /*modular_code,*/ name_school,
+                director_name, director_lastname, director_cellphone, director_email,
+                address,
+                district_name,
+                province_name,
+                department_name,
+                excelStudents,
+                id_director, id_location, id_district, id_province, id_department
+            } = dataSchool;  
+
+            //MODIFICANDO EN LA TABLA Directors
+            const sqlDirector = `
+                UPDATE Directors
+                SET director_name = :director_name,
+                    director_lastname = :director_lastname,
+                    director_cellphone = :director_cellphone,
+                    director_email = :director_email
+                WHERE id_director = :id_director
+            `;
+
+            const bindsDirector = {
+                director_name,
+                director_lastname,
+                director_cellphone,
+                director_email,
+                id_director
+            };
+
+            const resultDirector = await db(sqlDirector, bindsDirector, true);
+
+            //MODIFICANDO EN LA TABLA Departments
+            const sqlDepartment = `
+                UPDATE Departments
+                SET department_name = :department_name
+                WHERE id_department = :id_department
+            `;
+
+            const bindsDepartment = {
+                department_name,
+                id_department
+            };
+
+            const resultDepartment = await db(sqlDepartment, bindsDepartment, true);
+            
+            //MODIFICANDO EN LA TABLA Provinces
+            const sqlProvince = `
+                UPDATE Provinces
+                SET province_name = :province_name
+                WHERE id_province = :id_province
+            `;
+
+            const bindsProvince = {
+                province_name,
+                id_province
+            };
+
+            const resultProvince = await db(sqlProvince, bindsProvince, true);
+
+            //MODIFICANDO EN LA TABLA Districts
+            const sqlDistrict = `
+                UPDATE Districts
+                SET district_name = :district_name
+                WHERE id_district = :id_district
+            `;
+
+            const bindsDistrict = {
+                district_name,
+                id_district
+            };
+
+            const resultDistrict = await db(sqlDistrict, bindsDistrict, true);
+
+            //MODIFICANDO EN LA TABLA Locations
+            const sqlLocation = `
+                UPDATE Locations
+                SET address = :address
+                WHERE id_location = :id_location
+            `;
+
+            const bindsLocation = {
+                address,
+                id_location
+            };
+
+            const resultLocation = await db(sqlLocation, bindsLocation, true);
+
+            //MODIFICANDO EN LA TABLA Schools
+            const sqlSchool = `
+                UPDATE Schools
+                SET name_school = :name_school
+                WHERE modular_code = :modular_code
+            `;
+
+            const bindsSchool = {
+                name_school,
+                modular_code: current_modular_code
+            };
+
+            const resultSchool = await db(sqlSchool, bindsSchool, true);
+
+            //MODIFICANDO EN LA TABLA Students -> Primer Elimino y luego modifico
+
+            if(excelStudents !== undefined) {
+                const sqlStudents = `
+                    DELETE FROM Students
+                    WHERE modular_code = :modular_code
+                `;
+
+                const bindsStudents = {
+                    modular_code: current_modular_code
+                };
+
+                await db(sqlStudents, bindsStudents, true);
+
+                for(const student of excelStudents) {
+                    const sqlInsertStudent = 'INSERT INTO Students (dni, student_name, student_lastname, birth_date, gender, modular_code) VALUES (:dni, :student_name, :student_lastname, :birth_date, :gender, :modular_code)';
+
+                    const bindsStudent = {
+                        dni: student["dni"],
+                        student_name: student["student_name"],
+                        student_lastname: student["student_lastname"],
+                        birth_date: student["birth_date"],
+                        gender: student["gender"],
+                        modular_code: current_modular_code
+                    }
+                    const resultStudent = await db(sqlInsertStudent, bindsStudent, true);
+                    
+                    console.log('Estudiante almacenando correctamente');
+                }
+            }
+            
+
+            return 'Los datos han sido modificados.';
 
         } catch(err) {
             console.error('', err.message);
+            throw err; // Propagar el error para que sea manejado por el controlador que llame a esta función
         }
     }
 

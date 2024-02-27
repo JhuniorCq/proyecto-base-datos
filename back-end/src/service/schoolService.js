@@ -2,6 +2,7 @@
 // const upload = multer({dest: 'uploads/'});
 const fs = require('node:fs'); // Necesario para la función saveExcel
 const XLSX = require('xlsx');
+const axios = require('axios');
 const {SchoolRepository} = require('../repository/schoolRepository.js');
 const schoolRepository = new SchoolRepository();
 
@@ -53,11 +54,11 @@ class SchoolService {
         }
     }
 
-    async updateSchool(requestBody, requestFile) {
+    async updateSchool(requestBody, requestFile, current_modular_code) {
         try {
 
             const {
-                modular_code, name_school,
+                /*modular_code,*/ name_school,
                 director_name, director_lastname, director_cellphone, director_email,
                 address,
                 district_name,
@@ -65,23 +66,30 @@ class SchoolService {
                 department_name
             } = requestBody;
 
-            console.log(district_name);
-
             const excelStudents = requestFile;
-
             const dataSchool = {};
-            console.log(department_name)
-            modular_code === ''? null: dataSchool['modular_code'] = modular_code;
-            name_school === ''? null: dataSchool['name_school'] = name_school;
-            director_name === ''? null: dataSchool['director_name'] = director_name;
-            director_lastname === ''? null: dataSchool['director_lastname'] = director_lastname;
-            director_cellphone === ''? null: dataSchool['director_cellphone'] = director_cellphone;
-            director_email === ''? null: dataSchool['director_email'] = director_email;
-            address === ''? null: dataSchool['address'] = address;
-            district_name === 'undefined'? null: dataSchool['district_name'] = district_name;
-            province_name === 'undefined'? null: dataSchool['province_name'] = province_name;
-            department_name === 'undefined'? null: dataSchool['department_name'] = department_name;
 
+            //Obteniendo los datos actuales de la Escuela
+            const responseEscuela = await axios.get(`http://localhost:3000/getSchool/${current_modular_code}`);
+            const datosEscuela = responseEscuela.data[0];
+
+            // modular_code === ''? dataSchool['modular_code'] = datosEscuela[0]: dataSchool['modular_code'] = modular_code;
+            name_school === ''? dataSchool['name_school'] = datosEscuela[1]: dataSchool['name_school'] = name_school;
+            director_name === ''? dataSchool['director_name'] = datosEscuela[2]: dataSchool['director_name'] = director_name;
+            director_lastname === ''? dataSchool['director_lastname'] = datosEscuela[3]: dataSchool['director_lastname'] = director_lastname;
+            director_cellphone === ''? dataSchool['director_cellphone'] = datosEscuela[4]: dataSchool['director_cellphone'] = director_cellphone;
+            director_email === ''? dataSchool['director_email'] = datosEscuela[5]: dataSchool['director_email'] = director_email;
+            address === ''? dataSchool['address'] = datosEscuela[6]: dataSchool['address'] = address;
+            district_name === 'undefined'? dataSchool['district_name'] = datosEscuela[7]: dataSchool['district_name'] = district_name;
+            province_name === 'undefined'? dataSchool['province_name'] = datosEscuela[8]: dataSchool['province_name'] = province_name;
+            department_name === 'undefined'? dataSchool['department_name'] = datosEscuela[9]: dataSchool['department_name'] = department_name;
+
+            dataSchool['id_director'] = datosEscuela[10];
+            dataSchool['id_location'] = datosEscuela[11];
+            dataSchool['id_district'] = datosEscuela[12];
+            dataSchool['id_province'] = datosEscuela[13];
+            dataSchool['id_department'] = datosEscuela[14];
+            
             if(excelStudents !== undefined) {
                 console.log('El excel NO es una cadena vacía.');
                 //Esto me devuelve: ./uploads/estudiantes.xlsx
@@ -93,8 +101,12 @@ class SchoolService {
                 dataSchool['excelStudents'] = dataSheet;
             }
 
+            const result = await schoolRepository.updateSchool(dataSchool, current_modular_code);
+
             //ACÁ VEMOS QUE SE GUARDA EN EL OBJETO, CUANDO PASEN TALES COSAS
-            console.log(dataSchool);
+            console.log('Este es el Objeto que enviaré a REPOSITORY', dataSchool);
+
+            return result;
         } catch(err) {
             console.error('', err.message);
         }

@@ -43,18 +43,11 @@ const enrollSchool = async (req, res) => {
 
 const updateSchool = async (req, res) => {
     try {
-        const {modular_code} = req.body;
-        const requestFile = req.file;
+        const {current_modular_code} = req.params;
 
-        //Si no se envían datos NORMALES por defecto se envía una CADENA VACÍA
-        //Pero si NO se envía el EXCEL, entonces nos saldrá UNDEFINED
-
-        const result = await schoolService.updateSchool(req.body, req.file);
-        
-        console.log('modular_code', modular_code, modular_code === '');
-        console.log(requestFile);
-
-        res.send('Se enviaron los datos')
+        const result = await schoolService.updateSchool(req.body, req.file, current_modular_code);
+    
+        res.send(result)
     } catch(err) {
         console.error('Error en updateSchool en schoolController.js', err.message);
         return 'Error :,v';

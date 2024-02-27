@@ -12,8 +12,8 @@ const upload = multer({dest: 'uploads/'});
 // CONTROLLERS SCHOOLS Y STUDENTS
 router.get('/getSchool/:modular_code', getSchool);
 router.post('/enrollSchool', upload.single('excelStudents'), enrollSchool);
-router.delete('/enrollSchool:id', deleteSchool);
-router.put('/modifySchool', upload.single('excelStudents'), updateSchool);
+router.delete('/enrollSchool/:id', deleteSchool);
+router.put('/modifySchool/:current_modular_code', upload.single('excelStudents'), updateSchool);
 router.get('/getSchools', getSchools);
 router.get('/getStudents/:modular_code', getStudents);
 
