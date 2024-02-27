@@ -14,7 +14,7 @@ router.get('/getSchool/:modular_code', getSchool);
 router.post('/enrollSchool', upload.single('excelStudents'), enrollSchool);
 router.delete('/enrollSchool:id', deleteSchool);
 router.put('/modifySchool', upload.single('excelStudents'), updateSchool);
-router.get('/getSchools', getSchools); //assignProgram -> Asignar Programa
+router.get('/getSchools', getSchools);
 router.get('/getStudents/:modular_code', getStudents);
 
 // CONTROLLERS PROGRAMS Y RESOURCES

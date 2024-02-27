@@ -27,7 +27,6 @@ class SchoolRepository {
             `;
 
             const result = await db(sql, [], false); //ASÍ USO AL "db", no es como en Postgre -> "pool.query"
-            // console.log(result.rows)
         
             return result.rows;
         } catch(err) {
