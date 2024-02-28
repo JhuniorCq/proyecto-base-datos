@@ -4,7 +4,7 @@ const {getSchools, getSchool, enrollSchool, deleteSchool, updateSchool} = requir
 const {getStudents} = require('../controllers/studentController.js');
 const {assignProgram, getPrograms, getProgram, updateProgram} = require('../controllers/programController.js');
 const {getResources} = require('../controllers/resourceController.js')
-const {registerDonorCompany, getDonorCompanies, getDonorCompanie} = require('../controllers/donorCompanyController.js')
+const {registerDonorCompany, getDonorCompanies, getDonorCompanie, updateDonorCompanie, deleteDonorCompanie} = require('../controllers/donorCompanyController.js')
 
 const multer = require('multer'); // Necesarios para obtener los datos del Excel
 const upload = multer({dest: 'uploads/'});
@@ -28,6 +28,8 @@ router.put('/modifyProgram/:id_program', updateProgram);
 router.post('/registerDonor', registerDonorCompany);
 router.get('/getDonorCompanies', getDonorCompanies);
 router.get('/getDonorCompanie/:id_company', getDonorCompanie);
+router.put('/modifyDonorCompanie/:id_company', updateDonorCompanie);
+router.delete('/deleteDonorCompanie/:id_company', deleteDonorCompanie);
 
 module.exports = {
     router

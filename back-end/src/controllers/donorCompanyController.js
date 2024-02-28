@@ -36,8 +36,31 @@ const getDonorCompanie = async (req, res) => {
     }
 }
 
+const updateDonorCompanie = async (req, res) => {
+    try {
+        const {id_company} = req.params;
+        
+        const result = await donorCompanyService.updateDonorCompanie(req.body, id_company);
+
+        return result;
+
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
+const deleteDonorCompanie = async (req, res) => {
+    try {
+
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
 module.exports = {
     registerDonorCompany,
     getDonorCompanies,
-    getDonorCompanie
+    getDonorCompanie,
+    updateDonorCompanie,
+    deleteDonorCompanie
 }

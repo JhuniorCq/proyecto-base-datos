@@ -113,6 +113,22 @@ class DonorCompanyRepository {
             throw err;
         }
     }
+
+    async updateDonorCompanie(datosEmpresa, id_company) {
+        try {
+
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
+
+    async deleteDonorCompanie() {
+        try {
+
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
 }
 
 module.exports = {
