@@ -112,9 +112,25 @@ class SchoolService {
         }
     }
 
-    async deleteSchool() {
+    async deleteSchool(modular_code) {
         try {
 
+            const response = await axios.get(`http://localhost:3000/getSchool/${modular_code}`);
+            const datosEscuela = response.data[0];
+
+            // const response2 = await axios.get(`http://localhost:3000/deleteProgram/${}`);
+
+            const ids = {
+                id_director: datosEscuela[10],
+                id_location: datosEscuela[11],
+                id_district: datosEscuela[12],
+                id_province: datosEscuela[13],
+                id_department: datosEscuela[14]
+            }
+
+            const result = await schoolRepository.deleteSchool(modular_code, ids);
+
+            return result;
         } catch(err) {
             console.error('', err.message);
         }

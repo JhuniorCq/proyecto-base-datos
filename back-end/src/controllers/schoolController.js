@@ -56,7 +56,11 @@ const updateSchool = async (req, res) => {
 
 const deleteSchool = async (req, res) => {
     try {
+        const {modular_code} = req.params;
 
+        const result = await schoolService.deleteSchool(modular_code);
+
+        res.send(result);
     } catch(err) {
         console.error('', err.message);
     }

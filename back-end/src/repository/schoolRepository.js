@@ -1,5 +1,7 @@
+// const { id_program } = require('../../../front-end/js/viewPrograms.js');
 const {open: db} = require('../db.js');
 const oracledb = require('oracledb');
+const axios = require('axios');
 
 class SchoolRepository {
     
@@ -357,9 +359,110 @@ class SchoolRepository {
         }
     }
 
-    async deleteSchool() {
+    async deleteSchool(modular_code, ids) {
         try {
 
+            const {
+                id_director,
+                id_location,
+                id_district,
+                id_province,
+                id_department
+            } = ids;
+
+            const sqlDeleteStudents = `
+                DELETE FROM Students
+                WHERE modular_code = :modular_code
+            `;
+
+            const binds = {
+                modular_code
+            };
+
+            await db(sqlDeleteStudents, binds, true);
+
+
+            const sqlSelectProgram = `SELECT id_program FROM Programs WHERE modular_code = :modular_code`;
+            const result = await db(sqlSelectProgram, binds, false);
+
+            if(result.rows.length > 0) {
+                const id_program = result.rows[0][0];
+    
+                //Eliminando programas asociados a la escuela
+                await axios.delete(`http://localhost:3000/deleteProgram/${id_program}`);
+            }
+            // const sqlDeleteProgram = `
+            //     DELETE FROM Programs
+            //     WHERE modular_code = :modular_code
+            // `;
+
+            // await db(sqlDeleteProgram, binds, true);
+
+            const sqlDeleteSchool = `
+                DELETE FROM Schools
+                WHERE modular_code = :modular_code
+            `;
+
+            await db(sqlDeleteSchool, binds, true);
+
+            const sqlDeleteDirector = `
+                DELETE FROM Directors
+                WHERE id_director = :id_director
+            `;
+
+            const bindsDirector = {
+                id_director
+            };
+
+            await db(sqlDeleteDirector, bindsDirector, true);
+
+            const sqlDeleteLocation = `
+                DELETE FROM Locations
+                WHERE id_location = :id_location
+            `;
+
+            const bindsLocation = {
+                id_location
+            };
+
+            await db(sqlDeleteLocation, bindsLocation, true);
+
+            const sqlDeleteDistrict = `
+                DELETE FROM Districts
+                WHERE id_district = :id_district
+            `;
+
+            const bindsDistrict = {
+                id_district
+            };
+
+            await db(sqlDeleteDistrict, bindsDistrict, true);
+
+            const sqlDeleteProvince = `
+                DELETE FROM Provinces
+                WHERE id_province = :id_province
+            `;
+
+            const bindsProvince = {
+                id_province
+            };
+
+            await db(sqlDeleteProvince, bindsProvince, true);
+
+            const sqlDeleteDepartment = `
+                DELETE FROM Departments
+                WHERE id_department = :id_department
+            `;
+
+            const bindsDepartment = {
+                id_department
+            };
+
+            await db(sqlDeleteDepartment, bindsDepartment, true);
+
+            
+
+            return 'La Escuela ha sido eliminada';
         } catch(err) {
             console.error('', err.message);
         }

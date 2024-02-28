@@ -16,6 +16,7 @@ router.delete('/enrollSchool/:id', deleteSchool);
 router.put('/modifySchool/:current_modular_code', upload.single('excelStudents'), updateSchool);
 router.get('/getSchools', getSchools);
 router.get('/getStudents/:modular_code', getStudents);
+router.delete('/deleteSchool/:modular_code', deleteSchool);
 
 // CONTROLLERS PROGRAMS Y RESOURCES
 router.post('/assignProgram', assignProgram);
