@@ -105,6 +105,54 @@
                 </div>
             </div>
         </main>
+
+        <div class="fondo-modal" id="fondo-modal2">
+            <div class="contenedor-modal cerrar-contenedor-modal" id="contenedor-modal2">
+                <i class="bi bi-x-circle-fill btn-eliminar" id="btn-cerrar2"></i>
+                <div class="contenedor-info-modal">
+                    <form class="form-modificar">
+                        <h1 class="titulo-modificar">Modificar Empresa Donante</h1>
+            
+                        <div class="contenedor-inputs">
+                            <div class="contenedor-input">
+                                <label for="nombre-empresa">Nombre de la Empresa: </label>
+                                <input type="text" id="nombre-empresa" name="nombre-empresa" class="input" placeholder="Leche Gloria S.A.">
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="direccion-empresa">Dirección de la Empresa: </label>
+                                <input type="text" id="direccion-empresa" name="direccion-empresa" class="input" placeholder="Calle Principal #123, Ciudad">
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="email-empresa">E-mail de la Empresa: </label>
+                                <input type="text" id="email-empresa" name="email-empresa" class="input" placeholder="usuario@dominio.com">
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="celular-empresa">N° de Celular de la Empresa: </label>
+                                <input type="text" id="celular-empresa" name="celular-empresa" class="input" placeholder="987654321">
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="programa-select">Escoger Programa: </label>
+                                <select name="programa-select" id="programa-select" class="input">
+                                    <!-- Acá irán todas los Programas Registrados -->
+                                </select>
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="monto-donacion">Monto a donar (S/.): </label>
+                                <input type="text" id="monto-donacion" name="monto-donacion" class="input" placeholder="20000">
+                            </div>
+                            <div class="contenedor-input">
+                                <label for="fecha-donacion">Fecha de la Donación: </label>
+                                <input type="date" id="fecha-donacion" name="fecha-donacion" class="input">
+                            </div>
+                        </div>
+
+                        <div class="contenedor-boton">
+                            <button>Modificar Empresa</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         
         <!-- JS -->
         <script src="js/viewDonorCompanies.js" type="module"></script>

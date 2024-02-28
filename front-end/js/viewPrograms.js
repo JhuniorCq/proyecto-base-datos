@@ -16,7 +16,15 @@ import {modificarPrograma} from './modifyProgram.js';
 
 const formModificar = document.querySelector('.form-modificar');
 const spanCantidadRecursos = document.getElementById('cantidad-recursos');
+
 const escuelaSelect = document.getElementById('escuela-select');
+const nombrePrograma = document.getElementById('nombre-programa');
+const descripcionPrograma = document.getElementById('descripcion-programa');
+const objetivoPrograma = document.getElementById('objetivo-programa');
+const presupuestoPrograma = document.getElementById('presupuesto-programa');
+const fechaInicioPrograma = document.getElementById('fecha-inicio');
+const fechaFinPrograma = document.getElementById('fecha-fin');
+let id_program;
 
 const mostrarDatosProgramas = async () => {
     try {
@@ -171,7 +179,9 @@ const modificarDatosPrograma = async (evento) => {
         const idPrograma = botonSeleccionado.dataset.value;
         console.log(idPrograma)
 
-        //LÓGICA
+        id_program = idPrograma;
+
+        //CANTIDAD DE RECURSOS
         const response = await axios.get(`http://localhost:3000/getResources/${idPrograma}`);
         const arrayRecursos = response.data;
         const cantidadRecursos = arrayRecursos.length;
@@ -182,10 +192,16 @@ const modificarDatosPrograma = async (evento) => {
         const arrayEscuelas = responseEscuelas.data;
 
         escuelaSelect.innerText = '';
+
+        const option = document.createElement('option');
+        option.innerText = '-- Escoge una Escuela --';
+        option.value = 'default';
+        escuelaSelect.append(option);
+
         arrayEscuelas.forEach(escuela => {
             const option = document.createElement('option');
             option.innerText = `${escuela[1]}`;
-            option.value = `${escuela[0]};`
+            option.value = `${escuela[0]}`;
             escuelaSelect.append(option);
         });
 
@@ -240,4 +256,13 @@ window.addEventListener('click', function(evento) {
 })
 
 
-export {};
+export {
+    id_program,
+    escuelaSelect,
+    nombrePrograma,
+    descripcionPrograma,
+    objetivoPrograma,
+    presupuestoPrograma,
+    fechaInicioPrograma,
+    fechaFinPrograma
+};

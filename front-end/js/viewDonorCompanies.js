@@ -1,9 +1,11 @@
 const tbodyEmpresas = document.getElementById('tbody-empresas');
 const fondoInfoEmpresa = document.getElementById('fondo-modal1');
 const contenedorInfoEmpresa = document.getElementById('contenedor-modal1');
-const btnCerrarInfoPrograma = document.getElementById('btn-cerrar1');
+const btnCerrarInfoEmpresa = document.getElementById('btn-cerrar1');
 
-
+const fondoModificarEmpresa = document.getElementById('fondo-modal2');
+const contenedorModificarEmpresa = document.getElementById('contenedor-modal2');
+const btnCerrarModificacion = document.getElementById('btn-cerrar2');
 
 const mostrarDatosEmpresas = async () => {
     try {
@@ -96,14 +98,28 @@ const verInfoEmpresa = async (evento) => {
 }
 
 const cerrarInfoEmpresa = () => {
-    contenedorInfoEmpresa.classList.toggle('cerrar-contenedor-modal');
-    setTimeout(function() {
-        fondoInfoEmpresa.style.visibility = 'hidden';
-    }, 600);
+    cerrarVentanaEmergente(contenedorInfoEmpresa, fondoInfoEmpresa);
 }
 
-const modificarDatosEmpresa = () => {
-    
+const modificarDatosEmpresa = (evento) => {
+    const botonSeleccionado = evento.target;
+    console.log(botonSeleccionado);
+
+    //Hacemos visible la ventana emergente para modificar una escuela
+    fondoModificarEmpresa.style.visibility = 'visible';
+    contenedorModificarEmpresa.classList.toggle('cerrar-contenedor-modal');
+}
+
+const cerrarModificarEmpresa = () => {
+    cerrarVentanaEmergente(contenedorModificarEmpresa, fondoModificarEmpresa);
+}
+
+const cerrarVentanaEmergente = (contenedor, fondo) => {
+    contenedor.classList.toggle('cerrar-contenedor-modal');
+    //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
+    setTimeout(function() {
+        fondo.style.visibility = 'hidden';
+    }, 600);
 }
 
 const eliminarEmpresa = () => {
@@ -112,12 +128,13 @@ const eliminarEmpresa = () => {
 
 mostrarDatosEmpresas();
 
-btnCerrarInfoPrograma.addEventListener('click', cerrarInfoEmpresa);
+btnCerrarInfoEmpresa.addEventListener('click', cerrarInfoEmpresa);
+btnCerrarModificacion.addEventListener('click', cerrarModificarEmpresa);
+
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoEmpresa) {
-        contenedorInfoEmpresa.classList.toggle('cerrar-contenedor-modal');
-        setTimeout(function() {
-            fondoInfoEmpresa.style.visibility = 'hidden';
-        }, 600);
+        cerrarVentanaEmergente(contenedorInfoEmpresa, fondoInfoEmpresa);
+    } else if(evento.target === fondoModificarEmpresa) {
+        cerrarVentanaEmergente(contenedorModificarEmpresa, fondoModificarEmpresa);
     }
 })

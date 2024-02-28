@@ -29,19 +29,6 @@ const modificarEscuela = async (evento) => {
         const apellidosDirector = nuevosApellidosDirector.value;
         const celularDirector = nuevoCelularDirector.value;
         const correoDirector = nuevoCorreoDirector.value;
-        // const excelEstudiantes = nuevoExcelEstudiantes.value;
-
-
-        // console.log(nuevoCodigoModular)
-        // console.log(nuevoNombreEscuela)
-        // console.log(nuevaDireccion)
-        // console.log(departamentoSelect)
-        // console.log(provinciaSelect)
-        // console.log(distritoSelect)
-        // console.log(nuevosNombresDirector)
-        // console.log()
-        // console.log()
-
 
         const formData = new FormData();
         // codigoModularValor === '' ? true: false;

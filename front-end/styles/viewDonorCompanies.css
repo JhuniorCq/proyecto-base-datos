@@ -88,7 +88,7 @@
     position: fixed;
     z-index: 100;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
@@ -99,7 +99,7 @@
 }
 
 .contenedor-modal {
-    width: 50vw;
+    width: 55vw;
     border: none;
     border-radius: 15px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -111,14 +111,93 @@
     padding: 20px 0 30px;
     transition: transform 1s;
     transform: translateY(0%); /*Esto variará de 0 a -200%*/
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .contenedor-info-modal {
-    width: 80%;
+    width: 75%;
     margin-top: 15px;
 }
 
 .cerrar-contenedor-modal {
     transform: translateY(-200%);
+}
+
+.form-modificar {
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-modificar {
+    width: 80%;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+}
+
+.contenedor-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-input:first-child {
+    margin-top: 20px;
+}
+
+.contenedor-input {
+    /* border: 1px solid orange; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+    margin-bottom: 20px;
+}
+
+.contenedor-input label {
+    font-weight: bold;
+    /* margin-bottom: 15px; */
+}
+.input {
+    width: 55%;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px 3px;
+    font-size: 1rem;
+}
+
+
+
+
+.contenedor-boton {
+    margin: 20px 0 10px;
+}
+
+.contenedor-boton button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.contenedor-boton button:hover {
+    background-color: #0056b3;
+    border: 1px solid #0056b3;
+    font-size: 1.1rem;
 }
