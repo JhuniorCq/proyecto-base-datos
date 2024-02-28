@@ -148,11 +148,11 @@
                                         </div>
                                         <div class="contenedor-input">
                                             <label for="descripcion-programa">Descripción: </label>
-                                            <textarea name="descripcion-programa" id="descripcion-programa" cols="30" rows="2" class="input" placeholder="" required></textarea>
+                                            <textarea name="descripcion-programa" id="descripcion-programa" cols="30" rows="1" class="input" placeholder="" required></textarea>
                                         </div>
                                         <div class="contenedor-input">
                                             <label for="objetivo-programa">Objetivo: </label>
-                                            <textarea name="objetivo-programa" id="objetivo-programa" cols="30" rows="2" class="input" placeholder=""></textarea>
+                                            <textarea name="objetivo-programa" id="objetivo-programa" cols="30" rows="1" class="input" placeholder=""></textarea>
                                         </div>
                                         <div class="contenedor-input no-text-area">
                                             <label for="presupuesto-programa">Presupesto (S/.): </label>
@@ -170,11 +170,11 @@
                                 </section>
             
                                 <section class="seccion" id="seccion-recurso">
-                                    <h1 class="subtitulo">Asignar Recursos</h1>
+                                    <h1 class="subtitulo">Modificar Recursos</h1>
                                     
                                     <div class="contenedor-inputs">
                                         <div class="contenedor-cantidad-recursos">
-                                            <button type="button" id="agregar-recurso">Ver Recurso</button>
+                                            <button type="button" id="agregar-recurso">Cantidad de Recursos: <span id="cantidad-recursos"><!-- X --></span></button>
                                         </div>
             
                                         <hr class="separador">
@@ -187,7 +187,7 @@
                                 </section>
                                 
                                 <div class="contenedor-boton">
-                                    <button id="asignar-programa">Asignar Programa</button>
+                                    <button id="btn-modificar-programa">Modificar Programa</button>
                                 </div>
                             </form>
                         </div>
@@ -198,6 +198,7 @@
         
         <!-- JS -->
         <script src="js/viewPrograms.js" type="module"></script>
+        <script src="js/modifyProgram.js" type="module"></script>
         <!-- Axios -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <!-- Bootstrap -->

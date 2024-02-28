@@ -12,6 +12,12 @@ const fondoModificarPrograma = document.getElementById('fondo-modal3');
 const contenedorModificarPrograma = document.getElementById('contenedor-modal3');
 const btnCerrarModificarPrograma = document.getElementById('btn-cerrar3');
 
+import {modificarPrograma} from './modifyProgram.js';
+
+const formModificar = document.querySelector('.form-modificar');
+const spanCantidadRecursos = document.getElementById('cantidad-recursos');
+const escuelaSelect = document.getElementById('escuela-select');
+
 const mostrarDatosProgramas = async () => {
     try {
         const url = 'http://localhost:3000/getPrograms';
@@ -36,7 +42,7 @@ const mostrarDatosProgramas = async () => {
                 <td>
                     <button class="btn-ver-programa opcion" id="btn-ver-programa${iterador}" value="${idPrograma}">Ver programa</button>
                     <button class="btn-ver-recursos opcion" id="btn-ver-recursos${iterador}" value="${idPrograma}">Ver recursos</button>
-                    <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}" data-value="${idPrograma}"></i>
+                    <i class="bi bi-pencil-square btn-modificar opcion" class="btn-modificar" id="btn-modificar${iterador}" data-value="${idPrograma}"></i>
                     <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}" data-value="${idPrograma}"></i>
                 </td>
             `;
@@ -158,17 +164,37 @@ const cerrarInfoRecursos = () => {
     cerrarVentanaEmergente(contenedorInfoRecursos, fondoInfoRecursos);
 }
 
-const modificarDatosPrograma = (evento) => {
-    console.log(evento.target)
-    const botonSeleccionado = evento.target;
-    const idPrograma = botonSeleccionado.dataset.value;
-    console.log(idPrograma)
+const modificarDatosPrograma = async (evento) => {
+    try {
+        console.log(evento.target)
+        const botonSeleccionado = evento.target;
+        const idPrograma = botonSeleccionado.dataset.value;
+        console.log(idPrograma)
 
-    //LÓGICA PARA ENVIAR LOS DATOS Y ESO
+        //LÓGICA
+        const response = await axios.get(`http://localhost:3000/getResources/${idPrograma}`);
+        const arrayRecursos = response.data;
+        const cantidadRecursos = arrayRecursos.length;
+        spanCantidadRecursos.innerText = `${cantidadRecursos}`;
 
-    //Hacemos visible la ventana emergente para modificar una escuela
-    fondoModificarPrograma.style.visibility = 'visible';
-    contenedorModificarPrograma.classList.toggle('cerrar-contenedor-modal');
+        //MOSTRAR ESCUELAS
+        const responseEscuelas = await axios.get('http://localhost:3000/getSchools');
+        const arrayEscuelas = responseEscuelas.data;
+
+        escuelaSelect.innerText = '';
+        arrayEscuelas.forEach(escuela => {
+            const option = document.createElement('option');
+            option.innerText = `${escuela[1]}`;
+            option.value = `${escuela[0]};`
+            escuelaSelect.append(option);
+        });
+
+        //Hacemos visible la ventana emergente para modificar una escuela
+        fondoModificarPrograma.style.visibility = 'visible';
+        contenedorModificarPrograma.classList.toggle('cerrar-contenedor-modal');
+    } catch(err) {
+        console.error('', err.message);
+    }
 }
 
 const cerrarModificarPrograma = () => {
@@ -200,7 +226,8 @@ mostrarDatosProgramas();
 
 btnCerrarInfoPrograma.addEventListener('click', cerrarInfoPrograma);
 btnCerrarInfoRecursos.addEventListener('click', cerrarInfoRecursos);
-btnCerrarModificarPrograma.addEventListener('click', cerrarModificarPrograma)
+btnCerrarModificarPrograma.addEventListener('click', cerrarModificarPrograma);
+formModificar.addEventListener('submit', modificarPrograma);
 
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoPrograma) {
@@ -211,3 +238,6 @@ window.addEventListener('click', function(evento) {
         cerrarVentanaEmergente(contenedorModificarPrograma, fondoModificarPrograma);
     }
 })
+
+
+export {};
