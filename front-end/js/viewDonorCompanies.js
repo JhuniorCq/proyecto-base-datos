@@ -17,7 +17,7 @@ const celularEmpresa = document.getElementById('celular-empresa');
 const montoDonacion = document.getElementById('monto-donacion');
 const fechaDonacion = document.getElementById('fecha-donacion');
 
-let id_company;
+let id_company, id_program;
 
 const mostrarDatosEmpresas = async () => {
     try {
@@ -32,6 +32,7 @@ const mostrarDatosEmpresas = async () => {
             const idEmpresa = empresa[0];
             const nombreEmpresa = empresa[1];
             const montoDonacion = empresa[5];
+            const idPrograma = empresa[7];
             const nombrePrograma = empresa[8];
 
             const filaEmpresa = document.createElement('tr');
@@ -41,8 +42,8 @@ const mostrarDatosEmpresas = async () => {
                 <td>${nombrePrograma}</td>
                 <td>
                     <button class="btn-ver-empresa opcion" id="btn-ver-empresa${iterador}" value="${idEmpresa}">Ver empresa</button>
-                    <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}" data-value="${idEmpresa}"></i>
-                    <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}" data-value="${idEmpresa}"></i>
+                    <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}" data-value="${idEmpresa}/${idPrograma}"></i>
+                    <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}" data-value="${idEmpresa}/${idPrograma}"></i>
                 </td>
             `;
 
@@ -117,8 +118,11 @@ const modificarDatosEmpresa = async (evento) => {
     const botonSeleccionado = evento.target;
     console.log(botonSeleccionado.dataset.value);
 
-    const idEmpresa = botonSeleccionado.dataset.value;
+    const ids_empresa_donante = botonSeleccionado.dataset.value.split('/');
+    const idEmpresa = ids_empresa_donante[0];
+    const idPrograma = ids_empresa_donante[1];
     id_company = idEmpresa;
+    id_program = idPrograma;
 
     //MOSTRAR LOS PROGRAMAS QUE PODRÁ DONAR LA EMPRESA
     const responseProgramas = await axios.get('http://localhost:3000/getPrograms');
@@ -175,6 +179,7 @@ window.addEventListener('click', function(evento) {
 
 export {
     id_company,
+    id_program,
     programaSelect,
     nombreEmpresa,
     direccionEmpresa,

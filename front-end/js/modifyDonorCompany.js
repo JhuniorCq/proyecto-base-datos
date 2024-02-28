@@ -1,6 +1,7 @@
 
 import {
     id_company,
+    id_program,
     programaSelect,
     nombreEmpresa,
     direccionEmpresa,
@@ -14,7 +15,7 @@ const modificarEmpresaDonante = async (evento) => {
     try {
         evento.preventDefault();
 
-        console.log(id_company);
+        console.log(id_company, id_program);
         console.log(programaSelect.value);
         console.log(nombreEmpresa.value);
         console.log(direccionEmpresa.value);
@@ -26,7 +27,7 @@ const modificarEmpresaDonante = async (evento) => {
         const fechaDonacionFormateada = fechaDonacion.value.split('-').reverse().join('/');
 
         const datosEmpresa = {
-            id_program: programaSelect.value,
+            program_id: programaSelect.value,
             company_name: nombreEmpresa.value,
             company_address: direccionEmpresa.value,
             company_cellphone: celularEmpresa.value,
@@ -35,7 +36,7 @@ const modificarEmpresaDonante = async (evento) => {
             donation_date: fechaDonacionFormateada
         }
 
-        const url = `http://localhost:3000/modifyDonorCompanie/${id_company}`;
+        const url = `http://localhost:3000/modifyDonorCompanie/${id_company}/${id_program}`;
 
         const response = await axios.put(url, datosEmpresa);
         const result = response.data;
