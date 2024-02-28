@@ -1,5 +1,6 @@
 const axios = require('axios');
 const {ProgramRepository} = require('../repository/programRepository.js');
+// const { deleteProgram } = require('../controllers/programController.js');
 const programRepository = new ProgramRepository();
 
 class ProgramService {
@@ -74,6 +75,16 @@ class ProgramService {
 
             return result;
 
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
+
+    async deleteProgram(id_program) {
+        try {
+            const result = await programRepository.deleteProgram(id_program);
+
+            return result;
         } catch(err) {
             console.error('', err.message);
         }

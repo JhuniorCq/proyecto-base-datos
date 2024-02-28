@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = Router();
 const {getSchools, getSchool, enrollSchool, deleteSchool, updateSchool} = require('../controllers/schoolController.js');
 const {getStudents} = require('../controllers/studentController.js');
-const {assignProgram, getPrograms, getProgram, updateProgram} = require('../controllers/programController.js');
+const {assignProgram, getPrograms, getProgram, updateProgram, deleteProgram} = require('../controllers/programController.js');
 const {getResources} = require('../controllers/resourceController.js')
 const {registerDonorCompany, getDonorCompanies, getDonorCompanie, updateDonorCompanie, deleteDonorCompanie, getDonation} = require('../controllers/donorCompanyController.js')
 
@@ -23,8 +23,9 @@ router.get('/getPrograms', getPrograms);
 router.get('/getProgram/:id_program', getProgram);
 router.get('/getResources/:id_program', getResources);
 router.put('/modifyProgram/:id_program', updateProgram);
+router.delete('/deleteProgram/:id_program', deleteProgram);
 
-// CONTROLLERS DONARCOMPANY
+// CONTROLLERS DONORCOMPANY
 router.post('/registerDonor', registerDonorCompany);
 router.get('/getDonorCompanies', getDonorCompanies);
 router.get('/getDonorCompanie/:id_company', getDonorCompanie);

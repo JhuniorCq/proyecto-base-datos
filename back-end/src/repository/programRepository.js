@@ -134,6 +134,38 @@ class ProgramRepository {
             console.error('', err.message);
         }
     }
+
+    async deleteProgram(id_program) {
+        try {
+            const sqlDeleteResource = `
+                DELETE FROM Resources
+                WHERE id_program = :id_program
+            `;
+
+            const binds = {
+                id_program
+            };
+
+            await db(sqlDeleteResource, binds, true);
+
+            const sqlDeleteDonation = `
+                DELETE FROM Donations
+                WHERE id_program = :id_program
+            `;
+
+            await db(sqlDeleteDonation, binds, true);
+
+            const sqlDeleteProgram = `
+                DELETE FROM Programs
+                WHERE id_program = :id_program
+            `;
+            await db(sqlDeleteProgram, binds, true);
+
+            return 'El programa ha sido eliminado';
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
 }
 
 module.exports = {

@@ -47,9 +47,22 @@ const updateProgram = async (req, res) => {
     }
 }
 
+const deleteProgram = async (req, res) => {
+    try {
+        const {id_program} = req.params;
+
+        const result = await programService.deleteProgram(id_program);
+
+        res.send(result);
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
 module.exports = {
     assignProgram,
     getPrograms,
     getProgram,
-    updateProgram
+    updateProgram,
+    deleteProgram
 }

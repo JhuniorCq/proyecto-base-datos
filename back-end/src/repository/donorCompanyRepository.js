@@ -197,8 +197,7 @@ class DonorCompanyRepository {
             const sqlDeleteDonation = `
                 DELETE FROM Donations
                 WHERE id_company = :id_company
-                AND id_program = :id_program
-            `;
+            `; // Acá le quité -> AND id_program = :id_program
 
             const bindsDonation = {
                 id_company,
