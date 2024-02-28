@@ -90,6 +90,50 @@ class ProgramRepository {
             throw err;
         }
     }
+
+    async updateProgram(dataProgram, id_program) {
+        try {
+            const {
+                modular_code,
+                program_name,
+                program_description,
+                objective,
+                budget,
+                start_date,
+                end_date
+            } = dataProgram;
+
+            const sql = `
+                UPDATE Programs
+                SET modular_code = :modular_code,
+                    program_name = :program_name,
+                    program_description = :program_description,
+                    objective = :objective,
+                    budget = :budget,
+                    start_date = :start_date,
+                    end_date = :end_date
+                WHERE id_program = :id_program
+            `;
+
+            const binds = {
+                modular_code,
+                program_name,
+                program_description,
+                objective,
+                budget,
+                start_date,
+                end_date,
+                id_program
+            };
+
+            const result = await db(sql, binds, true);
+
+            return 'Los datos han sido modificados.';
+
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
 }
 
 module.exports = {

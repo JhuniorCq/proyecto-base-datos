@@ -4,7 +4,6 @@ const programService = new ProgramService();
 const assignProgram = async (req, res) => {
     try {
         const dataProgram = req.body;
-        console.log(dataProgram); //Se imprime vacío
         const result = await programService.assignProgram(dataProgram);
 
         res.send(result);
@@ -35,8 +34,22 @@ const getProgram = async (req, res) => {
     }
 }
 
+const updateProgram = async (req, res) => {
+    try {
+        const {id_program} = req.params;
+
+        const result = await programService.updateProgram(req.body, id_program);
+
+        res.send(result);
+
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
 module.exports = {
     assignProgram,
     getPrograms,
-    getProgram
+    getProgram,
+    updateProgram
 }
