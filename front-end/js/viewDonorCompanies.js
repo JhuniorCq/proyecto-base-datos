@@ -7,6 +7,18 @@ const fondoModificarEmpresa = document.getElementById('fondo-modal2');
 const contenedorModificarEmpresa = document.getElementById('contenedor-modal2');
 const btnCerrarModificacion = document.getElementById('btn-cerrar2');
 
+import {modificarEmpresaDonante} from './modifyDonorCompany.js';
+const formularioModificar = document.querySelector('.form-modificar');
+const programaSelect = document.getElementById('programa-select');
+const nombreEmpresa = document.getElementById('nombre-empresa');
+const direccionEmpresa = document.getElementById('direccion-empresa');
+const emailEmpresa = document.getElementById('email-empresa');
+const celularEmpresa = document.getElementById('celular-empresa');
+const montoDonacion = document.getElementById('monto-donacion');
+const fechaDonacion = document.getElementById('fecha-donacion');
+
+let id_company;
+
 const mostrarDatosEmpresas = async () => {
     try {
         const url = 'http://localhost:3000/getDonorCompanies';
@@ -29,8 +41,8 @@ const mostrarDatosEmpresas = async () => {
                 <td>${nombrePrograma}</td>
                 <td>
                     <button class="btn-ver-empresa opcion" id="btn-ver-empresa${iterador}" value="${idEmpresa}">Ver empresa</button>
-                    <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}"></i>
-                    <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}"></i>
+                    <i class="bi bi-pencil-square btn-modificar opcion" id="btn-modificar${iterador}" data-value="${idEmpresa}"></i>
+                    <i class="bi bi-x-square-fill btn-eliminar opcion" id="btn-eliminar${iterador}" data-value="${idEmpresa}"></i>
                 </td>
             `;
 
@@ -101,9 +113,30 @@ const cerrarInfoEmpresa = () => {
     cerrarVentanaEmergente(contenedorInfoEmpresa, fondoInfoEmpresa);
 }
 
-const modificarDatosEmpresa = (evento) => {
+const modificarDatosEmpresa = async (evento) => {
     const botonSeleccionado = evento.target;
-    console.log(botonSeleccionado);
+    console.log(botonSeleccionado.dataset.value);
+
+    const idEmpresa = botonSeleccionado.dataset.value;
+    id_company = idEmpresa;
+
+    //MOSTRAR LOS PROGRAMAS QUE PODRÁ DONAR LA EMPRESA
+    const responseProgramas = await axios.get('http://localhost:3000/getPrograms');
+    const arrayProgramas = responseProgramas.data;
+
+    programaSelect.innerText = '';
+    
+    const option = document.createElement('option');
+    option.innerText = '-- Escoge un Programa --';
+    option.value = 'default';
+    programaSelect.append(option);
+
+    arrayProgramas.forEach(programa => {
+        const option = document.createElement('option');
+        option.innerText = `${programa[1]}`;
+        option.value = `${programa[0]}`;
+        programaSelect.append(option);
+    });
 
     //Hacemos visible la ventana emergente para modificar una escuela
     fondoModificarEmpresa.style.visibility = 'visible';
@@ -130,6 +163,7 @@ mostrarDatosEmpresas();
 
 btnCerrarInfoEmpresa.addEventListener('click', cerrarInfoEmpresa);
 btnCerrarModificacion.addEventListener('click', cerrarModificarEmpresa);
+formularioModificar.addEventListener('submit', modificarEmpresaDonante);
 
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoEmpresa) {
@@ -137,4 +171,15 @@ window.addEventListener('click', function(evento) {
     } else if(evento.target === fondoModificarEmpresa) {
         cerrarVentanaEmergente(contenedorModificarEmpresa, fondoModificarEmpresa);
     }
-})
+});
+
+export {
+    id_company,
+    programaSelect,
+    nombreEmpresa,
+    direccionEmpresa,
+    emailEmpresa,
+    celularEmpresa,
+    montoDonacion,
+    fechaDonacion
+};

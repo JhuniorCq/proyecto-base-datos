@@ -138,7 +138,6 @@ const cerrarInfoPrograma = () => {
 const verInfoRecursos = async (evento) => {
     console.log(evento.target)
     const botonSeleccionado = evento.target;
-    // const tbodyRecursos = document.getElementById('tbody-recursos');
     const idPrograma = botonSeleccionado.value;
     console.log(idPrograma);
     const urlRecursos = `http://localhost:3000/getResources/${idPrograma}`;
