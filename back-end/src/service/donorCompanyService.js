@@ -91,15 +91,17 @@ class DonorCompanyService {
 
         } catch(err) {
             console.error('Error en updateDonorCompanie en donorCompanyService.js', err.message);
-            // throw err;
         }
     }
 
-    async deleteDonorCompanie() {
+    async deleteDonorCompanie(id_company, id_program) {
         try {
 
+            const result = await donorCompanyRepository.deleteDonorCompanie(id_company, id_program);
+
+            return result;
         } catch(err) {
-            console.error('', err.message);
+            console.error('Error en deleteDonorCompanie en donorCompanyService.js', err.message);
         }
     }
 }

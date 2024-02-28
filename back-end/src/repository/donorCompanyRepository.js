@@ -171,13 +171,15 @@ class DonorCompanyRepository {
                 SET donation_amount = :donation_amount,
                     donation_date = :donation_date,
                     id_program = :id_program
-                WHERE id_program = :current_id_program
+                WHERE id_program = :current_id_program 
+                AND id_company = :id_company
             `;
 
             const bindsDonation = {
                 donation_amount,
                 donation_date,
                 id_program,
+                id_company,
                 current_id_program
             };
 
@@ -190,11 +192,35 @@ class DonorCompanyRepository {
         }
     }
 
-    async deleteDonorCompanie() {
+    async deleteDonorCompanie(id_company, id_program) {
         try {
+            const sqlDeleteDonation = `
+                DELETE FROM Donations
+                WHERE id_company = :id_company
+                AND id_program = :id_program
+            `;
 
+            const bindsDonation = {
+                id_company,
+                id_program
+            };
+
+            await db(sqlDeleteDonation, bindsDonation, true);
+
+            const sqlDeleteCompanie = `
+                DELETE FROM Companies
+                WHERE id_company = :id_company
+            `;
+            
+            const bindsCompanie = {
+                id_company
+            };
+
+            await db(sqlDeleteCompanie, bindsCompanie, true);
+
+            return 'La empresa ha sido eliminada';
         } catch(err) {
-            console.error('', err.message);
+            console.error('Error en deleteDonorCompanie en donorCompanyRepository.js', err.message);
         }
     }
 }

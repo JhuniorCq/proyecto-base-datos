@@ -62,7 +62,11 @@ const updateDonorCompanie = async (req, res) => {
 
 const deleteDonorCompanie = async (req, res) => {
     try {
+        const {id_company, id_program} = req.params;
 
+        const result = await donorCompanyService.deleteDonorCompanie(id_company, id_program);
+
+        res.send(result);
     } catch(err) {
         console.error('', err.message);
     }
