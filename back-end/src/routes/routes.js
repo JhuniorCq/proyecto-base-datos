@@ -28,7 +28,7 @@ router.put('/modifyProgram/:id_program', updateProgram);
 router.post('/registerDonor', registerDonorCompany);
 router.get('/getDonorCompanies', getDonorCompanies);
 router.get('/getDonorCompanie/:id_company', getDonorCompanie);
-router.put('/modifyDonorCompanie/:id_company', updateDonorCompanie);
+router.put('/modifyDonorCompanie/:id_company/:id_program', updateDonorCompanie);
 router.delete('/deleteDonorCompanie/:id_company', deleteDonorCompanie);
 router.get('/getDonation/:id_company/:id_program', getDonation);
 

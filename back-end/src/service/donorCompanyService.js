@@ -45,11 +45,11 @@ class DonorCompanyService {
         }
     }
 
-    async updateDonorCompanie(reqBody, id_company) {
+    async updateDonorCompanie(reqBody, id_company, id_program) {
         try {
 
             const {
-                id_program,
+                program_id,
                 company_name,
                 company_address,
                 company_cellphone,
@@ -62,8 +62,10 @@ class DonorCompanyService {
             
 
             //VERIFICAR QUE LOS DATOS NO SEAN UNOS EXISTENTES
-            const response = await axios.get(`http://localhost/getDonorCompanie/${id_company}`);
+            const response = await axios.get(`http://localhost:3000/getDonorCompanie/${id_company}`);
             const dataEmpresa = response.data[0];
+
+            // console.log('dataEmpresa: ', dataEmpresa);
 
             company_name === ''? datosEmpresa['company_name'] = dataEmpresa[1]: datosEmpresa['company_name'] = company_name;
             company_address === ''? datosEmpresa['company_address'] = dataEmpresa[2]: datosEmpresa['company_address'] = company_address;
@@ -73,17 +75,23 @@ class DonorCompanyService {
             //VERIFICAR QUE LOS DATOS NO SEAN UNOS EXISTENTES
             const responseDonation = await axios.get(`http://localhost:3000/getDonation/${id_company}/${id_program}`);
             const datosDonacion = responseDonation.data[0];
+            
+            const fechaDonaxionExistente = datosDonacion[1].split('T')[0].split('-').reverse().join('/');
 
-            donation_amount === ''? dataEmpresa['donation_amount'] = datosDonacion[0]: dataEmpresa['donation_amount'] = donation_amount;
-            donation_date === ''? dataEmpresa['donation_date'] = datosDonacion[1]: dataEmpresa['donation_date'] = donation_date;
-            id_program === ''? dataEmpresa['id_program'] = datosDonacion[3]: dataEmpresa['id_program'] = id_program;
+            donation_amount === ''? datosEmpresa['donation_amount'] = datosDonacion[0]: datosEmpresa['donation_amount'] = donation_amount;
+            donation_date === ''? datosEmpresa['donation_date'] = fechaDonaxionExistente: datosEmpresa['donation_date'] = donation_date;
+            program_id === 'default'? datosEmpresa['id_program'] = id_program: datosEmpresa['id_program'] = program_id;
 
-            const result = await donorCompanyRepository.updateDonorCompanie(datosEmpresa, id_company);
+            // const current_id_program = datosDonacion
+
+            console.log('AAAAAAAAAAAAAAAAAAAAAAAA', datosEmpresa);
+            const result = await donorCompanyRepository.updateDonorCompanie(datosEmpresa, id_company, id_program);
 
             return result;
 
         } catch(err) {
-            console.error('', err.message);
+            console.error('Error en updateDonorCompanie en donorCompanyService.js', err.message);
+            // throw err;
         }
     }
 

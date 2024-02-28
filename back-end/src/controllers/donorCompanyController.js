@@ -49,9 +49,9 @@ const getDonation = async (req, res) => {
 
 const updateDonorCompanie = async (req, res) => {
     try {
-        const {id_company} = req.params;
+        const {id_company, id_program} = req.params;
         
-        const result = await donorCompanyService.updateDonorCompanie(req.body, id_company);
+        const result = await donorCompanyService.updateDonorCompanie(req.body, id_company, id_program);
 
         res.send(result);
 

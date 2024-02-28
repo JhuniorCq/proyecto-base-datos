@@ -135,7 +135,7 @@ class DonorCompanyRepository {
         }
     }
 
-    async updateDonorCompanie(datosEmpresa, id_company) {
+    async updateDonorCompanie(datosEmpresa, id_company, current_id_program) {
         try {
             const {
                 id_program,
@@ -166,9 +166,27 @@ class DonorCompanyRepository {
 
             await db(sqlCompany, bindsCompany, true);
 
-            const sqlDonation = ``;
+            const sqlDonation = `
+                UPDATE Donations
+                SET donation_amount = :donation_amount,
+                    donation_date = :donation_date,
+                    id_program = :id_program
+                WHERE id_program = :current_id_program
+            `;
+
+            const bindsDonation = {
+                donation_amount,
+                donation_date,
+                id_program,
+                current_id_program
+            };
+
+            await db(sqlDonation, bindsDonation, true);
+
+
+            return 'Los datos han sido modificados';
         } catch(err) {
-            console.error('', err.message);
+            console.error('Error en updateDonorCompanie en donorCompanyRepository.js', err.message);
         }
     }
 
