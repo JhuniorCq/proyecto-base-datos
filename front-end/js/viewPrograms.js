@@ -26,6 +26,13 @@ const fechaInicioPrograma = document.getElementById('fecha-inicio');
 const fechaFinPrograma = document.getElementById('fecha-fin');
 let id_program;
 
+const fondoEliminarPrograma = document.getElementById('fondo-modal4');
+const contenedorEliminarPrograma = document.getElementById('contenedor-modal4');
+const btnCerrarEliminarPrograma = document.getElementById('btn-cerrar4');
+const btnEliminarSi = document.getElementById('eliminar-si');
+const btnEliminarNo = document.getElementById('eliminar-no');
+let id_program_eliminar;
+
 const mostrarDatosProgramas = async () => {
     try {
         const url = 'http://localhost:3000/getPrograms';
@@ -225,7 +232,31 @@ const cerrarVentanaEmergente = (contenedor, fondo) => {
 }
 
 const eliminarPrograma = (evento) => {
-    console.log(evento.target)
+    const botonSeleccionado = evento.target;
+    console.log(botonSeleccionado.dataset.value);
+    id_program_eliminar = botonSeleccionado.dataset.value;
+
+    //Hacemos visible la ventana emergente para modificar una escuela
+    fondoEliminarPrograma.style.visibility = 'visible';
+    contenedorEliminarPrograma.classList.toggle('cerrar-contenedor-modal');
+}
+
+const eliminarProgramaSi = async () => {
+    try {
+        const url = `http://localhost:3000/deleteProgram/${id_program_eliminar}`;
+        const response = await axios.delete(url);
+        const result = response.data;
+
+        alert(result);
+        console.log(result);
+        cerrarVentanaEmergente(contenedorEliminarPrograma, fondoEliminarPrograma);
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
+const cerrarEliminarPrograma = () => {
+    cerrarVentanaEmergente(contenedorEliminarPrograma, fondoEliminarPrograma);
 }
 
 const obtenerNombreEscuela = async (codigoModular) => {
@@ -243,6 +274,9 @@ btnCerrarInfoPrograma.addEventListener('click', cerrarInfoPrograma);
 btnCerrarInfoRecursos.addEventListener('click', cerrarInfoRecursos);
 btnCerrarModificarPrograma.addEventListener('click', cerrarModificarPrograma);
 formModificar.addEventListener('submit', modificarPrograma);
+btnCerrarEliminarPrograma.addEventListener('click', cerrarEliminarPrograma);
+btnEliminarSi.addEventListener('click', eliminarProgramaSi);
+btnEliminarNo.addEventListener('click', cerrarEliminarPrograma);
 
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoPrograma) {
@@ -251,6 +285,8 @@ window.addEventListener('click', function(evento) {
         cerrarVentanaEmergente(contenedorInfoRecursos, fondoInfoRecursos);
     } else if(evento.target === fondoModificarPrograma) {
         cerrarVentanaEmergente(contenedorModificarPrograma, fondoModificarPrograma);
+    } else if(evento.target === fondoEliminarPrograma) {
+        cerrarVentanaEmergente(contenedorEliminarPrograma, fondoEliminarPrograma);
     }
 })
 

@@ -55,58 +55,6 @@
     margin-bottom: 20px;
 }
 
-/* A TRABAJAR CON LOS CONTENEDORES PARA AGREGAR MAS RECURSOS
-#varios-recursos {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.contenedor-recursos {
-    width: 100%;
-
-}
-
-.contenedor-recurso {
-    width: 100%;
-    display: flex;
-
-}
-
-.input-recurso {
-
-}
-
-.contenedor-botones-recurso {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10px;
-}
-
-.boton-recurso {
-    cursor: pointer;
-}
-
-#agregar-recurso {
-    font-size: 24px;
-    margin-right: 10px;
-    color: #28a745;
-}
-
-#agregar-recurso:hover {
-    color: #218838;
-}
-
-#quitar-recurso {
-    font-size: 24px;
-    color: #dc3545;
-}
-
-#quitar-recurso:hover {
-    color: #c82333;
-} */
 
 /* **************** */
 
@@ -122,14 +70,6 @@
     padding: 4px 5px;
     font-size: 1rem;
 }
-
-/* .contenedor-inputs-recurso {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
 
 .contenedor-cantidad-recursos {
     display: flex;

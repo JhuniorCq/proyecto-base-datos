@@ -28,6 +28,13 @@ const nuevoCorreoDirector = document.getElementById('email');
 const nuevoExcelEstudiantes = document.getElementById('input-excel');
 let codigoModularActual;
 
+const fondoEliminarEscuela = document.getElementById('fondo-modal4');
+const contenedorEliminarEscuela = document.getElementById('contenedor-modal4');
+const btnCerrarEliminarEscuela = document.getElementById('btn-cerrar4');
+const btnEliminarSi = document.getElementById('eliminar-si');
+const btnEliminarNo = document.getElementById('eliminar-no');
+let modular_code_eliminar;
+
 const mostrarDatosEscuelas = async () => {
     try {
         const url = 'http://localhost:3000/getSchools';
@@ -176,16 +183,10 @@ const modificarDatosEscuela = (evento) => {
     console.log(codigoModular);
 
     codigoModularActual = codigoModular;
-    
-    //LÓGICA PARA ENVIAR LOS DATOS Y ESO
-    
-
-    
 
     //Hacemos visible la ventana emergente para modificar una escuela
     fondoModificarEscuela.style.visibility = 'visible';
     contenedorModificarEscuela.classList.toggle('cerrar-contenedor-modal');
-
 }
 
 const cerrarModificarEscuela = () => {
@@ -201,8 +202,31 @@ const cerrarVentanaEmergente = (contenedor, fondo) => {
 }
 
 const eliminarEscuela = (evento) => {
-    console.log('Estás eliminando una escuela');
-    console.log(evento.target);
+    const botonSeleccionado = evento.target;
+    modular_code_eliminar = botonSeleccionado.dataset.value;
+    console.log(modular_code_eliminar);
+
+    //Hacemos visible la ventana emergente para modificar una escuela
+    fondoEliminarEscuela.style.visibility = 'visible';
+    contenedorEliminarEscuela.classList.toggle('cerrar-contenedor-modal');
+}
+
+const cerrarEliminarEscuela = () => {
+    cerrarVentanaEmergente(contenedorEliminarEscuela, fondoEliminarEscuela);
+}
+
+const eliminarEscuelaSi = async () => {
+    try {
+        const url = `http://localhost:3000/deleteSchool/${modular_code_eliminar}`;
+        const response = await axios.delete(url);
+        const result = response.data;
+
+        alert(result);
+        console.log(result);
+        cerrarVentanaEmergente(contenedorEliminarEscuela, fondoEliminarEscuela);
+    } catch(err) {
+        console.error('', err.message);
+    }
 }
 
 const axiosGet = async (url) => {
@@ -216,6 +240,9 @@ btnCerrarInfoEscuela.addEventListener('click', cerrarInfoEscuela);
 btnCerrarInfoEstudiantes.addEventListener('click', cerrarInfoEstudiantes);
 btnCerrarModificarEscuela.addEventListener('click', cerrarModificarEscuela);
 formularioModificar.addEventListener('submit', modificarEscuela);
+btnCerrarEliminarEscuela.addEventListener('click', cerrarEliminarEscuela);
+btnEliminarSi.addEventListener('click', eliminarEscuelaSi);
+btnEliminarNo.addEventListener('click', cerrarEliminarEscuela);
 
 //Este evento es para que cuando se de click en el Fondo Oscuro, cuando aparece la Ventana Emergente, hará que la Ventana Emergente se vaya
 window.addEventListener('click', function(evento) {
@@ -225,6 +252,8 @@ window.addEventListener('click', function(evento) {
         cerrarVentanaEmergente(contenedorInfoEstudiantes, fondoInfoEstudiantes);
     } else if(evento.target === fondoModificarEscuela) {
         cerrarVentanaEmergente(contenedorModificarEscuela, fondoModificarEscuela);
+    } else if(evento.target === fondoEliminarEscuela) {
+        cerrarVentanaEmergente(contenedorEliminarEscuela, fondoEliminarEscuela);
     }
 });
 

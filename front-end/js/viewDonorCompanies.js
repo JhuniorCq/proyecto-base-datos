@@ -7,6 +7,14 @@ const fondoModificarEmpresa = document.getElementById('fondo-modal2');
 const contenedorModificarEmpresa = document.getElementById('contenedor-modal2');
 const btnCerrarModificacion = document.getElementById('btn-cerrar2');
 
+const fondoEliminarEmpresa = document.getElementById('fondo-modal3');
+const contenedorEliminarEmpresa = document.getElementById('contenedor-modal3');
+const btnCerrarEliminarEmpresa = document.getElementById('btn-cerrar3');
+const btnEliminarSi = document.getElementById('eliminar-si');
+const btnEliminarNo = document.getElementById('eliminar-no');
+
+let id_company_eliminar, id_program_eliminar;
+
 import {modificarEmpresaDonante} from './modifyDonorCompany.js';
 const formularioModificar = document.querySelector('.form-modificar');
 const programaSelect = document.getElementById('programa-select');
@@ -151,6 +159,33 @@ const cerrarModificarEmpresa = () => {
     cerrarVentanaEmergente(contenedorModificarEmpresa, fondoModificarEmpresa);
 }
 
+const eliminarEmpresa = (evento) => {
+    const botonSeleccionado = evento.target;
+    console.log(botonSeleccionado.dataset.value);
+    const ids_company_program = botonSeleccionado.dataset.value.split('/');
+    id_company_eliminar = ids_company_program[0];
+    id_program_eliminar = ids_company_program[1];
+
+    //Hacemos visible la ventana emergente para modificar una escuela
+    fondoEliminarEmpresa.style.visibility = 'visible';
+    contenedorEliminarEmpresa.classList.toggle('cerrar-contenedor-modal');
+}
+
+const eliminarEmpresaSi = async () => {
+    try {
+        const response = await axios.delete(`http://localhost:3000/deleteDonorCompanie/${id_company_eliminar}/${id_program_eliminar}`);
+        const result = response.data;
+        console.log(result);
+        cerrarVentanaEmergente(contenedorEliminarEmpresa, fondoEliminarEmpresa);
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
+const cerrarEliminarEmpresa = () => {
+    cerrarVentanaEmergente(contenedorEliminarEmpresa, fondoEliminarEmpresa);
+}
+
 const cerrarVentanaEmergente = (contenedor, fondo) => {
     contenedor.classList.toggle('cerrar-contenedor-modal');
     //Este setTimeout es para que se aprecie la Transición y no se cierre la ventana de frente
@@ -159,21 +194,24 @@ const cerrarVentanaEmergente = (contenedor, fondo) => {
     }, 600);
 }
 
-const eliminarEmpresa = () => {
-
-}
-
 mostrarDatosEmpresas();
 
 btnCerrarInfoEmpresa.addEventListener('click', cerrarInfoEmpresa);
 btnCerrarModificacion.addEventListener('click', cerrarModificarEmpresa);
 formularioModificar.addEventListener('submit', modificarEmpresaDonante);
 
+btnCerrarEliminarEmpresa.addEventListener('click', cerrarEliminarEmpresa);
+
+btnEliminarSi.addEventListener('click', eliminarEmpresaSi);
+btnEliminarNo.addEventListener('click', cerrarEliminarEmpresa);
+
 window.addEventListener('click', function(evento) {
     if(evento.target === fondoInfoEmpresa) {
         cerrarVentanaEmergente(contenedorInfoEmpresa, fondoInfoEmpresa);
     } else if(evento.target === fondoModificarEmpresa) {
         cerrarVentanaEmergente(contenedorModificarEmpresa, fondoModificarEmpresa);
+    } else if(evento.target === fondoEliminarEmpresa) {
+        cerrarVentanaEmergente(contenedorEliminarEmpresa, fondoEliminarEmpresa);
     }
 });
 
