@@ -36,13 +36,24 @@ const getDonorCompanie = async (req, res) => {
     }
 }
 
+const getDonation = async (req, res) => {
+    try {
+        const {id_company, id_program} = req.params;
+        const result = await donorCompanyService.getDonation(id_company, id_program);
+
+        res.json(result);
+    } catch(err) {
+        console.error('', err.message);
+    }
+}
+
 const updateDonorCompanie = async (req, res) => {
     try {
         const {id_company} = req.params;
         
         const result = await donorCompanyService.updateDonorCompanie(req.body, id_company);
 
-        return result;
+        res.send(result);
 
     } catch(err) {
         console.error('', err.message);
@@ -62,5 +73,6 @@ module.exports = {
     getDonorCompanies,
     getDonorCompanie,
     updateDonorCompanie,
-    deleteDonorCompanie
+    deleteDonorCompanie,
+    getDonation
 }

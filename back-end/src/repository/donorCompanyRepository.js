@@ -114,9 +114,59 @@ class DonorCompanyRepository {
         }
     }
 
+    async getDonation(id_company, id_program) {
+        try {
+            const sql = `
+                SELECT * FROM Donations
+                WHERE id_company = :id_company AND id_program = :id_program
+            `;
+
+            const binds = {
+                id_company,
+                id_program
+            };
+
+            const result = await db(sql, binds, false);
+            // console.log(result.rows);
+
+            return result.rows;
+        } catch(err) {
+            console.error('', err.message);
+        }
+    }
+
     async updateDonorCompanie(datosEmpresa, id_company) {
         try {
+            const {
+                id_program,
+                company_name,
+                company_address,
+                company_cellphone,
+                company_email,
+                donation_amount,
+                donation_date
+            } = datosEmpresa;
 
+            const sqlCompany = `
+                UPDATE Companies
+                SET company_name = :company_name,
+                    company_address = :company_address,
+                    company_cellphone = :company_cellphone,
+                    company_email = :company_email
+                WHERE id_company = :id_company
+            `;
+
+            const bindsCompany = {
+                company_name,
+                company_address,
+                company_cellphone,
+                company_email,
+                id_company
+            };
+
+            await db(sqlCompany, bindsCompany, true);
+
+            const sqlDonation = ``;
         } catch(err) {
             console.error('', err.message);
         }
