@@ -176,6 +176,7 @@ const eliminarEmpresaSi = async () => {
         const response = await axios.delete(`http://localhost:3000/deleteDonorCompanie/${id_company_eliminar}/${id_program_eliminar}`);
         const result = response.data;
         console.log(result);
+        alert(result);
         cerrarVentanaEmergente(contenedorEliminarEmpresa, fondoEliminarEmpresa);
     } catch(err) {
         console.error('', err.message);

@@ -200,8 +200,7 @@ class DonorCompanyRepository {
             `; // Acá le quité -> AND id_program = :id_program
 
             const bindsDonation = {
-                id_company,
-                id_program
+                id_company
             };
 
             await db(sqlDeleteDonation, bindsDonation, true);
