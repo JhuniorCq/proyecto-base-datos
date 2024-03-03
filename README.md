@@ -19,5 +19,9 @@ Este proyecto se llama "EduNex Solutions", es realizado por nosotros "Soft Tech 
     14. Eliminar Empresa Donante
 
 Este proyecto contiene 2 Carpetas, una para el "front-end" y otra para el "back-end", las cuales tienen estos mismos nombres que se mencionan.
-    - Carpeta "front-end": Dentro de ella encontraremos todos los archivos HTML, CSS y JS utilizados para la creación de las vistas.
-    - Carpeta "back-end": Dentro de ella encontraremos todos los archivos JS que contienen la lógica necesaria para poder crear mediante código las reglas de negocio establecidas. También contienen la conexión a la Base de Datos y el manejo de las Consultas hacia ella.
+- Carpeta "front-end": Dentro de ella encontraremos todos los archivos HTML, CSS y JS utilizados para la creación de las vistas.
+- Carpeta "back-end": Dentro de ella encontraremos todos los archivos JS que contienen la lógica necesaria para poder crear mediante código las reglas de negocio establecidas. También contienen la conexión a la Base de Datos y el manejo de las Consultas hacia ella.
+- Tecnologías usadas:
+    1. Front-End: HTML, CSS, JS y Bootstrap
+    2. Back-End: Node.js y Express.js
+    3. Base de Datos: OracleSQL
