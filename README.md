@@ -1,4 +1,4 @@
-# Proyecto de Base de Datos - GRUPO 5
+# Proyecto para el curso de Base de Datos
 Este proyecto se llama "EduNex Solutions", es realizado por nosotros "Soft Tech Solutions" para la empresa "Nexus".
 "EduNex Solutions" es un software de gestión de datos que busca a aportar con el logro del objetivo N°4 del Desarrollo Sostenible "Educación de Calidad".
 
